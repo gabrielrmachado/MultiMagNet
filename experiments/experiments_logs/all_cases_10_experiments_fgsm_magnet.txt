@@ -1,0 +1,25 @@
+
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 1, drop_rate = 0.001, tau = RE
+
+Team Statistics: ACC Mean: 99.91%, Positive Mean: 99.83%, Negative Mean: 100.00%, AUC mean: 0.999, F1 Mean: 0.999
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:00:13.953042
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 1, drop_rate = 0.01, tau = RE
+
+Team Statistics: ACC Mean: 99.56%, Positive Mean: 99.12%, Negative Mean: 100.00%, AUC mean: 0.996, F1 Mean: 0.996
+-----------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:00:23.225847
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 1, drop_rate = 0.05, tau = RE
+
+Team Statistics: ACC Mean: 97.61%, Positive Mean: 95.23%, Negative Mean: 100.00%, AUC mean: 0.976, F1 Mean: 0.976
+-----------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:00:34.315019

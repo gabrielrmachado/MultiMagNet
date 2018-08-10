@@ -1,0 +1,121 @@
+
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', CW_0.0 Attack, p = 1, reduction models = 1, drop_rate = 0.001, tau = RE
+
+Team Statistics: ACC Mean: 52.96%, Positive Mean: 99.67%, Negative Mean: 6.26%, AUC mean: 0.53, F1 Mean: 0.68
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:00:09.607315
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', CW_0.0 Attack, p = 1, reduction models = 1, drop_rate = 0.01, tau = RE
+
+Team Statistics: ACC Mean: 61.45%, Positive Mean: 99.16%, Negative Mean: 23.73%, AUC mean: 0.614, F1 Mean: 0.72
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:00:18.745748
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', CW_0.0 Attack, p = 1, reduction models = 1, drop_rate = 0.05, tau = RE
+
+Team Statistics: ACC Mean: 71.79%, Positive Mean: 95.13%, Negative Mean: 48.45%, AUC mean: 0.718, F1 Mean: 0.772
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:00:29.348457
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', CW_10.0 Attack, p = 1, reduction models = 1, drop_rate = 0.001, tau = RE
+
+Team Statistics: ACC Mean: 59.19%, Positive Mean: 99.84%, Negative Mean: 18.54%, AUC mean: 0.592, F1 Mean: 0.71
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:00:41.639533
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', CW_10.0 Attack, p = 1, reduction models = 1, drop_rate = 0.01, tau = RE
+
+Team Statistics: ACC Mean: 68.00%, Positive Mean: 98.98%, Negative Mean: 37.01%, AUC mean: 0.68, F1 Mean: 0.756
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:00:55.416644
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', CW_10.0 Attack, p = 1, reduction models = 1, drop_rate = 0.05, tau = RE
+
+Team Statistics: ACC Mean: 81.39%, Positive Mean: 94.92%, Negative Mean: 67.86%, AUC mean: 0.814, F1 Mean: 0.836
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:01:10.309200
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', CW_20.0 Attack, p = 1, reduction models = 1, drop_rate = 0.001, tau = RE
+
+Team Statistics: ACC Mean: 68.90%, Positive Mean: 99.73%, Negative Mean: 38.07%, AUC mean: 0.689, F1 Mean: 0.763
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:01:27.319909
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', CW_20.0 Attack, p = 1, reduction models = 1, drop_rate = 0.01, tau = RE
+
+Team Statistics: ACC Mean: 77.65%, Positive Mean: 98.98%, Negative Mean: 56.32%, AUC mean: 0.776, F1 Mean: 0.817
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:01:45.197976
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', CW_20.0 Attack, p = 1, reduction models = 1, drop_rate = 0.05, tau = RE
+
+Team Statistics: ACC Mean: 86.20%, Positive Mean: 95.28%, Negative Mean: 77.12%, AUC mean: 0.862, F1 Mean: 0.874
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:02:05.031065
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 1, drop_rate = 0.001, tau = RE
+
+Team Statistics: ACC Mean: 69.96%, Positive Mean: 99.89%, Negative Mean: 40.03%, AUC mean: 0.7, F1 Mean: 0.77
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:02:26.454623
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 1, drop_rate = 0.01, tau = RE
+
+Team Statistics: ACC Mean: 84.10%, Positive Mean: 98.90%, Negative Mean: 69.30%, AUC mean: 0.841, F1 Mean: 0.863
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:02:49.699001
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 1, drop_rate = 0.05, tau = RE
+
+Team Statistics: ACC Mean: 89.79%, Positive Mean: 94.61%, Negative Mean: 84.97%, AUC mean: 0.898, F1 Mean: 0.903
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:03:13.971868
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', CW_40.0 Attack, p = 1, reduction models = 1, drop_rate = 0.001, tau = RE
+
+Team Statistics: ACC Mean: 80.11%, Positive Mean: 99.87%, Negative Mean: 60.35%, AUC mean: 0.801, F1 Mean: 0.837
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:03:40.454864
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', CW_40.0 Attack, p = 1, reduction models = 1, drop_rate = 0.01, tau = RE
+
+Team Statistics: ACC Mean: 89.41%, Positive Mean: 99.25%, Negative Mean: 79.58%, AUC mean: 0.894, F1 Mean: 0.905
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:04:08.445915
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', CW_40.0 Attack, p = 1, reduction models = 1, drop_rate = 0.05, tau = RE
+
+Team Statistics: ACC Mean: 94.83%, Positive Mean: 94.88%, Negative Mean: 94.78%, AUC mean: 0.948, F1 Mean: 0.948
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:04:38.298993

@@ -1,0 +1,2474 @@
+Experiment 1/20
+Team CM 
+[[ 485 1515]
+ [   2 1998]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 62.08%, VPP: 99.90%, VPN: 24.25%, AUC: 0.621, F1: 0.725Experiment 2/20
+Team CM 
+[[ 787 1213]
+ [   2 1998]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 69.62%, VPP: 99.90%, VPN: 39.35%, AUC: 0.696, F1: 0.767Experiment 3/20
+Team CM 
+[[ 787 1213]
+ [   2 1998]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 69.62%, VPP: 99.90%, VPN: 39.35%, AUC: 0.696, F1: 0.767Experiment 4/20
+Team CM 
+[[1060  940]
+ [   0 2000]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 76.50%, VPP: 100.00%, VPN: 53.00%, AUC: 0.765, F1: 0.81Experiment 5/20
+Team CM 
+[[ 732 1268]
+ [   1 1999]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 68.27%, VPP: 99.95%, VPN: 36.60%, AUC: 0.683, F1: 0.759Experiment 6/20
+Team CM 
+[[ 732 1268]
+ [   1 1999]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 68.27%, VPP: 99.95%, VPN: 36.60%, AUC: 0.683, F1: 0.759Experiment 7/20
+Team CM 
+[[  54 1946]
+ [   0 2000]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 51.35%, VPP: 100.00%, VPN: 2.70%, AUC: 0.514, F1: 0.673Experiment 8/20
+Team CM 
+[[ 406 1594]
+ [   1 1999]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 60.12%, VPP: 99.95%, VPN: 20.30%, AUC: 0.601, F1: 0.715Experiment 9/20
+Team CM 
+[[  11 1989]
+ [   0 2000]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 50.28%, VPP: 100.00%, VPN: 0.55%, AUC: 0.503, F1: 0.668Experiment 10/20
+Team CM 
+[[ 584 1416]
+ [   1 1999]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 64.58%, VPP: 99.95%, VPN: 29.20%, AUC: 0.646, F1: 0.738Experiment 11/20
+Team CM 
+[[  11 1989]
+ [   0 2000]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 50.28%, VPP: 100.00%, VPN: 0.55%, AUC: 0.503, F1: 0.668Experiment 12/20
+Team CM 
+[[ 732 1268]
+ [   1 1999]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 68.27%, VPP: 99.95%, VPN: 36.60%, AUC: 0.683, F1: 0.759Experiment 13/20
+Team CM 
+[[ 732 1268]
+ [   1 1999]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 68.27%, VPP: 99.95%, VPN: 36.60%, AUC: 0.683, F1: 0.759Experiment 14/20
+Team CM 
+[[ 485 1515]
+ [   2 1998]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 62.08%, VPP: 99.90%, VPN: 24.25%, AUC: 0.621, F1: 0.725Experiment 15/20
+Team CM 
+[[ 485 1515]
+ [   2 1998]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 62.08%, VPP: 99.90%, VPN: 24.25%, AUC: 0.621, F1: 0.725Experiment 16/20
+Team CM 
+[[1060  940]
+ [   0 2000]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 76.50%, VPP: 100.00%, VPN: 53.00%, AUC: 0.765, F1: 0.81Experiment 17/20
+Team CM 
+[[ 485 1515]
+ [   2 1998]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 62.08%, VPP: 99.90%, VPN: 24.25%, AUC: 0.621, F1: 0.725Experiment 18/20
+Team CM 
+[[ 485 1515]
+ [   2 1998]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 62.08%, VPP: 99.90%, VPN: 24.25%, AUC: 0.621, F1: 0.725Experiment 19/20
+Team CM 
+[[ 584 1416]
+ [   1 1999]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 64.58%, VPP: 99.95%, VPN: 29.20%, AUC: 0.646, F1: 0.738Experiment 20/20
+Team CM 
+[[ 406 1594]
+ [   1 1999]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 60.12%, VPP: 99.95%, VPN: 20.30%, AUC: 0.601, F1: 0.715
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 1, drop_rate = 0.001, tau = RE
+
+Team Statistics: ACC Mean: 63.85%, Positive Mean: 99.95%, Negative Mean: 27.76%, AUC mean: 0.639, F1 Mean: 0.736
+------------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/20
+Team CM 
+[[1184  816]
+ [   1 1999]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 79.57%, VPP: 99.95%, VPN: 59.20%, AUC: 0.796, F1: 0.83Experiment 2/20
+Team CM 
+[[ 787 1213]
+ [   1 1999]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 69.65%, VPP: 99.95%, VPN: 39.35%, AUC: 0.697, F1: 0.767Experiment 3/20
+Team CM 
+[[ 472 1528]
+ [   1 1999]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 61.78%, VPP: 99.95%, VPN: 23.60%, AUC: 0.618, F1: 0.723Experiment 4/20
+Team CM 
+[[  11 1989]
+ [   1 1999]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 50.25%, VPP: 99.95%, VPN: 0.55%, AUC: 0.503, F1: 0.668Experiment 5/20
+Team CM 
+[[ 584 1416]
+ [   1 1999]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 64.58%, VPP: 99.95%, VPN: 29.20%, AUC: 0.646, F1: 0.738Experiment 6/20
+Team CM 
+[[ 406 1594]
+ [   2 1998]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 60.10%, VPP: 99.90%, VPN: 20.30%, AUC: 0.601, F1: 0.715Experiment 7/20
+Team CM 
+[[ 732 1268]
+ [   1 1999]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 68.27%, VPP: 99.95%, VPN: 36.60%, AUC: 0.683, F1: 0.759Experiment 8/20
+Team CM 
+[[ 406 1594]
+ [   2 1998]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 60.10%, VPP: 99.90%, VPN: 20.30%, AUC: 0.601, F1: 0.715Experiment 9/20
+Team CM 
+[[1060  940]
+ [   1 1999]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 76.48%, VPP: 99.95%, VPN: 53.00%, AUC: 0.765, F1: 0.809Experiment 10/20
+Team CM 
+[[ 584 1416]
+ [   1 1999]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 64.58%, VPP: 99.95%, VPN: 29.20%, AUC: 0.646, F1: 0.738Experiment 11/20
+Team CM 
+[[  11 1989]
+ [   1 1999]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 50.25%, VPP: 99.95%, VPN: 0.55%, AUC: 0.503, F1: 0.668Experiment 12/20
+Team CM 
+[[  54 1946]
+ [   1 1999]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 51.32%, VPP: 99.95%, VPN: 2.70%, AUC: 0.513, F1: 0.672Experiment 13/20
+Team CM 
+[[  11 1989]
+ [   1 1999]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 50.25%, VPP: 99.95%, VPN: 0.55%, AUC: 0.503, F1: 0.668Experiment 14/20
+Team CM 
+[[1184  816]
+ [   1 1999]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 79.57%, VPP: 99.95%, VPN: 59.20%, AUC: 0.796, F1: 0.83Experiment 15/20
+Team CM 
+[[ 406 1594]
+ [   2 1998]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 60.10%, VPP: 99.90%, VPN: 20.30%, AUC: 0.601, F1: 0.715Experiment 16/20
+Team CM 
+[[ 584 1416]
+ [   1 1999]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 64.58%, VPP: 99.95%, VPN: 29.20%, AUC: 0.646, F1: 0.738Experiment 17/20
+Team CM 
+[[1184  816]
+ [   1 1999]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 79.57%, VPP: 99.95%, VPN: 59.20%, AUC: 0.796, F1: 0.83Experiment 18/20
+Team CM 
+[[ 406 1594]
+ [   2 1998]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 60.10%, VPP: 99.90%, VPN: 20.30%, AUC: 0.601, F1: 0.715Experiment 19/20
+Team CM 
+[[ 485 1515]
+ [   2 1998]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 62.08%, VPP: 99.90%, VPN: 24.25%, AUC: 0.621, F1: 0.725Experiment 20/20
+Team CM 
+[[  11 1989]
+ [   1 1999]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 50.25%, VPP: 99.95%, VPN: 0.55%, AUC: 0.503, F1: 0.668
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 1, drop_rate = 0.001, tau = minRE
+
+Team Statistics: ACC Mean: 63.17%, Positive Mean: 99.94%, Negative Mean: 26.40%, AUC mean: 0.632, F1 Mean: 0.735
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/20
+Team CM 
+[[ 873 1127]
+ [  15 1985]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 71.45%, VPP: 99.25%, VPN: 43.65%, AUC: 0.715, F1: 0.777Experiment 2/20
+Team CM 
+[[1127  873]
+ [  17 1983]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 77.75%, VPP: 99.15%, VPN: 56.35%, AUC: 0.777, F1: 0.817Experiment 3/20
+Team CM 
+[[1476  524]
+ [  22 1978]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 86.35%, VPP: 98.90%, VPN: 73.80%, AUC: 0.863, F1: 0.879Experiment 4/20
+Team CM 
+[[ 202 1798]
+ [  20 1980]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 54.55%, VPP: 99.00%, VPN: 10.10%, AUC: 0.545, F1: 0.685Experiment 5/20
+Team CM 
+[[ 202 1798]
+ [  20 1980]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 54.55%, VPP: 99.00%, VPN: 10.10%, AUC: 0.545, F1: 0.685Experiment 6/20
+Team CM 
+[[ 202 1798]
+ [  20 1980]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 54.55%, VPP: 99.00%, VPN: 10.10%, AUC: 0.545, F1: 0.685Experiment 7/20
+Team CM 
+[[1048  952]
+ [  15 1985]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 75.83%, VPP: 99.25%, VPN: 52.40%, AUC: 0.758, F1: 0.804Experiment 8/20
+Team CM 
+[[1315  685]
+ [  17 1983]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 82.45%, VPP: 99.15%, VPN: 65.75%, AUC: 0.825, F1: 0.85Experiment 9/20
+Team CM 
+[[ 894 1106]
+ [  19 1981]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 71.88%, VPP: 99.05%, VPN: 44.70%, AUC: 0.719, F1: 0.779Experiment 10/20
+Team CM 
+[[ 873 1127]
+ [  15 1985]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 71.45%, VPP: 99.25%, VPN: 43.65%, AUC: 0.715, F1: 0.777Experiment 11/20
+Team CM 
+[[1476  524]
+ [  22 1978]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 86.35%, VPP: 98.90%, VPN: 73.80%, AUC: 0.863, F1: 0.879Experiment 12/20
+Team CM 
+[[1251  749]
+ [  17 1983]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 80.85%, VPP: 99.15%, VPN: 62.55%, AUC: 0.808, F1: 0.838Experiment 13/20
+Team CM 
+[[1251  749]
+ [  17 1983]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 80.85%, VPP: 99.15%, VPN: 62.55%, AUC: 0.808, F1: 0.838Experiment 14/20
+Team CM 
+[[1567  433]
+ [  17 1983]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 88.75%, VPP: 99.15%, VPN: 78.35%, AUC: 0.888, F1: 0.898Experiment 15/20
+Team CM 
+[[1315  685]
+ [  17 1983]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 82.45%, VPP: 99.15%, VPN: 65.75%, AUC: 0.825, F1: 0.85Experiment 16/20
+Team CM 
+[[1048  952]
+ [  15 1985]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 75.83%, VPP: 99.25%, VPN: 52.40%, AUC: 0.758, F1: 0.804Experiment 17/20
+Team CM 
+[[ 894 1106]
+ [  19 1981]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 71.88%, VPP: 99.05%, VPN: 44.70%, AUC: 0.719, F1: 0.779Experiment 18/20
+Team CM 
+[[ 873 1127]
+ [  15 1985]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 71.45%, VPP: 99.25%, VPN: 43.65%, AUC: 0.715, F1: 0.777Experiment 19/20
+Team CM 
+[[1127  873]
+ [  17 1983]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 77.75%, VPP: 99.15%, VPN: 56.35%, AUC: 0.777, F1: 0.817Experiment 20/20
+Team CM 
+[[ 894 1106]
+ [  19 1981]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 71.88%, VPP: 99.05%, VPN: 44.70%, AUC: 0.719, F1: 0.779
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 1, drop_rate = 0.01, tau = RE
+
+Team Statistics: ACC Mean: 74.44%, Positive Mean: 99.11%, Negative Mean: 49.77%, AUC mean: 0.744, F1 Mean: 0.8
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/20
+Team CM 
+[[ 873 1127]
+ [  15 1985]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 71.45%, VPP: 99.25%, VPN: 43.65%, AUC: 0.715, F1: 0.777Experiment 2/20
+Team CM 
+[[1315  685]
+ [  18 1982]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 82.42%, VPP: 99.10%, VPN: 65.75%, AUC: 0.824, F1: 0.849Experiment 3/20
+Team CM 
+[[1315  685]
+ [  18 1982]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 82.42%, VPP: 99.10%, VPN: 65.75%, AUC: 0.824, F1: 0.849Experiment 4/20
+Team CM 
+[[ 894 1106]
+ [  17 1983]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 71.92%, VPP: 99.15%, VPN: 44.70%, AUC: 0.719, F1: 0.779Experiment 5/20
+Team CM 
+[[1048  952]
+ [  19 1981]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 75.72%, VPP: 99.05%, VPN: 52.40%, AUC: 0.757, F1: 0.803Experiment 6/20
+Team CM 
+[[ 304 1696]
+ [  17 1983]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 57.17%, VPP: 99.15%, VPN: 15.20%, AUC: 0.572, F1: 0.698Experiment 7/20
+Team CM 
+[[1251  749]
+ [  21 1979]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 80.75%, VPP: 98.95%, VPN: 62.55%, AUC: 0.807, F1: 0.837Experiment 8/20
+Team CM 
+[[1567  433]
+ [  22 1978]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 88.62%, VPP: 98.90%, VPN: 78.35%, AUC: 0.886, F1: 0.897Experiment 9/20
+Team CM 
+[[1251  749]
+ [  21 1979]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 80.75%, VPP: 98.95%, VPN: 62.55%, AUC: 0.807, F1: 0.837Experiment 10/20
+Team CM 
+[[ 304 1696]
+ [  17 1983]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 57.17%, VPP: 99.15%, VPN: 15.20%, AUC: 0.572, F1: 0.698Experiment 11/20
+Team CM 
+[[1127  873]
+ [  21 1979]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 77.65%, VPP: 98.95%, VPN: 56.35%, AUC: 0.777, F1: 0.816Experiment 12/20
+Team CM 
+[[ 894 1106]
+ [  17 1983]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 71.92%, VPP: 99.15%, VPN: 44.70%, AUC: 0.719, F1: 0.779Experiment 13/20
+Team CM 
+[[1048  952]
+ [  19 1981]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 75.72%, VPP: 99.05%, VPN: 52.40%, AUC: 0.757, F1: 0.803Experiment 14/20
+Team CM 
+[[ 873 1127]
+ [  15 1985]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 71.45%, VPP: 99.25%, VPN: 43.65%, AUC: 0.715, F1: 0.777Experiment 15/20
+Team CM 
+[[1048  952]
+ [  19 1981]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 75.72%, VPP: 99.05%, VPN: 52.40%, AUC: 0.757, F1: 0.803Experiment 16/20
+Team CM 
+[[1476  524]
+ [  21 1979]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 86.38%, VPP: 98.95%, VPN: 73.80%, AUC: 0.864, F1: 0.879Experiment 17/20
+Team CM 
+[[1315  685]
+ [  18 1982]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 82.42%, VPP: 99.10%, VPN: 65.75%, AUC: 0.824, F1: 0.849Experiment 18/20
+Team CM 
+[[1251  749]
+ [  21 1979]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 80.75%, VPP: 98.95%, VPN: 62.55%, AUC: 0.807, F1: 0.837Experiment 19/20
+Team CM 
+[[1567  433]
+ [  22 1978]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 88.62%, VPP: 98.90%, VPN: 78.35%, AUC: 0.886, F1: 0.897Experiment 20/20
+Team CM 
+[[1315  685]
+ [  18 1982]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 82.42%, VPP: 99.10%, VPN: 65.75%, AUC: 0.824, F1: 0.849
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 1, drop_rate = 0.01, tau = minRE
+
+Team Statistics: ACC Mean: 77.07%, Positive Mean: 99.06%, Negative Mean: 55.09%, AUC mean: 0.771, F1 Mean: 0.816
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/20
+Team CM 
+[[1782  218]
+ [  84 1916]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 92.45%, VPP: 95.80%, VPN: 89.10%, AUC: 0.924, F1: 0.927Experiment 2/20
+Team CM 
+[[1670  330]
+ [  84 1916]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 89.65%, VPP: 95.80%, VPN: 83.50%, AUC: 0.896, F1: 0.902Experiment 3/20
+Team CM 
+[[1755  245]
+ [  79 1921]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 91.90%, VPP: 96.05%, VPN: 87.75%, AUC: 0.919, F1: 0.922Experiment 4/20
+Team CM 
+[[1782  218]
+ [  84 1916]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 92.45%, VPP: 95.80%, VPN: 89.10%, AUC: 0.924, F1: 0.927Experiment 5/20
+Team CM 
+[[1782  218]
+ [  84 1916]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 92.45%, VPP: 95.80%, VPN: 89.10%, AUC: 0.924, F1: 0.927Experiment 6/20
+Team CM 
+[[1654  346]
+ [  79 1921]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 89.38%, VPP: 96.05%, VPN: 82.70%, AUC: 0.894, F1: 0.9Experiment 7/20
+Team CM 
+[[1429  571]
+ [  84 1916]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 83.62%, VPP: 95.80%, VPN: 71.45%, AUC: 0.836, F1: 0.854Experiment 8/20
+Team CM 
+[[1755  245]
+ [  79 1921]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 91.90%, VPP: 96.05%, VPN: 87.75%, AUC: 0.919, F1: 0.922Experiment 9/20
+Team CM 
+[[ 806 1194]
+ [  92 1908]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 67.85%, VPP: 95.40%, VPN: 40.30%, AUC: 0.678, F1: 0.748Experiment 10/20
+Team CM 
+[[ 783 1217]
+ [  92 1908]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 67.27%, VPP: 95.40%, VPN: 39.15%, AUC: 0.673, F1: 0.745Experiment 11/20
+Team CM 
+[[1670  330]
+ [  84 1916]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 89.65%, VPP: 95.80%, VPN: 83.50%, AUC: 0.896, F1: 0.902Experiment 12/20
+Team CM 
+[[1654  346]
+ [  79 1921]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 89.38%, VPP: 96.05%, VPN: 82.70%, AUC: 0.894, F1: 0.9Experiment 13/20
+Team CM 
+[[1782  218]
+ [  84 1916]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 92.45%, VPP: 95.80%, VPN: 89.10%, AUC: 0.924, F1: 0.927Experiment 14/20
+Team CM 
+[[1544  456]
+ [  81 1919]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 86.58%, VPP: 95.95%, VPN: 77.20%, AUC: 0.866, F1: 0.877Experiment 15/20
+Team CM 
+[[ 806 1194]
+ [  92 1908]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 67.85%, VPP: 95.40%, VPN: 40.30%, AUC: 0.678, F1: 0.748Experiment 16/20
+Team CM 
+[[1545  455]
+ [  90 1910]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 86.38%, VPP: 95.50%, VPN: 77.25%, AUC: 0.864, F1: 0.875Experiment 17/20
+Team CM 
+[[ 806 1194]
+ [  92 1908]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 67.85%, VPP: 95.40%, VPN: 40.30%, AUC: 0.678, F1: 0.748Experiment 18/20
+Team CM 
+[[ 783 1217]
+ [  92 1908]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 67.27%, VPP: 95.40%, VPN: 39.15%, AUC: 0.673, F1: 0.745Experiment 19/20
+Team CM 
+[[1670  330]
+ [  84 1916]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 89.65%, VPP: 95.80%, VPN: 83.50%, AUC: 0.896, F1: 0.902Experiment 20/20
+Team CM 
+[[1782  218]
+ [  84 1916]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 92.45%, VPP: 95.80%, VPN: 89.10%, AUC: 0.924, F1: 0.927
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 1, drop_rate = 0.05, tau = RE
+
+Team Statistics: ACC Mean: 84.42%, Positive Mean: 95.74%, Negative Mean: 73.10%, AUC mean: 0.844, F1 Mean: 0.866
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/20
+Team CM 
+[[1432  568]
+ [  78 1922]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 83.85%, VPP: 96.10%, VPN: 71.60%, AUC: 0.838, F1: 0.856Experiment 2/20
+Team CM 
+[[1545  455]
+ [ 120 1880]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 85.62%, VPP: 94.00%, VPN: 77.25%, AUC: 0.856, F1: 0.867Experiment 3/20
+Team CM 
+[[1545  455]
+ [ 120 1880]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 85.62%, VPP: 94.00%, VPN: 77.25%, AUC: 0.856, F1: 0.867Experiment 4/20
+Team CM 
+[[1544  456]
+ [  95 1905]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 86.22%, VPP: 95.25%, VPN: 77.20%, AUC: 0.862, F1: 0.874Experiment 5/20
+Team CM 
+[[ 783 1217]
+ [ 111 1889]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 66.80%, VPP: 94.45%, VPN: 39.15%, AUC: 0.668, F1: 0.74Experiment 6/20
+Team CM 
+[[1782  218]
+ [ 105 1895]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 91.92%, VPP: 94.75%, VPN: 89.10%, AUC: 0.919, F1: 0.921Experiment 7/20
+Team CM 
+[[ 806 1194]
+ [  98 1902]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 67.70%, VPP: 95.10%, VPN: 40.30%, AUC: 0.677, F1: 0.746Experiment 8/20
+Team CM 
+[[1782  218]
+ [ 105 1895]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 91.92%, VPP: 94.75%, VPN: 89.10%, AUC: 0.919, F1: 0.921Experiment 9/20
+Team CM 
+[[1654  346]
+ [  97 1903]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 88.92%, VPP: 95.15%, VPN: 82.70%, AUC: 0.889, F1: 0.896Experiment 10/20
+Team CM 
+[[1545  455]
+ [ 120 1880]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 85.62%, VPP: 94.00%, VPN: 77.25%, AUC: 0.856, F1: 0.867Experiment 11/20
+Team CM 
+[[1545  455]
+ [ 120 1880]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 85.62%, VPP: 94.00%, VPN: 77.25%, AUC: 0.856, F1: 0.867Experiment 12/20
+Team CM 
+[[1545  455]
+ [ 120 1880]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 85.62%, VPP: 94.00%, VPN: 77.25%, AUC: 0.856, F1: 0.867Experiment 13/20
+Team CM 
+[[1670  330]
+ [  91 1909]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 89.48%, VPP: 95.45%, VPN: 83.50%, AUC: 0.895, F1: 0.901Experiment 14/20
+Team CM 
+[[1429  571]
+ [  89 1911]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 83.50%, VPP: 95.55%, VPN: 71.45%, AUC: 0.835, F1: 0.853Experiment 15/20
+Team CM 
+[[1432  568]
+ [  78 1922]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 83.85%, VPP: 96.10%, VPN: 71.60%, AUC: 0.838, F1: 0.856Experiment 16/20
+Team CM 
+[[ 783 1217]
+ [ 111 1889]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 66.80%, VPP: 94.45%, VPN: 39.15%, AUC: 0.668, F1: 0.74Experiment 17/20
+Team CM 
+[[1545  455]
+ [ 120 1880]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 85.62%, VPP: 94.00%, VPN: 77.25%, AUC: 0.856, F1: 0.867Experiment 18/20
+Team CM 
+[[ 806 1194]
+ [  98 1902]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 67.70%, VPP: 95.10%, VPN: 40.30%, AUC: 0.677, F1: 0.746Experiment 19/20
+Team CM 
+[[1544  456]
+ [  95 1905]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 86.22%, VPP: 95.25%, VPN: 77.20%, AUC: 0.862, F1: 0.874Experiment 20/20
+Team CM 
+[[1654  346]
+ [  97 1903]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 88.92%, VPP: 95.15%, VPN: 82.70%, AUC: 0.889, F1: 0.896
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 1, drop_rate = 0.05, tau = minRE
+
+Team Statistics: ACC Mean: 82.88%, Positive Mean: 94.83%, Negative Mean: 70.93%, AUC mean: 0.829, F1 Mean: 0.851
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/20
+Team CM 
+[[ 394 1606]
+ [   4 1996]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 59.75%, VPP: 99.80%, VPN: 19.70%, AUC: 0.597, F1: 0.713Experiment 2/20
+Team CM 
+[[ 484 1516]
+ [   4 1996]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 62.00%, VPP: 99.80%, VPN: 24.20%, AUC: 0.62, F1: 0.724Experiment 3/20
+Team CM 
+[[ 722 1278]
+ [   4 1996]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 67.95%, VPP: 99.80%, VPN: 36.10%, AUC: 0.679, F1: 0.757Experiment 4/20
+Team CM 
+[[ 776 1224]
+ [   4 1996]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 69.30%, VPP: 99.80%, VPN: 38.80%, AUC: 0.693, F1: 0.765Experiment 5/20
+Team CM 
+[[  56 1944]
+ [   3 1997]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 51.32%, VPP: 99.85%, VPN: 2.80%, AUC: 0.513, F1: 0.672Experiment 6/20
+Team CM 
+[[ 777 1223]
+ [   4 1996]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 69.33%, VPP: 99.80%, VPN: 38.85%, AUC: 0.693, F1: 0.765Experiment 7/20
+Team CM 
+[[ 400 1600]
+ [   4 1996]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 59.90%, VPP: 99.80%, VPN: 20.00%, AUC: 0.599, F1: 0.713Experiment 8/20
+Team CM 
+[[ 484 1516]
+ [   4 1996]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 62.00%, VPP: 99.80%, VPN: 24.20%, AUC: 0.62, F1: 0.724Experiment 9/20
+Team CM 
+[[ 533 1467]
+ [   4 1996]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 63.22%, VPP: 99.80%, VPN: 26.65%, AUC: 0.632, F1: 0.731Experiment 10/20
+Team CM 
+[[ 403 1597]
+ [   3 1997]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 60.00%, VPP: 99.85%, VPN: 20.15%, AUC: 0.6, F1: 0.714Experiment 11/20
+Team CM 
+[[ 403 1597]
+ [   3 1997]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 60.00%, VPP: 99.85%, VPN: 20.15%, AUC: 0.6, F1: 0.714Experiment 12/20
+Team CM 
+[[1043  957]
+ [   3 1997]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 76.00%, VPP: 99.85%, VPN: 52.15%, AUC: 0.76, F1: 0.806Experiment 13/20
+Team CM 
+[[  56 1944]
+ [   3 1997]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 51.32%, VPP: 99.85%, VPN: 2.80%, AUC: 0.513, F1: 0.672Experiment 14/20
+Team CM 
+[[ 376 1624]
+ [   3 1997]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 59.33%, VPP: 99.85%, VPN: 18.80%, AUC: 0.593, F1: 0.711Experiment 15/20
+Team CM 
+[[ 490 1510]
+ [   4 1996]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 62.15%, VPP: 99.80%, VPN: 24.50%, AUC: 0.621, F1: 0.725Experiment 16/20
+Team CM 
+[[ 778 1222]
+ [   3 1997]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 69.38%, VPP: 99.85%, VPN: 38.90%, AUC: 0.694, F1: 0.765Experiment 17/20
+Team CM 
+[[ 535 1465]
+ [   3 1997]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 63.30%, VPP: 99.85%, VPN: 26.75%, AUC: 0.633, F1: 0.731Experiment 18/20
+Team CM 
+[[ 454 1546]
+ [   3 1997]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 61.27%, VPP: 99.85%, VPN: 22.70%, AUC: 0.613, F1: 0.721Experiment 19/20
+Team CM 
+[[ 484 1516]
+ [   4 1996]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 62.00%, VPP: 99.80%, VPN: 24.20%, AUC: 0.62, F1: 0.724Experiment 20/20
+Team CM 
+[[ 775 1225]
+ [   3 1997]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 69.30%, VPP: 99.85%, VPN: 38.75%, AUC: 0.693, F1: 0.765
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 3, drop_rate = 0.001, tau = RE
+
+Team Statistics: ACC Mean: 62.94%, Positive Mean: 99.83%, Negative Mean: 26.06%, AUC mean: 0.629, F1 Mean: 0.731
+------------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/20
+Team CM 
+[[ 504 1496]
+ [   4 1996]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 62.50%, VPP: 99.80%, VPN: 25.20%, AUC: 0.625, F1: 0.727Experiment 2/20
+Team CM 
+[[1684  316]
+ [ 227 1773]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 86.42%, VPP: 88.65%, VPN: 84.20%, AUC: 0.864, F1: 0.867Experiment 3/20
+Team CM 
+[[1524  476]
+ [  57 1943]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 86.67%, VPP: 97.15%, VPN: 76.20%, AUC: 0.867, F1: 0.879Experiment 4/20
+Team CM 
+[[1433  567]
+ [  28 1972]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 85.12%, VPP: 98.60%, VPN: 71.65%, AUC: 0.851, F1: 0.869Experiment 5/20
+Team CM 
+[[1390  610]
+ [  25 1975]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 84.12%, VPP: 98.75%, VPN: 69.50%, AUC: 0.841, F1: 0.862Experiment 6/20
+Team CM 
+[[ 504 1496]
+ [   4 1996]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 62.50%, VPP: 99.80%, VPN: 25.20%, AUC: 0.625, F1: 0.727Experiment 7/20
+Team CM 
+[[1482  518]
+ [  76 1924]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 85.15%, VPP: 96.20%, VPN: 74.10%, AUC: 0.851, F1: 0.866Experiment 8/20
+Team CM 
+[[ 866 1134]
+ [  16 1984]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 71.25%, VPP: 99.20%, VPN: 43.30%, AUC: 0.713, F1: 0.775Experiment 9/20
+Team CM 
+[[1529  471]
+ [  90 1910]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 85.97%, VPP: 95.50%, VPN: 76.45%, AUC: 0.86, F1: 0.872Experiment 10/20
+Team CM 
+[[1564  436]
+ [  68 1932]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 87.40%, VPP: 96.60%, VPN: 78.20%, AUC: 0.874, F1: 0.885Experiment 11/20
+Team CM 
+[[1119  881]
+ [  23 1977]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 77.40%, VPP: 98.85%, VPN: 55.95%, AUC: 0.774, F1: 0.814Experiment 12/20
+Team CM 
+[[1105  895]
+ [ 132 1868]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 74.33%, VPP: 93.40%, VPN: 55.25%, AUC: 0.743, F1: 0.784Experiment 13/20
+Team CM 
+[[ 978 1022]
+ [   7 1993]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 74.28%, VPP: 99.65%, VPN: 48.90%, AUC: 0.743, F1: 0.795Experiment 14/20
+Team CM 
+[[1425  575]
+ [  28 1972]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 84.92%, VPP: 98.60%, VPN: 71.25%, AUC: 0.849, F1: 0.867Experiment 15/20
+Team CM 
+[[1530  470]
+ [  90 1910]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 86.00%, VPP: 95.50%, VPN: 76.50%, AUC: 0.86, F1: 0.872Experiment 16/20
+Team CM 
+[[1724  276]
+ [ 240 1760]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 87.10%, VPP: 88.00%, VPN: 86.20%, AUC: 0.871, F1: 0.872Experiment 17/20
+Team CM 
+[[1529  471]
+ [  60 1940]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 86.72%, VPP: 97.00%, VPN: 76.45%, AUC: 0.867, F1: 0.88Experiment 18/20
+Team CM 
+[[ 979 1021]
+ [  10 1990]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 74.22%, VPP: 99.50%, VPN: 48.95%, AUC: 0.742, F1: 0.794Experiment 19/20
+Team CM 
+[[ 981 1019]
+ [   7 1993]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 74.35%, VPP: 99.65%, VPN: 49.05%, AUC: 0.744, F1: 0.795Experiment 20/20
+Team CM 
+[[1213  787]
+ [   3 1997]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 80.25%, VPP: 99.85%, VPN: 60.65%, AUC: 0.803, F1: 0.835
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 3, drop_rate = 0.001, tau = minRE
+
+Team Statistics: ACC Mean: 79.83%, Positive Mean: 97.01%, Negative Mean: 62.66%, AUC mean: 0.798, F1 Mean: 0.832
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/20
+Team CM 
+[[1245  755]
+ [  13 1987]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 80.80%, VPP: 99.35%, VPN: 62.25%, AUC: 0.808, F1: 0.838Experiment 2/20
+Team CM 
+[[ 989 1011]
+ [  10 1990]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 74.48%, VPP: 99.50%, VPN: 49.45%, AUC: 0.745, F1: 0.796Experiment 3/20
+Team CM 
+[[ 875 1125]
+ [   9 1991]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 71.65%, VPP: 99.55%, VPN: 43.75%, AUC: 0.717, F1: 0.778Experiment 4/20
+Team CM 
+[[1323  677]
+ [  12 1988]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 82.78%, VPP: 99.40%, VPN: 66.15%, AUC: 0.828, F1: 0.852Experiment 5/20
+Team CM 
+[[1301  699]
+ [  13 1987]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 82.20%, VPP: 99.35%, VPN: 65.05%, AUC: 0.822, F1: 0.848Experiment 6/20
+Team CM 
+[[1221  779]
+ [  12 1988]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 80.23%, VPP: 99.40%, VPN: 61.05%, AUC: 0.802, F1: 0.834Experiment 7/20
+Team CM 
+[[1136  864]
+ [  14 1986]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 78.05%, VPP: 99.30%, VPN: 56.80%, AUC: 0.781, F1: 0.819Experiment 8/20
+Team CM 
+[[1047  953]
+ [  12 1988]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 75.88%, VPP: 99.40%, VPN: 52.35%, AUC: 0.759, F1: 0.805Experiment 9/20
+Team CM 
+[[1140  860]
+ [  13 1987]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 78.17%, VPP: 99.35%, VPN: 57.00%, AUC: 0.782, F1: 0.82Experiment 10/20
+Team CM 
+[[1338  662]
+ [  14 1986]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 83.10%, VPP: 99.30%, VPN: 66.90%, AUC: 0.831, F1: 0.855Experiment 11/20
+Team CM 
+[[1100  900]
+ [  13 1987]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 77.18%, VPP: 99.35%, VPN: 55.00%, AUC: 0.772, F1: 0.813Experiment 12/20
+Team CM 
+[[1287  713]
+ [  14 1986]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 81.83%, VPP: 99.30%, VPN: 64.35%, AUC: 0.818, F1: 0.845Experiment 13/20
+Team CM 
+[[1140  860]
+ [  13 1987]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 78.17%, VPP: 99.35%, VPN: 57.00%, AUC: 0.782, F1: 0.82Experiment 14/20
+Team CM 
+[[1118  882]
+ [  16 1984]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 77.55%, VPP: 99.20%, VPN: 55.90%, AUC: 0.775, F1: 0.815Experiment 15/20
+Team CM 
+[[ 936 1064]
+ [  14 1986]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 73.05%, VPP: 99.30%, VPN: 46.80%, AUC: 0.73, F1: 0.787Experiment 16/20
+Team CM 
+[[ 895 1105]
+ [  12 1988]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 72.08%, VPP: 99.40%, VPN: 44.75%, AUC: 0.721, F1: 0.781Experiment 17/20
+Team CM 
+[[ 989 1011]
+ [  10 1990]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 74.48%, VPP: 99.50%, VPN: 49.45%, AUC: 0.745, F1: 0.796Experiment 18/20
+Team CM 
+[[1222  778]
+ [  12 1988]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 80.25%, VPP: 99.40%, VPN: 61.10%, AUC: 0.802, F1: 0.834Experiment 19/20
+Team CM 
+[[1469  531]
+ [  10 1990]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 86.48%, VPP: 99.50%, VPN: 73.45%, AUC: 0.865, F1: 0.88Experiment 20/20
+Team CM 
+[[1046  954]
+ [  12 1988]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 75.85%, VPP: 99.40%, VPN: 52.30%, AUC: 0.758, F1: 0.805
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 3, drop_rate = 0.01, tau = RE
+
+Team Statistics: ACC Mean: 78.21%, Positive Mean: 99.38%, Negative Mean: 57.04%, AUC mean: 0.782, F1 Mean: 0.821
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/20
+Team CM 
+[[1482  518]
+ [  34 1966]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 86.20%, VPP: 98.30%, VPN: 74.10%, AUC: 0.862, F1: 0.877Experiment 2/20
+Team CM 
+[[1812  188]
+ [ 683 1317]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 78.22%, VPP: 65.85%, VPN: 90.60%, AUC: 0.782, F1: 0.751Experiment 3/20
+Team CM 
+[[1922   78]
+ [ 729 1271]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 79.83%, VPP: 63.55%, VPN: 96.10%, AUC: 0.798, F1: 0.759Experiment 4/20
+Team CM 
+[[1795  205]
+ [ 203 1797]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 89.80%, VPP: 89.85%, VPN: 89.75%, AUC: 0.898, F1: 0.898Experiment 5/20
+Team CM 
+[[1744  256]
+ [ 104 1896]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 91.00%, VPP: 94.80%, VPN: 87.20%, AUC: 0.91, F1: 0.913Experiment 6/20
+Team CM 
+[[1178  822]
+ [  34 1966]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 78.60%, VPP: 98.30%, VPN: 58.90%, AUC: 0.786, F1: 0.821Experiment 7/20
+Team CM 
+[[1690  310]
+ [  73 1927]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 90.42%, VPP: 96.35%, VPN: 84.50%, AUC: 0.904, F1: 0.91Experiment 8/20
+Team CM 
+[[1268  732]
+ [  27 1973]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 81.03%, VPP: 98.65%, VPN: 63.40%, AUC: 0.81, F1: 0.839Experiment 9/20
+Team CM 
+[[1817  183]
+ [ 291 1709]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 88.15%, VPP: 85.45%, VPN: 90.85%, AUC: 0.881, F1: 0.878Experiment 10/20
+Team CM 
+[[1879  121]
+ [ 525 1475]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 83.85%, VPP: 73.75%, VPN: 93.95%, AUC: 0.839, F1: 0.82Experiment 11/20
+Team CM 
+[[1449  551]
+ [  81 1919]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 84.20%, VPP: 95.95%, VPN: 72.45%, AUC: 0.842, F1: 0.859Experiment 12/20
+Team CM 
+[[1879  121]
+ [ 524 1476]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 83.88%, VPP: 73.80%, VPN: 93.95%, AUC: 0.839, F1: 0.821Experiment 13/20
+Team CM 
+[[1817  183]
+ [ 285 1715]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 88.30%, VPP: 85.75%, VPN: 90.85%, AUC: 0.883, F1: 0.88Experiment 14/20
+Team CM 
+[[1178  822]
+ [  34 1966]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 78.60%, VPP: 98.30%, VPN: 58.90%, AUC: 0.786, F1: 0.821Experiment 15/20
+Team CM 
+[[1181  819]
+ [  37 1963]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 78.60%, VPP: 98.15%, VPN: 59.05%, AUC: 0.786, F1: 0.821Experiment 16/20
+Team CM 
+[[1443  557]
+ [  49 1951]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 84.85%, VPP: 97.55%, VPN: 72.15%, AUC: 0.849, F1: 0.866Experiment 17/20
+Team CM 
+[[1642  358]
+ [ 176 1824]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 86.65%, VPP: 91.20%, VPN: 82.10%, AUC: 0.866, F1: 0.872Experiment 18/20
+Team CM 
+[[1779  221]
+ [ 178 1822]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 90.03%, VPP: 91.10%, VPN: 88.95%, AUC: 0.9, F1: 0.901Experiment 19/20
+Team CM 
+[[1689  311]
+ [  73 1927]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 90.40%, VPP: 96.35%, VPN: 84.45%, AUC: 0.904, F1: 0.909Experiment 20/20
+Team CM 
+[[1647  353]
+ [ 160 1840]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 87.17%, VPP: 92.00%, VPN: 82.35%, AUC: 0.872, F1: 0.878
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 3, drop_rate = 0.01, tau = minRE
+
+Team Statistics: ACC Mean: 84.99%, Positive Mean: 89.25%, Negative Mean: 80.73%, AUC mean: 0.85, F1 Mean: 0.855
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/20
+Team CM 
+[[1432  568]
+ [  74 1926]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 83.95%, VPP: 96.30%, VPN: 71.60%, AUC: 0.839, F1: 0.857Experiment 2/20
+Team CM 
+[[ 908 1092]
+ [  64 1936]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 71.10%, VPP: 96.80%, VPN: 45.40%, AUC: 0.711, F1: 0.77Experiment 3/20
+Team CM 
+[[1508  492]
+ [  82 1918]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 85.65%, VPP: 95.90%, VPN: 75.40%, AUC: 0.857, F1: 0.87Experiment 4/20
+Team CM 
+[[1639  361]
+ [  82 1918]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 88.92%, VPP: 95.90%, VPN: 81.95%, AUC: 0.889, F1: 0.896Experiment 5/20
+Team CM 
+[[1666  334]
+ [  81 1919]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 89.62%, VPP: 95.95%, VPN: 83.30%, AUC: 0.896, F1: 0.902Experiment 6/20
+Team CM 
+[[1651  349]
+ [  83 1917]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 89.20%, VPP: 95.85%, VPN: 82.55%, AUC: 0.892, F1: 0.899Experiment 7/20
+Team CM 
+[[1511  489]
+ [  73 1927]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 85.95%, VPP: 96.35%, VPN: 75.55%, AUC: 0.86, F1: 0.873Experiment 8/20
+Team CM 
+[[1487  513]
+ [  70 1930]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 85.42%, VPP: 96.50%, VPN: 74.35%, AUC: 0.854, F1: 0.869Experiment 9/20
+Team CM 
+[[1560  440]
+ [  77 1923]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 87.08%, VPP: 96.15%, VPN: 78.00%, AUC: 0.871, F1: 0.882Experiment 10/20
+Team CM 
+[[1434  566]
+ [  74 1926]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 84.00%, VPP: 96.30%, VPN: 71.70%, AUC: 0.84, F1: 0.858Experiment 11/20
+Team CM 
+[[1676  324]
+ [  80 1920]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 89.90%, VPP: 96.00%, VPN: 83.80%, AUC: 0.899, F1: 0.905Experiment 12/20
+Team CM 
+[[1439  561]
+ [  76 1924]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 84.08%, VPP: 96.20%, VPN: 71.95%, AUC: 0.841, F1: 0.858Experiment 13/20
+Team CM 
+[[ 909 1091]
+ [  62 1938]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 71.17%, VPP: 96.90%, VPN: 45.45%, AUC: 0.712, F1: 0.771Experiment 14/20
+Team CM 
+[[1475  525]
+ [  82 1918]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 84.82%, VPP: 95.90%, VPN: 73.75%, AUC: 0.848, F1: 0.863Experiment 15/20
+Team CM 
+[[1438  562]
+ [  65 1935]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 84.33%, VPP: 96.75%, VPN: 71.90%, AUC: 0.843, F1: 0.861Experiment 16/20
+Team CM 
+[[1547  453]
+ [  80 1920]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 86.67%, VPP: 96.00%, VPN: 77.35%, AUC: 0.867, F1: 0.878Experiment 17/20
+Team CM 
+[[1555  445]
+ [  78 1922]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 86.92%, VPP: 96.10%, VPN: 77.75%, AUC: 0.869, F1: 0.88Experiment 18/20
+Team CM 
+[[1554  446]
+ [  67 1933]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 87.17%, VPP: 96.65%, VPN: 77.70%, AUC: 0.872, F1: 0.883Experiment 19/20
+Team CM 
+[[1548  452]
+ [  77 1923]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 86.78%, VPP: 96.15%, VPN: 77.40%, AUC: 0.868, F1: 0.879Experiment 20/20
+Team CM 
+[[1548  452]
+ [  83 1917]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 86.62%, VPP: 95.85%, VPN: 77.40%, AUC: 0.866, F1: 0.878
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 3, drop_rate = 0.05, tau = RE
+
+Team Statistics: ACC Mean: 84.97%, Positive Mean: 96.23%, Negative Mean: 73.71%, AUC mean: 0.85, F1 Mean: 0.867
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/20
+Team CM 
+[[1965   35]
+ [1260  740]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 67.62%, VPP: 37.00%, VPN: 98.25%, AUC: 0.676, F1: 0.533Experiment 2/20
+Team CM 
+[[1862  138]
+ [ 308 1692]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 88.85%, VPP: 84.60%, VPN: 93.10%, AUC: 0.889, F1: 0.884Experiment 3/20
+Team CM 
+[[1863  137]
+ [ 309 1691]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 88.85%, VPP: 84.55%, VPN: 93.15%, AUC: 0.888, F1: 0.883Experiment 4/20
+Team CM 
+[[1920   80]
+ [ 629 1371]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 82.27%, VPP: 68.55%, VPN: 96.00%, AUC: 0.823, F1: 0.795Experiment 5/20
+Team CM 
+[[1882  118]
+ [ 356 1644]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 88.15%, VPP: 82.20%, VPN: 94.10%, AUC: 0.882, F1: 0.874Experiment 6/20
+Team CM 
+[[1982   18]
+ [1277  723]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 67.62%, VPP: 36.15%, VPN: 99.10%, AUC: 0.676, F1: 0.528Experiment 7/20
+Team CM 
+[[1766  234]
+ [ 257 1743]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 87.72%, VPP: 87.15%, VPN: 88.30%, AUC: 0.877, F1: 0.877Experiment 8/20
+Team CM 
+[[1503  497]
+ [  82 1918]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 85.52%, VPP: 95.90%, VPN: 75.15%, AUC: 0.855, F1: 0.869Experiment 9/20
+Team CM 
+[[1874  126]
+ [ 591 1409]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 82.08%, VPP: 70.45%, VPN: 93.70%, AUC: 0.821, F1: 0.797Experiment 10/20
+Team CM 
+[[1862  138]
+ [ 308 1692]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 88.85%, VPP: 84.60%, VPN: 93.10%, AUC: 0.889, F1: 0.884Experiment 11/20
+Team CM 
+[[1663  337]
+ [ 116 1884]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 88.67%, VPP: 94.20%, VPN: 83.15%, AUC: 0.887, F1: 0.893Experiment 12/20
+Team CM 
+[[1503  497]
+ [  82 1918]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 85.52%, VPP: 95.90%, VPN: 75.15%, AUC: 0.855, F1: 0.869Experiment 13/20
+Team CM 
+[[1863  137]
+ [ 309 1691]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 88.85%, VPP: 84.55%, VPN: 93.15%, AUC: 0.888, F1: 0.883Experiment 14/20
+Team CM 
+[[1769  231]
+ [ 176 1824]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 89.83%, VPP: 91.20%, VPN: 88.45%, AUC: 0.898, F1: 0.9Experiment 15/20
+Team CM 
+[[1920   80]
+ [ 639 1361]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 82.03%, VPP: 68.05%, VPN: 96.00%, AUC: 0.82, F1: 0.791Experiment 16/20
+Team CM 
+[[1982   18]
+ [1445  555]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 63.42%, VPP: 27.75%, VPN: 99.10%, AUC: 0.634, F1: 0.431Experiment 17/20
+Team CM 
+[[1661  339]
+ [ 108 1892]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 88.83%, VPP: 94.60%, VPN: 83.05%, AUC: 0.888, F1: 0.894Experiment 18/20
+Team CM 
+[[1874  126]
+ [ 591 1409]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 82.08%, VPP: 70.45%, VPN: 93.70%, AUC: 0.821, F1: 0.797Experiment 19/20
+Team CM 
+[[1932   68]
+ [ 713 1287]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 80.47%, VPP: 64.35%, VPN: 96.60%, AUC: 0.805, F1: 0.767Experiment 20/20
+Team CM 
+[[1930   70]
+ [ 576 1424]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 83.85%, VPP: 71.20%, VPN: 96.50%, AUC: 0.839, F1: 0.815
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 3, drop_rate = 0.05, tau = minRE
+
+Team Statistics: ACC Mean: 83.06%, Positive Mean: 74.67%, Negative Mean: 91.44%, AUC mean: 0.831, F1 Mean: 0.798
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/20
+Team CM 
+[[ 489 1511]
+ [   2 1998]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 62.18%, VPP: 99.90%, VPN: 24.45%, AUC: 0.622, F1: 0.725Experiment 2/20
+Team CM 
+[[ 773 1227]
+ [   2 1998]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 69.27%, VPP: 99.90%, VPN: 38.65%, AUC: 0.693, F1: 0.765Experiment 3/20
+Team CM 
+[[ 493 1507]
+ [   2 1998]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 62.28%, VPP: 99.90%, VPN: 24.65%, AUC: 0.623, F1: 0.726Experiment 4/20
+Team CM 
+[[ 703 1297]
+ [   3 1997]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 67.50%, VPP: 99.85%, VPN: 35.15%, AUC: 0.675, F1: 0.754Experiment 5/20
+Team CM 
+[[ 482 1518]
+ [   2 1998]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 62.00%, VPP: 99.90%, VPN: 24.10%, AUC: 0.62, F1: 0.724Experiment 6/20
+Team CM 
+[[ 489 1511]
+ [   2 1998]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 62.18%, VPP: 99.90%, VPN: 24.45%, AUC: 0.622, F1: 0.725Experiment 7/20
+Team CM 
+[[ 584 1416]
+ [   3 1997]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 64.53%, VPP: 99.85%, VPN: 29.20%, AUC: 0.645, F1: 0.738Experiment 8/20
+Team CM 
+[[ 490 1510]
+ [   2 1998]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 62.20%, VPP: 99.90%, VPN: 24.50%, AUC: 0.622, F1: 0.725Experiment 9/20
+Team CM 
+[[ 497 1503]
+ [   2 1998]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 62.38%, VPP: 99.90%, VPN: 24.85%, AUC: 0.624, F1: 0.726Experiment 10/20
+Team CM 
+[[ 583 1417]
+ [   2 1998]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 64.53%, VPP: 99.90%, VPN: 29.15%, AUC: 0.645, F1: 0.738Experiment 11/20
+Team CM 
+[[ 601 1399]
+ [   3 1997]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 64.95%, VPP: 99.85%, VPN: 30.05%, AUC: 0.649, F1: 0.74Experiment 12/20
+Team CM 
+[[ 482 1518]
+ [   1 1999]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 62.02%, VPP: 99.95%, VPN: 24.10%, AUC: 0.62, F1: 0.725Experiment 13/20
+Team CM 
+[[ 493 1507]
+ [   1 1999]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 62.30%, VPP: 99.95%, VPN: 24.65%, AUC: 0.623, F1: 0.726Experiment 14/20
+Team CM 
+[[ 705 1295]
+ [   3 1997]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 67.55%, VPP: 99.85%, VPN: 35.25%, AUC: 0.675, F1: 0.755Experiment 15/20
+Team CM 
+[[ 704 1296]
+ [   3 1997]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 67.53%, VPP: 99.85%, VPN: 35.20%, AUC: 0.675, F1: 0.755Experiment 16/20
+Team CM 
+[[ 704 1296]
+ [   3 1997]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 67.53%, VPP: 99.85%, VPN: 35.20%, AUC: 0.675, F1: 0.755Experiment 17/20
+Team CM 
+[[ 533 1467]
+ [   3 1997]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 63.25%, VPP: 99.85%, VPN: 26.65%, AUC: 0.633, F1: 0.731Experiment 18/20
+Team CM 
+[[ 591 1409]
+ [   2 1998]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 64.72%, VPP: 99.90%, VPN: 29.55%, AUC: 0.647, F1: 0.739Experiment 19/20
+Team CM 
+[[ 724 1276]
+ [   2 1998]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 68.05%, VPP: 99.90%, VPN: 36.20%, AUC: 0.68, F1: 0.758Experiment 20/20
+Team CM 
+[[ 448 1552]
+ [   2 1998]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 61.15%, VPP: 99.90%, VPN: 22.40%, AUC: 0.611, F1: 0.72
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 5, drop_rate = 0.001, tau = RE
+
+Team Statistics: ACC Mean: 64.40%, Positive Mean: 99.89%, Negative Mean: 28.92%, AUC mean: 0.644, F1 Mean: 0.738
+------------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/20
+Team CM 
+[[1657  343]
+ [ 145 1855]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 87.80%, VPP: 92.75%, VPN: 82.85%, AUC: 0.878, F1: 0.884Experiment 2/20
+Team CM 
+[[1565  435]
+ [  44 1956]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 88.02%, VPP: 97.80%, VPN: 78.25%, AUC: 0.88, F1: 0.891Experiment 3/20
+Team CM 
+[[1652  348]
+ [ 168 1832]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 87.10%, VPP: 91.60%, VPN: 82.60%, AUC: 0.871, F1: 0.877Experiment 4/20
+Team CM 
+[[1565  435]
+ [  44 1956]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 88.02%, VPP: 97.80%, VPN: 78.25%, AUC: 0.88, F1: 0.891Experiment 5/20
+Team CM 
+[[1565  435]
+ [  44 1956]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 88.02%, VPP: 97.80%, VPN: 78.25%, AUC: 0.88, F1: 0.891Experiment 6/20
+Team CM 
+[[1649  351]
+ [ 153 1847]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 87.40%, VPP: 92.35%, VPN: 82.45%, AUC: 0.874, F1: 0.88Experiment 7/20
+Team CM 
+[[ 985 1015]
+ [   9 1991]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 74.40%, VPP: 99.55%, VPN: 49.25%, AUC: 0.744, F1: 0.795Experiment 8/20
+Team CM 
+[[1127  873]
+ [  29 1971]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 77.45%, VPP: 98.55%, VPN: 56.35%, AUC: 0.775, F1: 0.814Experiment 9/20
+Team CM 
+[[1677  323]
+ [ 163 1837]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 87.85%, VPP: 91.85%, VPN: 83.85%, AUC: 0.878, F1: 0.883Experiment 10/20
+Team CM 
+[[1531  469]
+ [  63 1937]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 86.70%, VPP: 96.85%, VPN: 76.55%, AUC: 0.867, F1: 0.879Experiment 11/20
+Team CM 
+[[1654  346]
+ [ 141 1859]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 87.83%, VPP: 92.95%, VPN: 82.70%, AUC: 0.878, F1: 0.884Experiment 12/20
+Team CM 
+[[1517  483]
+ [  43 1957]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 86.85%, VPP: 97.85%, VPN: 75.85%, AUC: 0.868, F1: 0.882Experiment 13/20
+Team CM 
+[[ 985 1015]
+ [   9 1991]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 74.40%, VPP: 99.55%, VPN: 49.25%, AUC: 0.744, F1: 0.795Experiment 14/20
+Team CM 
+[[ 991 1009]
+ [   9 1991]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 74.55%, VPP: 99.55%, VPN: 49.55%, AUC: 0.746, F1: 0.796Experiment 15/20
+Team CM 
+[[1542  458]
+ [  57 1943]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 87.12%, VPP: 97.15%, VPN: 77.10%, AUC: 0.871, F1: 0.883Experiment 16/20
+Team CM 
+[[1527  473]
+ [  41 1959]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 87.15%, VPP: 97.95%, VPN: 76.35%, AUC: 0.872, F1: 0.884Experiment 17/20
+Team CM 
+[[1527  473]
+ [  64 1936]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 86.58%, VPP: 96.80%, VPN: 76.35%, AUC: 0.866, F1: 0.878Experiment 18/20
+Team CM 
+[[1657  343]
+ [ 145 1855]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 87.80%, VPP: 92.75%, VPN: 82.85%, AUC: 0.878, F1: 0.884Experiment 19/20
+Team CM 
+[[1581  419]
+ [  67 1933]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 87.85%, VPP: 96.65%, VPN: 79.05%, AUC: 0.878, F1: 0.888Experiment 20/20
+Team CM 
+[[1530  470]
+ [  66 1934]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 86.60%, VPP: 96.70%, VPN: 76.50%, AUC: 0.866, F1: 0.878
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 5, drop_rate = 0.001, tau = minRE
+
+Team Statistics: ACC Mean: 84.97%, Positive Mean: 96.24%, Negative Mean: 73.71%, AUC mean: 0.85, F1 Mean: 0.867
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/20
+Team CM 
+[[1055  945]
+ [  19 1981]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 75.90%, VPP: 99.05%, VPN: 52.75%, AUC: 0.759, F1: 0.804Experiment 2/20
+Team CM 
+[[ 991 1009]
+ [  20 1980]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 74.28%, VPP: 99.00%, VPN: 49.55%, AUC: 0.743, F1: 0.794Experiment 3/20
+Team CM 
+[[1303  697]
+ [  22 1978]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 82.03%, VPP: 98.90%, VPN: 65.15%, AUC: 0.82, F1: 0.846Experiment 4/20
+Team CM 
+[[1161  839]
+ [  23 1977]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 78.45%, VPP: 98.85%, VPN: 58.05%, AUC: 0.785, F1: 0.821Experiment 5/20
+Team CM 
+[[1301  699]
+ [  21 1979]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 82.00%, VPP: 98.95%, VPN: 65.05%, AUC: 0.82, F1: 0.846Experiment 6/20
+Team CM 
+[[ 833 1167]
+ [  19 1981]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 70.35%, VPP: 99.05%, VPN: 41.65%, AUC: 0.704, F1: 0.77Experiment 7/20
+Team CM 
+[[ 833 1167]
+ [  17 1983]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 70.40%, VPP: 99.15%, VPN: 41.65%, AUC: 0.704, F1: 0.77Experiment 8/20
+Team CM 
+[[1053  947]
+ [  20 1980]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 75.83%, VPP: 99.00%, VPN: 52.65%, AUC: 0.758, F1: 0.804Experiment 9/20
+Team CM 
+[[ 877 1123]
+ [  19 1981]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 71.45%, VPP: 99.05%, VPN: 43.85%, AUC: 0.714, F1: 0.776Experiment 10/20
+Team CM 
+[[1054  946]
+ [  22 1978]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 75.80%, VPP: 98.90%, VPN: 52.70%, AUC: 0.758, F1: 0.803Experiment 11/20
+Team CM 
+[[1054  946]
+ [  22 1978]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 75.80%, VPP: 98.90%, VPN: 52.70%, AUC: 0.758, F1: 0.803Experiment 12/20
+Team CM 
+[[ 897 1103]
+ [  20 1980]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 71.92%, VPP: 99.00%, VPN: 44.85%, AUC: 0.719, F1: 0.779Experiment 13/20
+Team CM 
+[[1141  859]
+ [  22 1978]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 77.98%, VPP: 98.90%, VPN: 57.05%, AUC: 0.78, F1: 0.818Experiment 14/20
+Team CM 
+[[1320  680]
+ [  20 1980]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 82.50%, VPP: 99.00%, VPN: 66.00%, AUC: 0.825, F1: 0.85Experiment 15/20
+Team CM 
+[[1047  953]
+ [  18 1982]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 75.72%, VPP: 99.10%, VPN: 52.35%, AUC: 0.757, F1: 0.803Experiment 16/20
+Team CM 
+[[ 927 1073]
+ [  18 1982]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 72.72%, VPP: 99.10%, VPN: 46.35%, AUC: 0.727, F1: 0.784Experiment 17/20
+Team CM 
+[[ 833 1167]
+ [  19 1981]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 70.35%, VPP: 99.05%, VPN: 41.65%, AUC: 0.704, F1: 0.77Experiment 18/20
+Team CM 
+[[ 913 1087]
+ [  19 1981]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 72.35%, VPP: 99.05%, VPN: 45.65%, AUC: 0.724, F1: 0.782Experiment 19/20
+Team CM 
+[[1103  897]
+ [  17 1983]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 77.15%, VPP: 99.15%, VPN: 55.15%, AUC: 0.772, F1: 0.813Experiment 20/20
+Team CM 
+[[1160  840]
+ [  23 1977]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 78.42%, VPP: 98.85%, VPN: 58.00%, AUC: 0.784, F1: 0.821
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 5, drop_rate = 0.01, tau = RE
+
+Team Statistics: ACC Mean: 75.57%, Positive Mean: 99.00%, Negative Mean: 52.14%, AUC mean: 0.756, F1 Mean: 0.803
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/20
+Team CM 
+[[1643  357]
+ [ 186 1814]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 86.42%, VPP: 90.70%, VPN: 82.15%, AUC: 0.864, F1: 0.87Experiment 2/20
+Team CM 
+[[1407  593]
+ [  50 1950]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 83.93%, VPP: 97.50%, VPN: 70.35%, AUC: 0.839, F1: 0.858Experiment 3/20
+Team CM 
+[[1894  106]
+ [ 550 1450]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 83.60%, VPP: 72.50%, VPN: 94.70%, AUC: 0.836, F1: 0.816Experiment 4/20
+Team CM 
+[[1821  179]
+ [ 307 1693]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 87.85%, VPP: 84.65%, VPN: 91.05%, AUC: 0.879, F1: 0.874Experiment 5/20
+Team CM 
+[[1819  181]
+ [ 298 1702]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 88.02%, VPP: 85.10%, VPN: 90.95%, AUC: 0.88, F1: 0.877Experiment 6/20
+Team CM 
+[[1791  209]
+ [ 243 1757]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 88.70%, VPP: 87.85%, VPN: 89.55%, AUC: 0.887, F1: 0.886Experiment 7/20
+Team CM 
+[[1819  181]
+ [ 298 1702]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 88.02%, VPP: 85.10%, VPN: 90.95%, AUC: 0.88, F1: 0.877Experiment 8/20
+Team CM 
+[[1892  108]
+ [ 583 1417]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 82.73%, VPP: 70.85%, VPN: 94.60%, AUC: 0.827, F1: 0.804Experiment 9/20
+Team CM 
+[[1881  119]
+ [ 515 1485]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 84.15%, VPP: 74.25%, VPN: 94.05%, AUC: 0.842, F1: 0.824Experiment 10/20
+Team CM 
+[[1615  385]
+ [ 103 1897]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 87.80%, VPP: 94.85%, VPN: 80.75%, AUC: 0.878, F1: 0.886Experiment 11/20
+Team CM 
+[[1811  189]
+ [ 232 1768]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 89.48%, VPP: 88.40%, VPN: 90.55%, AUC: 0.895, F1: 0.894Experiment 12/20
+Team CM 
+[[1904   96]
+ [ 744 1256]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 79.00%, VPP: 62.80%, VPN: 95.20%, AUC: 0.79, F1: 0.749Experiment 13/20
+Team CM 
+[[1894  106]
+ [ 549 1451]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 83.62%, VPP: 72.55%, VPN: 94.70%, AUC: 0.836, F1: 0.816Experiment 14/20
+Team CM 
+[[1759  241]
+ [ 174 1826]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 89.62%, VPP: 91.30%, VPN: 87.95%, AUC: 0.896, F1: 0.898Experiment 15/20
+Team CM 
+[[1896  104]
+ [ 701 1299]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 79.88%, VPP: 64.95%, VPN: 94.80%, AUC: 0.799, F1: 0.763Experiment 16/20
+Team CM 
+[[1738  262]
+ [ 105 1895]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 90.83%, VPP: 94.75%, VPN: 86.90%, AUC: 0.908, F1: 0.912Experiment 17/20
+Team CM 
+[[1865  135]
+ [ 500 1500]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 84.12%, VPP: 75.00%, VPN: 93.25%, AUC: 0.841, F1: 0.825Experiment 18/20
+Team CM 
+[[1892  108]
+ [ 583 1417]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 82.73%, VPP: 70.85%, VPN: 94.60%, AUC: 0.827, F1: 0.804Experiment 19/20
+Team CM 
+[[1470  530]
+ [  72 1928]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 84.95%, VPP: 96.40%, VPN: 73.50%, AUC: 0.85, F1: 0.865Experiment 20/20
+Team CM 
+[[1778  222]
+ [ 179 1821]]
+
+
+Confusion Matrices' metrics:
+Team ACC: 89.98%, VPP: 91.05%, VPN: 88.90%, AUC: 0.9, F1: 0.901
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 5, drop_rate = 0.01, tau = minRE
+
+Team Statistics: ACC Mean: 85.77%, Positive Mean: 82.57%, Negative Mean: 88.97%, AUC mean: 0.858, F1 Mean: 0.85
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 5, drop_rate = 0.05, tau = RE
+
+Team Statistics: ACC Mean: 87.42%, Positive Mean: 95.88%, Negative Mean: 78.96%, AUC mean: 0.874, F1 Mean: 0.884
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 5, drop_rate = 0.05, tau = minRE
+
+Team Statistics: ACC Mean: 81.23%, Positive Mean: 67.02%, Negative Mean: 95.45%, AUC mean: 0.812, F1 Mean: 0.773
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 7, drop_rate = 0.001, tau = RE
+
+Team Statistics: ACC Mean: 63.64%, Positive Mean: 99.76%, Negative Mean: 27.51%, AUC mean: 0.636, F1 Mean: 0.733
+------------------------------------------------------------------------------------------------------------------------------------------
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 7, drop_rate = 0.001, tau = minRE
+
+Team Statistics: ACC Mean: 86.57%, Positive Mean: 94.42%, Negative Mean: 78.73%, AUC mean: 0.866, F1 Mean: 0.876
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 7, drop_rate = 0.01, tau = RE
+
+Team Statistics: ACC Mean: 76.24%, Positive Mean: 99.49%, Negative Mean: 52.99%, AUC mean: 0.762, F1 Mean: 0.807
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 7, drop_rate = 0.001, tau = RE
+
+Team Statistics: ACC Mean: 64.39%, Positive Mean: 99.95%, Negative Mean: 28.82%, AUC mean: 0.644, F1 Mean: 0.737
+----------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:01:47.158277
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 7, drop_rate = 0.001, tau = minRE
+
+Team Statistics: ACC Mean: 87.48%, Positive Mean: 93.14%, Negative Mean: 81.82%, AUC mean: 0.875, F1 Mean: 0.881
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:05:01.050191
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 7, drop_rate = 0.01, tau = RE
+
+Team Statistics: ACC Mean: 75.54%, Positive Mean: 99.41%, Negative Mean: 51.67%, AUC mean: 0.755, F1 Mean: 0.803
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:09:55.796964
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 7, drop_rate = 0.01, tau = minRE
+
+Team Statistics: ACC Mean: 86.32%, Positive Mean: 80.45%, Negative Mean: 92.19%, AUC mean: 0.863, F1 Mean: 0.854
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:16:19.940987
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 7, drop_rate = 0.05, tau = RE
+
+Team Statistics: ACC Mean: 87.40%, Positive Mean: 96.70%, Negative Mean: 78.10%, AUC mean: 0.874, F1 Mean: 0.885
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:24:17.356540
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 7, drop_rate = 0.05, tau = minRE
+
+Team Statistics: ACC Mean: 80.51%, Positive Mean: 64.57%, Negative Mean: 96.45%, AUC mean: 0.805, F1 Mean: 0.765
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:34:06.960273
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 9, drop_rate = 0.001, tau = RE
+
+Team Statistics: ACC Mean: 63.76%, Positive Mean: 99.95%, Negative Mean: 27.56%, AUC mean: 0.638, F1 Mean: 0.734
+----------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:49:11.317397
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 9, drop_rate = 0.001, tau = minRE
+
+Team Statistics: ACC Mean: 87.37%, Positive Mean: 95.21%, Negative Mean: 79.53%, AUC mean: 0.874, F1 Mean: 0.883
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 1:07:09.397959
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 9, drop_rate = 0.01, tau = RE
+
+Team Statistics: ACC Mean: 76.42%, Positive Mean: 99.48%, Negative Mean: 53.37%, AUC mean: 0.764, F1 Mean: 0.808
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 1:28:01.585179
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 9, drop_rate = 0.01, tau = minRE
+
+Team Statistics: ACC Mean: 84.48%, Positive Mean: 75.23%, Negative Mean: 93.72%, AUC mean: 0.845, F1 Mean: 0.829
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 1:53:49.720610
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 9, drop_rate = 0.05, tau = RE
+
+Team Statistics: ACC Mean: 86.93%, Positive Mean: 96.08%, Negative Mean: 77.78%, AUC mean: 0.869, F1 Mean: 0.88
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 2:23:12.871698
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 9, drop_rate = 0.05, tau = minRE
+
+Team Statistics: ACC Mean: 78.98%, Positive Mean: 60.59%, Negative Mean: 97.36%, AUC mean: 0.79, F1 Mean: 0.74
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 2:57:15.817352

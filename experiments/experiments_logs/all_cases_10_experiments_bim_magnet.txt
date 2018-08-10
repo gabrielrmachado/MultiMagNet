@@ -1,0 +1,25 @@
+
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 1, drop_rate = 0.001, tau = RE
+
+Team Statistics: ACC Mean: 99.99%, Positive Mean: 99.98%, Negative Mean: 100.00%, AUC mean: 1.0, F1 Mean: 1.0
+-----------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:00:09.120137
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 1, drop_rate = 0.01, tau = RE
+
+Team Statistics: ACC Mean: 99.68%, Positive Mean: 99.36%, Negative Mean: 100.00%, AUC mean: 0.997, F1 Mean: 0.997
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:00:18.449887
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 1, drop_rate = 0.05, tau = RE
+
+Team Statistics: ACC Mean: 97.74%, Positive Mean: 95.49%, Negative Mean: 100.00%, AUC mean: 0.977, F1 Mean: 0.977
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:00:29.700978

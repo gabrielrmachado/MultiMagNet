@@ -1,0 +1,434 @@
+Experiment 1/1
+Team CM 
+[[2000    0]
+ [   1 1999]]
+Unique CM 
+[[2000    0]
+ [   1 1999]]
+
+Confusion Matrices' metrics:
+Team ACC: 99.98%, VPP: 99.95%, VPN: 100.00%, AUC: 1.0, F1: 1.0
+Unique ACC: 99.98%, VPP: 99.95%, VPN: 100.00%, AUC: 1.0, F1: 1.0
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 3, drop_rate = 0.001, tau = RE
+
+Team Statistics: ACC Mean: 99.98%, Positive Mean: 99.95%, Negative Mean: 100.00%, AUC mean: 1.0, F1 Mean: 1.0
+Unique Statistics: ACC Mean: 99.98%, Positive Mean: 99.95%, Negative Mean: 100.00%, AUC mean: 1.0, F1 Mean: 1.0
+--------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/1
+Team CM 
+[[2000    0]
+ [  86 1914]]
+Unique CM 
+[[2000    0]
+ [   0 2000]]
+
+Confusion Matrices' metrics:
+Team ACC: 97.85%, VPP: 95.70%, VPN: 100.00%, AUC: 0.978, F1: 0.978
+Unique ACC: 100.00%, VPP: 100.00%, VPN: 100.00%, AUC: 1.0, F1: 1.0
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 3, drop_rate = 0.001, tau = minRE
+
+Team Statistics: ACC Mean: 97.85%, Positive Mean: 95.70%, Negative Mean: 100.00%, AUC mean: 0.978, F1 Mean: 0.978
+Unique Statistics: ACC Mean: 100.00%, Positive Mean: 100.00%, Negative Mean: 100.00%, AUC mean: 1.0, F1 Mean: 1.0
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/1
+Team CM 
+[[2000    0]
+ [  21 1979]]
+Unique CM 
+[[2000    0]
+ [  17 1983]]
+
+Confusion Matrices' metrics:
+Team ACC: 99.48%, VPP: 98.95%, VPN: 100.00%, AUC: 0.995, F1: 0.995
+Unique ACC: 99.58%, VPP: 99.15%, VPN: 100.00%, AUC: 0.996, F1: 0.996
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 3, drop_rate = 0.01, tau = RE
+
+Team Statistics: ACC Mean: 99.48%, Positive Mean: 98.95%, Negative Mean: 100.00%, AUC mean: 0.995, F1 Mean: 0.995
+Unique Statistics: ACC Mean: 99.58%, Positive Mean: 99.15%, Negative Mean: 100.00%, AUC mean: 0.996, F1 Mean: 0.996
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/1
+Team CM 
+[[2000    0]
+ [  79 1921]]
+Unique CM 
+[[2000    0]
+ [  14 1986]]
+
+Confusion Matrices' metrics:
+Team ACC: 98.02%, VPP: 96.05%, VPN: 100.00%, AUC: 0.98, F1: 0.98
+Unique ACC: 99.65%, VPP: 99.30%, VPN: 100.00%, AUC: 0.996, F1: 0.996
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 3, drop_rate = 0.01, tau = minRE
+
+Team Statistics: ACC Mean: 98.02%, Positive Mean: 96.05%, Negative Mean: 100.00%, AUC mean: 0.98, F1 Mean: 0.98
+Unique Statistics: ACC Mean: 99.65%, Positive Mean: 99.30%, Negative Mean: 100.00%, AUC mean: 0.996, F1 Mean: 0.996
+----------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/1
+Team CM 
+[[2000    0]
+ [  64 1936]]
+Unique CM 
+[[2000    0]
+ [  87 1913]]
+
+Confusion Matrices' metrics:
+Team ACC: 98.40%, VPP: 96.80%, VPN: 100.00%, AUC: 0.984, F1: 0.984
+Unique ACC: 97.82%, VPP: 95.65%, VPN: 100.00%, AUC: 0.978, F1: 0.978
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 3, drop_rate = 0.05, tau = RE
+
+Team Statistics: ACC Mean: 98.40%, Positive Mean: 96.80%, Negative Mean: 100.00%, AUC mean: 0.984, F1 Mean: 0.984
+Unique Statistics: ACC Mean: 97.82%, Positive Mean: 95.65%, Negative Mean: 100.00%, AUC mean: 0.978, F1 Mean: 0.978
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/1
+Team CM 
+[[2000    0]
+ [ 552 1448]]
+Unique CM 
+[[2000    0]
+ [  94 1906]]
+
+Confusion Matrices' metrics:
+Team ACC: 86.20%, VPP: 72.40%, VPN: 100.00%, AUC: 0.862, F1: 0.84
+Unique ACC: 97.65%, VPP: 95.30%, VPN: 100.00%, AUC: 0.976, F1: 0.976
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 3, drop_rate = 0.05, tau = minRE
+
+Team Statistics: ACC Mean: 86.20%, Positive Mean: 72.40%, Negative Mean: 100.00%, AUC mean: 0.862, F1 Mean: 0.84
+Unique Statistics: ACC Mean: 97.65%, Positive Mean: 95.30%, Negative Mean: 100.00%, AUC mean: 0.976, F1 Mean: 0.976
+----------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/1
+Team CM 
+[[2000    0]
+ [   1 1999]]
+Unique CM 
+[[2000    0]
+ [   2 1998]]
+
+Confusion Matrices' metrics:
+Team ACC: 99.98%, VPP: 99.95%, VPN: 100.00%, AUC: 1.0, F1: 1.0
+Unique ACC: 99.95%, VPP: 99.90%, VPN: 100.00%, AUC: 1.0, F1: 0.999
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 5, drop_rate = 0.001, tau = RE
+
+Team Statistics: ACC Mean: 99.98%, Positive Mean: 99.95%, Negative Mean: 100.00%, AUC mean: 1.0, F1 Mean: 1.0
+Unique Statistics: ACC Mean: 99.95%, Positive Mean: 99.90%, Negative Mean: 100.00%, AUC mean: 1.0, F1 Mean: 0.999
+--------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/1
+Team CM 
+[[2000    0]
+ [  77 1923]]
+Unique CM 
+[[2000    0]
+ [   2 1998]]
+
+Confusion Matrices' metrics:
+Team ACC: 98.08%, VPP: 96.15%, VPN: 100.00%, AUC: 0.981, F1: 0.98
+Unique ACC: 99.95%, VPP: 99.90%, VPN: 100.00%, AUC: 1.0, F1: 0.999
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 5, drop_rate = 0.001, tau = minRE
+
+Team Statistics: ACC Mean: 98.08%, Positive Mean: 96.15%, Negative Mean: 100.00%, AUC mean: 0.981, F1 Mean: 0.98
+Unique Statistics: ACC Mean: 99.95%, Positive Mean: 99.90%, Negative Mean: 100.00%, AUC mean: 1.0, F1 Mean: 0.999
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/1
+Team CM 
+[[2000    0]
+ [  11 1989]]
+Unique CM 
+[[2000    0]
+ [  15 1985]]
+
+Confusion Matrices' metrics:
+Team ACC: 99.72%, VPP: 99.45%, VPN: 100.00%, AUC: 0.997, F1: 0.997
+Unique ACC: 99.62%, VPP: 99.25%, VPN: 100.00%, AUC: 0.996, F1: 0.996
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 5, drop_rate = 0.01, tau = RE
+
+Team Statistics: ACC Mean: 99.72%, Positive Mean: 99.45%, Negative Mean: 100.00%, AUC mean: 0.997, F1 Mean: 0.997
+Unique Statistics: ACC Mean: 99.62%, Positive Mean: 99.25%, Negative Mean: 100.00%, AUC mean: 0.996, F1 Mean: 0.996
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/1
+Team CM 
+[[2000    0]
+ [ 297 1703]]
+Unique CM 
+[[2000    0]
+ [  12 1988]]
+
+Confusion Matrices' metrics:
+Team ACC: 92.58%, VPP: 85.15%, VPN: 100.00%, AUC: 0.926, F1: 0.92
+Unique ACC: 99.70%, VPP: 99.40%, VPN: 100.00%, AUC: 0.997, F1: 0.997
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 5, drop_rate = 0.01, tau = minRE
+
+Team Statistics: ACC Mean: 92.58%, Positive Mean: 85.15%, Negative Mean: 100.00%, AUC mean: 0.926, F1 Mean: 0.92
+Unique Statistics: ACC Mean: 99.70%, Positive Mean: 99.40%, Negative Mean: 100.00%, AUC mean: 0.997, F1 Mean: 0.997
+----------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/1
+Team CM 
+[[2000    0]
+ [  66 1934]]
+Unique CM 
+[[2000    0]
+ [  98 1902]]
+
+Confusion Matrices' metrics:
+Team ACC: 98.35%, VPP: 96.70%, VPN: 100.00%, AUC: 0.984, F1: 0.983
+Unique ACC: 97.55%, VPP: 95.10%, VPN: 100.00%, AUC: 0.976, F1: 0.975
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 5, drop_rate = 0.05, tau = RE
+
+Team Statistics: ACC Mean: 98.35%, Positive Mean: 96.70%, Negative Mean: 100.00%, AUC mean: 0.984, F1 Mean: 0.983
+Unique Statistics: ACC Mean: 97.55%, Positive Mean: 95.10%, Negative Mean: 100.00%, AUC mean: 0.976, F1 Mean: 0.975
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/1
+Team CM 
+[[2000    0]
+ [ 710 1290]]
+Unique CM 
+[[2000    0]
+ [  77 1923]]
+
+Confusion Matrices' metrics:
+Team ACC: 82.25%, VPP: 64.50%, VPN: 100.00%, AUC: 0.823, F1: 0.784
+Unique ACC: 98.08%, VPP: 96.15%, VPN: 100.00%, AUC: 0.981, F1: 0.98
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 5, drop_rate = 0.05, tau = minRE
+
+Team Statistics: ACC Mean: 82.25%, Positive Mean: 64.50%, Negative Mean: 100.00%, AUC mean: 0.823, F1 Mean: 0.784
+Unique Statistics: ACC Mean: 98.08%, Positive Mean: 96.15%, Negative Mean: 100.00%, AUC mean: 0.981, F1 Mean: 0.98
+----------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/1
+Team CM 
+[[2000    0]
+ [   4 1996]]
+Unique CM 
+[[2000    0]
+ [   3 1997]]
+
+Confusion Matrices' metrics:
+Team ACC: 99.90%, VPP: 99.80%, VPN: 100.00%, AUC: 0.999, F1: 0.999
+Unique ACC: 99.92%, VPP: 99.85%, VPN: 100.00%, AUC: 0.999, F1: 0.999
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 7, drop_rate = 0.001, tau = RE
+
+Team Statistics: ACC Mean: 99.90%, Positive Mean: 99.80%, Negative Mean: 100.00%, AUC mean: 0.999, F1 Mean: 0.999
+Unique Statistics: ACC Mean: 99.92%, Positive Mean: 99.85%, Negative Mean: 100.00%, AUC mean: 0.999, F1 Mean: 0.999
+--------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/1
+Team CM 
+[[2000    0]
+ [  81 1919]]
+Unique CM 
+[[2000    0]
+ [   1 1999]]
+
+Confusion Matrices' metrics:
+Team ACC: 97.97%, VPP: 95.95%, VPN: 100.00%, AUC: 0.98, F1: 0.979
+Unique ACC: 99.98%, VPP: 99.95%, VPN: 100.00%, AUC: 1.0, F1: 1.0
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 7, drop_rate = 0.001, tau = minRE
+
+Team Statistics: ACC Mean: 97.97%, Positive Mean: 95.95%, Negative Mean: 100.00%, AUC mean: 0.98, F1 Mean: 0.979
+Unique Statistics: ACC Mean: 99.98%, Positive Mean: 99.95%, Negative Mean: 100.00%, AUC mean: 1.0, F1 Mean: 1.0
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/1
+Team CM 
+[[2000    0]
+ [  13 1987]]
+Unique CM 
+[[2000    0]
+ [  23 1977]]
+
+Confusion Matrices' metrics:
+Team ACC: 99.67%, VPP: 99.35%, VPN: 100.00%, AUC: 0.997, F1: 0.997
+Unique ACC: 99.42%, VPP: 98.85%, VPN: 100.00%, AUC: 0.994, F1: 0.994
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 7, drop_rate = 0.01, tau = RE
+
+Team Statistics: ACC Mean: 99.67%, Positive Mean: 99.35%, Negative Mean: 100.00%, AUC mean: 0.997, F1 Mean: 0.997
+Unique Statistics: ACC Mean: 99.42%, Positive Mean: 98.85%, Negative Mean: 100.00%, AUC mean: 0.994, F1 Mean: 0.994
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/1
+Team CM 
+[[2000    0]
+ [ 509 1491]]
+Unique CM 
+[[2000    0]
+ [  12 1988]]
+
+Confusion Matrices' metrics:
+Team ACC: 87.28%, VPP: 74.55%, VPN: 100.00%, AUC: 0.873, F1: 0.854
+Unique ACC: 99.70%, VPP: 99.40%, VPN: 100.00%, AUC: 0.997, F1: 0.997
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 7, drop_rate = 0.01, tau = minRE
+
+Team Statistics: ACC Mean: 87.28%, Positive Mean: 74.55%, Negative Mean: 100.00%, AUC mean: 0.873, F1 Mean: 0.854
+Unique Statistics: ACC Mean: 99.70%, Positive Mean: 99.40%, Negative Mean: 100.00%, AUC mean: 0.997, F1 Mean: 0.997
+----------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/1
+Team CM 
+[[2000    0]
+ [  81 1919]]
+Unique CM 
+[[2000    0]
+ [  81 1919]]
+
+Confusion Matrices' metrics:
+Team ACC: 97.97%, VPP: 95.95%, VPN: 100.00%, AUC: 0.98, F1: 0.979
+Unique ACC: 97.97%, VPP: 95.95%, VPN: 100.00%, AUC: 0.98, F1: 0.979
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 7, drop_rate = 0.05, tau = RE
+
+Team Statistics: ACC Mean: 97.97%, Positive Mean: 95.95%, Negative Mean: 100.00%, AUC mean: 0.98, F1 Mean: 0.979
+Unique Statistics: ACC Mean: 97.97%, Positive Mean: 95.95%, Negative Mean: 100.00%, AUC mean: 0.98, F1 Mean: 0.979
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/1
+Team CM 
+[[2000    0]
+ [ 681 1319]]
+Unique CM 
+[[2000    0]
+ [  91 1909]]
+
+Confusion Matrices' metrics:
+Team ACC: 82.97%, VPP: 65.95%, VPN: 100.00%, AUC: 0.83, F1: 0.795
+Unique ACC: 97.72%, VPP: 95.45%, VPN: 100.00%, AUC: 0.977, F1: 0.977
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 7, drop_rate = 0.05, tau = minRE
+
+Team Statistics: ACC Mean: 82.97%, Positive Mean: 65.95%, Negative Mean: 100.00%, AUC mean: 0.83, F1 Mean: 0.795
+Unique Statistics: ACC Mean: 97.72%, Positive Mean: 95.45%, Negative Mean: 100.00%, AUC mean: 0.977, F1 Mean: 0.977
+----------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/1
+Team CM 
+[[2000    0]
+ [   1 1999]]
+Unique CM 
+[[2000    0]
+ [   2 1998]]
+
+Confusion Matrices' metrics:
+Team ACC: 99.98%, VPP: 99.95%, VPN: 100.00%, AUC: 1.0, F1: 1.0
+Unique ACC: 99.95%, VPP: 99.90%, VPN: 100.00%, AUC: 1.0, F1: 0.999
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 9, drop_rate = 0.001, tau = RE
+
+Team Statistics: ACC Mean: 99.98%, Positive Mean: 99.95%, Negative Mean: 100.00%, AUC mean: 1.0, F1 Mean: 1.0
+Unique Statistics: ACC Mean: 99.95%, Positive Mean: 99.90%, Negative Mean: 100.00%, AUC mean: 1.0, F1 Mean: 0.999
+--------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/1
+Team CM 
+[[2000    0]
+ [  71 1929]]
+Unique CM 
+[[2000    0]
+ [   1 1999]]
+
+Confusion Matrices' metrics:
+Team ACC: 98.22%, VPP: 96.45%, VPN: 100.00%, AUC: 0.982, F1: 0.982
+Unique ACC: 99.98%, VPP: 99.95%, VPN: 100.00%, AUC: 1.0, F1: 1.0
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 9, drop_rate = 0.001, tau = minRE
+
+Team Statistics: ACC Mean: 98.22%, Positive Mean: 96.45%, Negative Mean: 100.00%, AUC mean: 0.982, F1 Mean: 0.982
+Unique Statistics: ACC Mean: 99.98%, Positive Mean: 99.95%, Negative Mean: 100.00%, AUC mean: 1.0, F1 Mean: 1.0
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/1
+Team CM 
+[[2000    0]
+ [  13 1987]]
+Unique CM 
+[[2000    0]
+ [  17 1983]]
+
+Confusion Matrices' metrics:
+Team ACC: 99.67%, VPP: 99.35%, VPN: 100.00%, AUC: 0.997, F1: 0.997
+Unique ACC: 99.58%, VPP: 99.15%, VPN: 100.00%, AUC: 0.996, F1: 0.996
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 9, drop_rate = 0.01, tau = RE
+
+Team Statistics: ACC Mean: 99.67%, Positive Mean: 99.35%, Negative Mean: 100.00%, AUC mean: 0.997, F1 Mean: 0.997
+Unique Statistics: ACC Mean: 99.58%, Positive Mean: 99.15%, Negative Mean: 100.00%, AUC mean: 0.996, F1 Mean: 0.996
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/1
+Team CM 
+[[2000    0]
+ [ 333 1667]]
+Unique CM 
+[[2000    0]
+ [  10 1990]]
+
+Confusion Matrices' metrics:
+Team ACC: 91.67%, VPP: 83.35%, VPN: 100.00%, AUC: 0.917, F1: 0.909
+Unique ACC: 99.75%, VPP: 99.50%, VPN: 100.00%, AUC: 0.998, F1: 0.997
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 9, drop_rate = 0.01, tau = minRE
+
+Team Statistics: ACC Mean: 91.67%, Positive Mean: 83.35%, Negative Mean: 100.00%, AUC mean: 0.917, F1 Mean: 0.909
+Unique Statistics: ACC Mean: 99.75%, Positive Mean: 99.50%, Negative Mean: 100.00%, AUC mean: 0.998, F1 Mean: 0.997
+----------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/1
+Team CM 
+[[2000    0]
+ [  66 1934]]
+Unique CM 
+[[2000    0]
+ [  81 1919]]
+
+Confusion Matrices' metrics:
+Team ACC: 98.35%, VPP: 96.70%, VPN: 100.00%, AUC: 0.984, F1: 0.983
+Unique ACC: 97.97%, VPP: 95.95%, VPN: 100.00%, AUC: 0.98, F1: 0.979
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 9, drop_rate = 0.05, tau = RE
+
+Team Statistics: ACC Mean: 98.35%, Positive Mean: 96.70%, Negative Mean: 100.00%, AUC mean: 0.984, F1 Mean: 0.983
+Unique Statistics: ACC Mean: 97.97%, Positive Mean: 95.95%, Negative Mean: 100.00%, AUC mean: 0.98, F1 Mean: 0.979
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Experiment 1/1
+Team CM 
+[[2000    0]
+ [ 738 1262]]
+Unique CM 
+[[2000    0]
+ [  86 1914]]
+
+Confusion Matrices' metrics:
+Team ACC: 81.55%, VPP: 63.10%, VPN: 100.00%, AUC: 0.816, F1: 0.774
+Unique ACC: 97.85%, VPP: 95.70%, VPN: 100.00%, AUC: 0.978, F1: 0.978
+
+EXPERIMENT 2 TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 9, drop_rate = 0.05, tau = minRE
+
+Team Statistics: ACC Mean: 81.55%, Positive Mean: 63.10%, Negative Mean: 100.00%, AUC mean: 0.816, F1 Mean: 0.774
+Unique Statistics: ACC Mean: 97.85%, Positive Mean: 95.70%, Negative Mean: 100.00%, AUC mean: 0.978, F1 Mean: 0.978
+----------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:17:07.264906
