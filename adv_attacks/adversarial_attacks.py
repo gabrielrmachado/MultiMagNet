@@ -7,6 +7,7 @@ import keras
 import winsound
 
 from cleverhans.utils_keras import KerasModelWrapper
+from foolbox.attacks import DeepFoolL2Attack
 from classifiers.classifier import Classifier
 from cleverhans.utils_tf import model_train, model_eval
 from nn_robust_attacks.l0_attack import CarliniL0
@@ -48,17 +49,15 @@ class Adversarial_Attack:
 
         self.surrogate_model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-    def attack(self, classifier=None, attack_str=""):
+    def attack(self, model=None, logits=True, attack_str=""):
         imgs = self._load_images(attack_str)
         
         if type(imgs) != type(None) :
             print('\n{0} adversarial examples using {1} attack loaded...\n'.format(self.__dataset, self.__attack))
             return imgs
 
-        if type(classifier) == type(None): 
+        if type(model) == type(None): 
             model = self._train_surrogate_model(self.surrogate_model)
-        else:
-            model = classifier.get_model_softmax()
         
         if self.__attack == 'FGSM': 
             print('\nCrafting adversarial examples using FGSM attack...\n')
@@ -79,8 +78,7 @@ class Adversarial_Attack:
 
     def __deepfool_attack(self, wrap):
         deepfool = DeepFool(wrap, sess=self.__sess)
-
-        x_adv_images = deepfool.generate_np(self.__data.x_test[self.idx_adv][:2000], over_shoot=0.02, max_iter=50,
+        x_adv_images = deepfool.generate_np(self.__data.x_test[self.idx_adv][:500], over_shoot=0.02, max_iter=1000,
                                             nb_candidate=10)
 
         helpers.save_imgs_pkl(x_adv_images, self.__dataset.lower() + '_test_set_deepfool.pkl')

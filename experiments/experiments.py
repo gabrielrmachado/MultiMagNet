@@ -116,13 +116,13 @@ class Experiment:
         model = classifier.execute()
 
         # Creates surrogate model and returns the perturbed NumPy test set  
-        x_test_adv = Adversarial_Attack(self._sess, self._data, attack=attack, epochs=5).attack(classifier)
+        x_test_adv = Adversarial_Attack(self._sess, self._data, attack=attack, epochs=5).attack(classifier.get_model(logits=True))
 
         # Evaluates the brand-new adversarial examples on the main model.
         classifier.evaluate_model(model, x_test_adv[:length], self._data.y_test[self._idx_adv][:length])
 
         # plots the adversarial images
-        helpers.plot_images(self._data.x_test[self._idx_adv][:2000], x_test_adv[:2000], x_test_adv.shape)
+        helpers.plot_images(self._data.x_test[self._idx_adv][:length], x_test_adv[:length], x_test_adv.shape)
 
         # Creates a test set containing 'length * 2' input images 'x', where half are benign images and half are adversarial.
         _, x, y = helpers.join_test_sets(self._data.x_test, x_test_adv, length)

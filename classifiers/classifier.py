@@ -30,7 +30,7 @@ class Classifier:
         self.__lr_drop = lr_drop
         self.__data = data
 
-    def __mnist_logits_model(self):
+    def __mnist_model(self):
         # build the main classifier
         # create model
         model = Sequential()
@@ -44,29 +44,10 @@ class Classifier:
         model.add(Flatten())
         model.add(Dense(128, activation='relu'))
         model.add(Dense(10))
-
+        
         return model
 
-    def __mnist_softmax_model(self):
-        # build the main classifier
-        # create model
-        model = Sequential()
-        model.add(Convolution2D(64, (5, 5), padding='valid', input_shape=self.__data.x_train.shape[1:], activation='relu'))
-        model.add(MaxPooling2D(pool_size=(2, 2)))
-        model.add(Convolution2D(128, (3, 3), activation='relu'))
-        model.add(MaxPooling2D(pool_size=(2, 2)))
-        model.add(Dropout(0.2))
-        model.add(Convolution2D(128, (3, 3), activation='relu'))
-        model.add(MaxPooling2D(pool_size=(2, 2)))
-        model.add(Flatten())
-        model.add(Dense(128, activation='relu'))
-        model.add(Dense(10))
-        model.add(Activation('softmax'))
-        model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-
-        return model
-
-    def __cifar10_logits_model(self):
+    def __cifar10_model(self):
         model = Sequential()
         model.add(Conv2D(32, (3,3), padding='same', kernel_regularizer=regularizers.l2(self.__lr_decay), input_shape=self.__data.x_train.shape[1:]))
         model.add(Activation('elu'))
@@ -97,43 +78,6 @@ class Classifier:
 
         model.add(Flatten())
         model.add(Dense(10))
-
-        return model
-
-    def __cifar10_softmax_model(self):
-        model = Sequential()
-        model.add(Conv2D(32, (3,3), padding='same', kernel_regularizer=regularizers.l2(self.__lr_decay), input_shape=self.__data.x_train.shape[1:]))
-        model.add(Activation('elu'))
-        model.add(BatchNormalization())
-        model.add(Conv2D(32, (3,3), padding='same', kernel_regularizer=regularizers.l2(self.__lr_decay)))
-        model.add(Activation('elu'))
-        model.add(BatchNormalization())
-        model.add(MaxPooling2D(pool_size=(2,2)))
-        model.add(Dropout(0.2))
-
-        model.add(Conv2D(64, (3,3), padding='same', kernel_regularizer=regularizers.l2(self.__lr_decay)))
-        model.add(Activation('elu'))
-        model.add(BatchNormalization())
-        model.add(Conv2D(64, (3,3), padding='same', kernel_regularizer=regularizers.l2(self.__lr_decay)))
-        model.add(Activation('elu'))
-        model.add(BatchNormalization())
-        model.add(MaxPooling2D(pool_size=(2,2)))
-        model.add(Dropout(0.3))
-
-        model.add(Conv2D(128, (3,3), padding='same', kernel_regularizer=regularizers.l2(self.__lr_decay)))
-        model.add(Activation('elu'))
-        model.add(BatchNormalization())
-        model.add(Conv2D(128, (3,3), padding='same', kernel_regularizer=regularizers.l2(self.__lr_decay)))
-        model.add(Activation('elu'))
-        model.add(BatchNormalization())
-        model.add(MaxPooling2D(pool_size=(2,2)))
-        model.add(Dropout(0.4))
-
-        model.add(Flatten())
-        model.add(Dense(10, activation='softmax'))
-
-        opt_rms = keras.optimizers.rmsprop(lr=0.001,decay=1e-6)
-        model.compile(loss='categorical_crossentropy', optimizer=opt_rms, metrics=['accuracy'])
 
         return model
 
@@ -151,8 +95,9 @@ class Classifier:
         y_train = self.__data.y_train
         y_test = self.__data.y_test
 
+        model = self.get_model(logits=False)
+
         if self.__data.dataset_name.upper() == 'MNIST':
-            model = self.__mnist_softmax_model()
             # Builds the main model
             try:
                 model.load_weights(os.path.dirname(os.path.realpath(__file__)) + '\\model_parameters\\mnist.h5')
@@ -172,7 +117,6 @@ class Classifier:
                     print("It has not been possible to save MNIST model's parameters.")
         
         if self.__data.dataset_name.upper() == 'CIFAR':
-            model = self.__cifar10_softmax_model()
             try:
                 model.load_weights(os.path.dirname(os.path.realpath(__file__)) + '\\model_parameters\\cifar10.h5')
                 scores = model.evaluate(x_test, y_test, verbose=0)
@@ -214,25 +158,30 @@ class Classifier:
         scores = model.evaluate(x_test, y_test, verbose=0)
         print("Main classifier's baseline error: %.2f%%" % (100-scores[1]*100))
 
-    def get_model_logits(self):
-        if self.__data.dataset_name.upper() == "MNIST":
-            model = self.__mnist_logits_model()
-        else:
-            model = self.__cifar10_logits_model()
-        
+    def get_model(self, logits = True):
+        if not logits:
+            if self.__data.dataset_name.upper() == "MNIST":
+                model = self.__mnist_model()
+                model.add(Activation('softmax'))
+                model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+            else:
+                model = self.__cifar10_model()
+                model.add(Activation('softmax'))
+                opt_rms = keras.optimizers.rmsprop(lr=0.001,decay=1e-6)
+                model.compile(loss='categorical_crossentropy', optimizer=opt_rms, metrics=['accuracy'])
+        else:        
+            if self.__data.dataset_name.upper() == "MNIST":
+                model = self.__mnist_model()
+                model.add(Activation('linear'))
+                model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+            else:
+                model = self.__cifar10_model()
+                model.add(Activation('linear'))
+                opt_rms = keras.optimizers.rmsprop(lr=0.001,decay=1e-6)
+                model.compile(loss='categorical_crossentropy', optimizer=opt_rms, metrics=['accuracy'])
+                
         self.__sess.run(tf.global_variables_initializer())
         return model        
-
-    def get_model_softmax(self):
-        if self.__data.dataset_name.upper() == "MNIST":
-            model = self.__mnist_softmax_model()
-            model.load_weights(os.path.dirname(os.path.realpath(__file__)) + '\\model_parameters\\mnist.h5')
-        else:
-            model = self.__cifar10_softmax_model()
-            model.load_weights(os.path.dirname(os.path.realpath(__file__)) + '\\model_parameters\\cifar10.h5')
-        
-        self.__sess.run(tf.global_variables_initializer())
-        return model
         
     def train_model(self, model):
         import tensorflow as tf
