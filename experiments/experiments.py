@@ -109,14 +109,13 @@ class Experiment:
             tau: the approach used to compute the thresholds. It can be 'RE' which assigns a different threshold based on each autoencoder's reconstruction error or 'minRE', which assigns the minimum reconstruction error obtained for all the autoencoders. 
         """
         start = time.time()
-        print(tf.__version__)
 
         # test inputs on main classifier
         classifier = Classifier(self._sess, self._data, epochs=5)
         model = classifier.execute()
 
         # Creates surrogate model and returns the perturbed NumPy test set  
-        x_test_adv = Adversarial_Attack(self._sess, self._data, attack=attack, epochs=5).attack(classifier.get_model(logits=True))
+        x_test_adv = Adversarial_Attack(self._sess, self._data, length=length, attack=attack, epochs=5).attack(classifier.get_model(logits=True))
 
         # Evaluates the brand-new adversarial examples on the main model.
         classifier.evaluate_model(model, x_test_adv[:length], self._data.y_test[self._idx_adv][:length])

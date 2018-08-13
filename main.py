@@ -15,6 +15,6 @@ def mnist_experiment():
 
 def cifar_experiment():
     exp = Experiment("CIFAR")
-    exp.simple_experiment(reduction_models=3, attack="DEEPFOOL", drop_rate=0.01, tau="minRE", length=500)
+    exp.simple_experiment(reduction_models=3, attack="DEEPFOOL", drop_rate=0.01, tau="minRE", length=700)
 
 cifar_experiment()

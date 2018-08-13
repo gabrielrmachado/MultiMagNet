@@ -30,7 +30,7 @@ from keras.layers.pooling import MaxPooling2D
 import classifiers
 
 class Adversarial_Attack:
-    def __init__(self, sess, data, attack='FGSM',
+    def __init__(self, sess, data, length, attack='FGSM',
                  num_filters = 64, batch_size = 128, epochs = 10):
         self.__data = data
         self.__image_rows = data.x_train.shape[1]
@@ -38,6 +38,7 @@ class Adversarial_Attack:
         self.__channels = data.x_train.shape[3]
         self.__nb_classes = data.y_train.shape[1]
         self.__attack = attack
+        self._length = length
         self.__sess = sess
         self.__batch = batch_size
         self.__epochs = epochs   
@@ -78,7 +79,7 @@ class Adversarial_Attack:
 
     def __deepfool_attack(self, wrap):
         deepfool = DeepFool(wrap, sess=self.__sess)
-        x_adv_images = deepfool.generate_np(self.__data.x_test[self.idx_adv][:500], over_shoot=0.02, max_iter=1000,
+        x_adv_images = deepfool.generate_np(self.__data.x_test[self.idx_adv][:self._length], over_shoot=0.02, max_iter=50,
                                             nb_candidate=10)
 
         helpers.save_imgs_pkl(x_adv_images, self.__dataset.lower() + '_test_set_deepfool.pkl')
@@ -87,7 +88,7 @@ class Adversarial_Attack:
     def __cw_attack(self, wrap):
         cw = CW(wrap, sess = self.__sess)
 
-        x_adv_images = cw.generate_np(self.__data.x_test[self.idx_adv][:2000], y_target=None, 
+        x_adv_images = cw.generate_np(self.__data.x_test[self.idx_adv][:self._length], y_target=None, 
                 max_iterations=50, learning_rate=1e-2, confidence=20, binary_search_steps=3, initial_const=1e-3,
                 abort_early=True)
 
@@ -103,14 +104,14 @@ class Adversarial_Attack:
         if self.__dataset == 'CIFAR':
             bim_params = {'eps': 0.07, 'eps_iter': 0.03, 'nb_iter': 100}
 
-        x_adv_images = bim.generate_np(self.__data.x_test[self.idx_adv][:2000], **bim_params)
+        x_adv_images = bim.generate_np(self.__data.x_test[self.idx_adv][:self._length], **bim_params)
         helpers.save_imgs_pkl(x_adv_images, self.__dataset.lower() + '_test_set_bim.pkl')
         return x_adv_images
 
     def __fgsm_attack(self, wrap):
         
         fgsm = FastGradientMethod(wrap, sess = self.__sess)
-        x_adv_images = fgsm.generate_np(self.__data.x_test[self.idx_adv][:2000], eps = 0.05, clip_min = 0., clip_max = 1.)
+        x_adv_images = fgsm.generate_np(self.__data.x_test[self.idx_adv][:self._length], eps = 0.05, clip_min = 0., clip_max = 1.)
 
         helpers.save_imgs_pkl(x_adv_images, self.__dataset.lower() + '_test_set_fgsm.pkl')
         return x_adv_images
