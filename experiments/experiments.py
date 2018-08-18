@@ -111,7 +111,7 @@ class Experiment:
         start = time.time()
 
         # test inputs on main classifier
-        classifier = Classifier(self._sess, self._data, epochs=25)
+        classifier = Classifier(self._sess, self._data, epochs=120)
         model = classifier.execute()
 
         # Creates surrogate model and returns the perturbed NumPy test set  

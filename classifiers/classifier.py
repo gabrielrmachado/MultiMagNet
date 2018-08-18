@@ -48,25 +48,50 @@ class Classifier:
         return model
 
     def __cifar10_model(self):
-        model = Sequential()
-        model.add(Conv2D(32, (3, 3), padding='same', input_shape=self.__data.x_train.shape[1:]))
-        model.add(Activation('relu'))
-        model.add(Conv2D(32, (3, 3)))
-        model.add(Activation('relu'))
-        model.add(MaxPooling2D(pool_size=(2, 2)))
-        model.add(Dropout(0.25))
+        # model = Sequential()
+        # model.add(Conv2D(32, (3, 3), padding='same', input_shape=self.__data.x_train.shape[1:]))
+        # model.add(Activation('relu'))
+        # model.add(Conv2D(32, (3, 3)))
+        # model.add(Activation('relu'))
+        # model.add(MaxPooling2D(pool_size=(2, 2)))
+        # model.add(Dropout(0.25))
 
-        model.add(Conv2D(64, (3, 3), padding='same'))
-        model.add(Activation('relu'))
-        model.add(Conv2D(64, (3, 3)))
-        model.add(Activation('relu'))
-        model.add(MaxPooling2D(pool_size=(2, 2)))
-        model.add(Dropout(0.25))
+        # model.add(Conv2D(64, (3, 3), padding='same'))
+        # model.add(Activation('relu'))
+        # model.add(Conv2D(64, (3, 3)))
+        # model.add(Activation('relu'))
+        # model.add(MaxPooling2D(pool_size=(2, 2)))
+        # model.add(Dropout(0.25))
+
+        # model.add(Flatten())
+        # model.add(Dense(512))
+        # model.add(Activation('relu'))
+        # model.add(Dropout(0.5))
+        # model.add(Dense(10))
+
+        model = Sequential()
+        model.add(Conv2D(32, (3,3), padding='same', input_shape=self.__data.x_train.shape[1:]))
+        model.add(Activation('elu'))
+        model.add(Conv2D(32, (3,3), padding='same'))
+        model.add(Activation('elu'))
+        model.add(MaxPooling2D(pool_size=(2,2)))
+        model.add(Dropout(0.2))
+
+        model.add(Conv2D(64, (3,3), padding='same'))
+        model.add(Activation('elu'))
+        model.add(Conv2D(64, (3,3), padding='same'))
+        model.add(Activation('elu'))
+        model.add(MaxPooling2D(pool_size=(2,2)))
+        model.add(Dropout(0.3))
+
+        model.add(Conv2D(128, (3,3), padding='same'))
+        model.add(Activation('elu'))
+        model.add(Conv2D(128, (3,3), padding='same'))
+        model.add(Activation('elu'))
+        model.add(MaxPooling2D(pool_size=(2,2)))
+        model.add(Dropout(0.4))
 
         model.add(Flatten())
-        model.add(Dense(512))
-        model.add(Activation('relu'))
-        model.add(Dropout(0.5))
         model.add(Dense(10))
 
         # model = Sequential()
@@ -145,25 +170,26 @@ class Classifier:
             except:
                 print('\nTraining the CIFAR10 main classifier...')
 
-                datagen = ImageDataGenerator(
-                    rotation_range=15,
-                    width_shift_range=0.1,
-                    height_shift_range=0.1,
-                    horizontal_flip=True,)
-                datagen.fit(x_train)
+                # datagen = ImageDataGenerator(
+                #     rotation_range=15,
+                #     width_shift_range=0.1,
+                #     height_shift_range=0.1,
+                #     horizontal_flip=True,)
+                # datagen.fit(x_train)
 
-                def lr_schedule(epoch):
-                    lrate = self.__lr
-                    if epoch > 75:
-                        lrate = 0.0005
-                    elif epoch > 100:
-                        lrate = 0.0003        
-                    return lrate
+                # def lr_schedule(epoch):
+                #     lrate = self.__lr
+                #     if epoch > 75:
+                #         lrate = 0.0005
+                #     elif epoch > 100:
+                #         lrate = 0.0003        
+                #     return lrate
 
-                model.fit_generator(datagen.flow(x_train, y_train, batch_size=self.__batch),\
-                    steps_per_epoch=x_train.shape[0] // self.__batch, epochs=self.__epochs,\
-                    verbose=1,validation_data=(x_test,y_test),callbacks=[LearningRateScheduler(lr_schedule)])
+                # model.fit_generator(datagen.flow(x_train, y_train, batch_size=self.__batch),\
+                #     steps_per_epoch=x_train.shape[0] // self.__batch, epochs=self.__epochs,\
+                #     verbose=1,validation_data=(x_test,y_test),callbacks=[LearningRateScheduler(lr_schedule)])
                 
+                model.fit(x_train, y_train, verbose=1, epochs=self.__epochs, batch_size=128)
                 # Final evaluation of the model
                 scores = model.evaluate(x_test, y_test, verbose=0)
                 print("Baseline Error: %.2f%%" % (100-scores[1]*100))
