@@ -34,7 +34,7 @@ class Experiment:
 
         self._data = Data(dataset_name=dataset)  
 
-    def all_cases_experiment(self, *args):
+    def all_cases_experiment(self, *args, length=1000):
         """
         Creates an cartesian product with '*args' in order to make the experiments on several different scenarios. 
         All the experiments' results are saved in a .TXT file called 'all_cases_experiment.txt'
@@ -66,7 +66,7 @@ class Experiment:
                 continue
             else:     
                 team_stats = np.zeros((n_experiments, 5))
-                x_test_adv = Adversarial_Attack(self._sess, self._data, attack=attack, epochs=5).attack()
+                x_test_adv = Adversarial_Attack(self._sess, self._data, length=length, attack=attack, epochs=5).attack()
                 
                 _, x, y = helpers.join_test_sets(self._data.x_test, x_test_adv, 2000)
                 multiple_team = Assembly_Team(self._sess, self._data, reduction_models)
@@ -111,14 +111,15 @@ class Experiment:
         start = time.time()
 
         # test inputs on main classifier
-        classifier = Classifier(self._sess, self._data, epochs=5)
+        classifier = Classifier(self._sess, self._data, epochs=25)
         model = classifier.execute()
 
         # Creates surrogate model and returns the perturbed NumPy test set  
-        x_test_adv = Adversarial_Attack(self._sess, self._data, length=length, attack=attack, epochs=5).attack(classifier.get_model(logits=True))
+        x_test_adv = Adversarial_Attack(self._sess, self._data, length=length, attack=attack, epochs=12).attack(classifier.get_model(logits=True))
 
         # Evaluates the brand-new adversarial examples on the main model.
-        classifier.evaluate_model(model, x_test_adv[:length], self._data.y_test[self._idx_adv][:length])
+        scores = model.evaluate(x_test_adv[:length], self._data.y_test[self._idx_adv][:length], verbose=0)
+        print("\nMain classifier's baseline error: %.2f%%" % (100-scores[1]*100))
 
         # plots the adversarial images
         helpers.plot_images(self._data.x_test[self._idx_adv][:length], x_test_adv[:length], x_test_adv.shape)
@@ -143,7 +144,7 @@ class Experiment:
 
         print("\nExperiment's elapsed time: {0}".format(timedelta(seconds=time.time() - start)))
 
-    def choose_team_each_jump_experiment(self, n_experiments, reduction_models, attack, drop_rate, tau, jump = 50, p = 1, length=2000):
+    def choose_team_each_jump_experiment(self, n_experiments, reduction_models, attack, drop_rate, tau, jump = 50,  length=2000, p = 1):
 
         """
         Pìcks randomly different autoencoders for each jump and prints the final result.
@@ -169,14 +170,15 @@ class Experiment:
         unique_stats = np.zeros((n_experiments, 5))
 
         # test inputs on main classifier
-        main_model = Classifier(self._sess, self._data, epochs=20)
-        main_model.execute()
+        classifier = Classifier(self._sess, self._data, epochs=20)
+        model = classifier.execute()
 
         # Creates surrogate model and returns the perturbed NumPy test set  
-        x_test_adv = Adversarial_Attack(self._sess, self._data, attack=attack, epochs=5).attack()
+        x_test_adv = Adversarial_Attack(self._sess, self._data, length=length, attack=attack, epochs=5).attack(classifier.get_model(logits=True))
 
         # Evaluates the brand-new adversarial examples on the main model.
-        main_model.evaluate_model(x_test_adv[:length], self._data.y_test[self._idx_adv][:length])
+        scores = model.evaluate(x_test_adv[:length], self._data.y_test[self._idx_adv][:length], verbose=0)
+        print("\nMain classifier's baseline error: %.2f%%" % (100-scores[1]*100))
 
         # plots the adversarial images
         #helpers.plot_images(data.x_test[idx_adv], x_test_adv, x_test_adv.shape)

@@ -7,24 +7,24 @@ import keras
 import winsound
 
 from cleverhans.utils_keras import KerasModelWrapper
-from foolbox.attacks import DeepFoolL2Attack
+from art.classifiers import KerasClassifier
+
 from classifiers.classifier import Classifier
 from cleverhans.utils_tf import model_train, model_eval
-from nn_robust_attacks.l0_attack import CarliniL0
-from nn_robust_attacks.l2_attack import CarliniL2
-from nn_robust_attacks.li_attack import CarliniLi
 from cleverhans.utils_mnist import data_mnist
 from cleverhans.utils_tf import model_train, model_eval
-from cleverhans.attacks import FastGradientMethod
-from cleverhans.attacks import DeepFool
-from cleverhans.attacks import CarliniWagnerL2 as CW
-from cleverhans.attacks import BasicIterativeMethod as BIM
+from art.attacks.deepfool import DeepFool
+from art.attacks.carlini import CarliniL2Method
+from art.attacks.fast_gradient import FastGradientMethod
+from art.attacks.iterative_method import BasicIterativeMethod
 from cleverhans.utils_keras import cnn_model
 from cleverhans.utils_keras import KerasModelWrapper
 from keras.callbacks import EarlyStopping
 from keras.models import Sequential
+from keras.layers import Activation
 from keras.layers.core import Dense, Dropout, Flatten
 from keras.layers.convolutional import Conv2D
+from adversarial_robustness_toolbox.art.attacks.deepfool import DeepFool
 from keras.optimizers import Adam
 from keras.layers.pooling import MaxPooling2D
 import classifiers
@@ -45,12 +45,31 @@ class Adversarial_Attack:
         self.__dataset = data.dataset_name 
         self.idx_adv = helpers.load_imgs_pkl('example_idx.pkl')
 
-        self.surrogate_model = cnn_model(channels=self.__channels, img_rows=self.__image_rows, 	            
-                        img_cols=self.__image_cols, nb_classes=self.__nb_classes)  
+        self.surrogate_model = Sequential()
+        self.surrogate_model.add(Conv2D(32, (3, 3), padding='same', input_shape=self.__data.x_train.shape[1:]))
+        self.surrogate_model.add(Activation('relu'))
+        self.surrogate_model.add(Conv2D(32, (3, 3)))
+        self.surrogate_model.add(Activation('relu'))
+        self.surrogate_model.add(MaxPooling2D(pool_size=(2, 2)))
+        self.surrogate_model.add(Dropout(0.25))
+
+        self.surrogate_model.add(Conv2D(64, (3, 3), padding='same'))
+        self.surrogate_model.add(Activation('relu'))
+        self.surrogate_model.add(Conv2D(64, (3, 3)))
+        self.surrogate_model.add(Activation('relu'))
+        self.surrogate_model.add(MaxPooling2D(pool_size=(2, 2)))
+        self.surrogate_model.add(Dropout(0.25))
+
+        self.surrogate_model.add(Flatten())
+        self.surrogate_model.add(Dense(512))
+        self.surrogate_model.add(Activation('relu'))
+        self.surrogate_model.add(Dropout(0.5))
+        self.surrogate_model.add(Dense(10))
+        self.surrogate_model.add(Activation('softmax'))
 
         self.surrogate_model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-    def attack(self, model=None, logits=True, attack_str=""):
+    def attack(self, model=None, attack_str=""):
         imgs = self._load_images(attack_str)
         
         if type(imgs) != type(None) :
@@ -58,63 +77,57 @@ class Adversarial_Attack:
             return imgs
 
         if type(model) == type(None): 
-            model = self._train_surrogate_model(self.surrogate_model)
+            model = self.surrogate_model.fit(self.__data.x_train, self.__data.y_train, verbose=1, epochs=self.__epochs, batch_size=128)
+            wrap = KerasClassifier((0., 1.), model = self.surrogate_model)
+        else:
+            wrap = KerasClassifier((0., 1.), model = model)
         
         if self.__attack == 'FGSM': 
             print('\nCrafting adversarial examples using FGSM attack...\n')
-            return self.__fgsm_attack(model)
+            fgsm = FastGradientMethod(wrap)
+
+            if self.__data.dataset_name == 'MNIST':
+                x_adv_images = fgsm.generate(x=self.__data.x_test[self.idx_adv][:self._length], eps = 0.2)
+            else:
+                x_adv_images = fgsm.generate(x=self.__data.x_test[self.idx_adv][:self._length], eps = 0.04)
+
+            helpers.save_imgs_pkl(x_adv_images, self.__dataset.lower() + '_test_set_fgsm.pkl')
+            return x_adv_images
         
         elif self.__attack.startswith("CW"):
             print('\nCrafting adversarial examples using CW attack...\n')
-            return self.__cw_attack(model)
+            cw = CW(wrap, sess = self.__sess)
+
+            cw_params = {'binary_search_steps': 3,
+                    'max_iterations': 100,
+                    'learning_rate': 0.1,
+                    'batch_size': self._length,
+                    'initial_const': 10}
+
+            x_adv_images = cw.generate_np(self.__data.x_test[self.idx_adv][:self._length], **cw_params)
+
+            helpers.save_imgs_pkl(x_adv_images, self.__dataset.lower() + '_test_set_cw.pkl')
+            return x_adv_images
             
         elif self.__attack == 'BIM':        
             print('\nCrafting adversarial examples using BIM attack...\n')
-            return self.__bim_attack(model)
+
+            if self.__dataset == 'MNIST':
+                bim = BasicIterativeMethod(wrap, eps=0.2, eps_step=0.05, max_iter=50)
+            if self.__dataset == 'CIFAR':
+                bim = BasicIterativeMethod(wrap, eps=0.05, eps_step=0.02, max_iter=100)
+
+            x_adv_images = bim.generate(x = self.__data.x_test[self.idx_adv][:self._length])
+            helpers.save_imgs_pkl(x_adv_images, self.__dataset.lower() + '_test_set_bim.pkl')
+            return x_adv_images
 
         elif self.__attack == 'DEEPFOOL':
             print('\nCrafting adversarial examples using DeepFool attack...\n')
-            return self.__deepfool_attack(model)      
-
-
-    def __deepfool_attack(self, wrap):
-        deepfool = DeepFool(wrap, sess=self.__sess)
-        x_adv_images = deepfool.generate_np(self.__data.x_test[self.idx_adv][:self._length], over_shoot=0.02, max_iter=50,
-                                            nb_candidate=10)
-
-        helpers.save_imgs_pkl(x_adv_images, self.__dataset.lower() + '_test_set_deepfool.pkl')
-        return x_adv_images
-
-    def __cw_attack(self, wrap):
-        cw = CW(wrap, sess = self.__sess)
-
-        x_adv_images = cw.generate_np(self.__data.x_test[self.idx_adv][:self._length], y_target=None, 
-                max_iterations=50, learning_rate=1e-2, confidence=20, binary_search_steps=3, initial_const=1e-3,
-                abort_early=True)
-
-        helpers.save_imgs_pkl(x_adv_images, self.__dataset.lower() + '_test_set_cw.pkl')
-        return x_adv_images
-
-    def __bim_attack(self, wrap):
-        bim = BIM(wrap, sess = self.__sess)
-        bim_params = {}
-
-        if self.__dataset == 'MNIST':
-            bim_params = {'eps': 0.15, 'eps_iter': 0.07, 'nb_iter': 50}
-        if self.__dataset == 'CIFAR':
-            bim_params = {'eps': 0.07, 'eps_iter': 0.03, 'nb_iter': 100}
-
-        x_adv_images = bim.generate_np(self.__data.x_test[self.idx_adv][:self._length], **bim_params)
-        helpers.save_imgs_pkl(x_adv_images, self.__dataset.lower() + '_test_set_bim.pkl')
-        return x_adv_images
-
-    def __fgsm_attack(self, wrap):
-        
-        fgsm = FastGradientMethod(wrap, sess = self.__sess)
-        x_adv_images = fgsm.generate_np(self.__data.x_test[self.idx_adv][:self._length], eps = 0.05, clip_min = 0., clip_max = 1.)
-
-        helpers.save_imgs_pkl(x_adv_images, self.__dataset.lower() + '_test_set_fgsm.pkl')
-        return x_adv_images
+            
+            deepfool = DeepFool(wrap)        
+            x_adv_images = deepfool.generate(x = self.__data.x_test[self.idx_adv][:self._length])
+            helpers.save_imgs_pkl(x_adv_images, self.__dataset.lower() + '_test_set_deepfool.pkl')
+            return x_adv_images                
 
     def test_surrogate_model(self, x_adv_images, index):
         adv_x = x_adv_images[index].reshape(1, self.__image_rows, self.__image_cols, self.__channels)

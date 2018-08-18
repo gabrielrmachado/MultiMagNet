@@ -49,35 +49,56 @@ class Classifier:
 
     def __cifar10_model(self):
         model = Sequential()
-        model.add(Conv2D(32, (3,3), padding='same', kernel_regularizer=regularizers.l2(self.__lr_decay), input_shape=self.__data.x_train.shape[1:]))
-        model.add(Activation('elu'))
-        model.add(BatchNormalization())
-        model.add(Conv2D(32, (3,3), padding='same', kernel_regularizer=regularizers.l2(self.__lr_decay)))
-        model.add(Activation('elu'))
-        model.add(BatchNormalization())
-        model.add(MaxPooling2D(pool_size=(2,2)))
-        model.add(Dropout(0.2))
+        model.add(Conv2D(32, (3, 3), padding='same', input_shape=self.__data.x_train.shape[1:]))
+        model.add(Activation('relu'))
+        model.add(Conv2D(32, (3, 3)))
+        model.add(Activation('relu'))
+        model.add(MaxPooling2D(pool_size=(2, 2)))
+        model.add(Dropout(0.25))
 
-        model.add(Conv2D(64, (3,3), padding='same', kernel_regularizer=regularizers.l2(self.__lr_decay)))
-        model.add(Activation('elu'))
-        model.add(BatchNormalization())
-        model.add(Conv2D(64, (3,3), padding='same', kernel_regularizer=regularizers.l2(self.__lr_decay)))
-        model.add(Activation('elu'))
-        model.add(BatchNormalization())
-        model.add(MaxPooling2D(pool_size=(2,2)))
-        model.add(Dropout(0.3))
-
-        model.add(Conv2D(128, (3,3), padding='same', kernel_regularizer=regularizers.l2(self.__lr_decay)))
-        model.add(Activation('elu'))
-        model.add(BatchNormalization())
-        model.add(Conv2D(128, (3,3), padding='same', kernel_regularizer=regularizers.l2(self.__lr_decay)))
-        model.add(Activation('elu'))
-        model.add(BatchNormalization())
-        model.add(MaxPooling2D(pool_size=(2,2)))
-        model.add(Dropout(0.4))
+        model.add(Conv2D(64, (3, 3), padding='same'))
+        model.add(Activation('relu'))
+        model.add(Conv2D(64, (3, 3)))
+        model.add(Activation('relu'))
+        model.add(MaxPooling2D(pool_size=(2, 2)))
+        model.add(Dropout(0.25))
 
         model.add(Flatten())
+        model.add(Dense(512))
+        model.add(Activation('relu'))
+        model.add(Dropout(0.5))
         model.add(Dense(10))
+
+        # model = Sequential()
+        # model.add(Conv2D(32, (3,3), padding='same', kernel_regularizer=regularizers.l2(self.__lr_decay), input_shape=self.__data.x_train.shape[1:]))
+        # model.add(Activation('elu'))
+        # model.add(BatchNormalization())
+        # model.add(Conv2D(32, (3,3), padding='same', kernel_regularizer=regularizers.l2(self.__lr_decay)))
+        # model.add(Activation('elu'))
+        # model.add(BatchNormalization())
+        # model.add(MaxPooling2D(pool_size=(2,2)))
+        # model.add(Dropout(0.2))
+
+        # model.add(Conv2D(64, (3,3), padding='same', kernel_regularizer=regularizers.l2(self.__lr_decay)))
+        # model.add(Activation('elu'))
+        # model.add(BatchNormalization())
+        # model.add(Conv2D(64, (3,3), padding='same', kernel_regularizer=regularizers.l2(self.__lr_decay)))
+        # model.add(Activation('elu'))
+        # model.add(BatchNormalization())
+        # model.add(MaxPooling2D(pool_size=(2,2)))
+        # model.add(Dropout(0.3))
+
+        # model.add(Conv2D(128, (3,3), padding='same', kernel_regularizer=regularizers.l2(self.__lr_decay)))
+        # model.add(Activation('elu'))
+        # model.add(BatchNormalization())
+        # model.add(Conv2D(128, (3,3), padding='same', kernel_regularizer=regularizers.l2(self.__lr_decay)))
+        # model.add(Activation('elu'))
+        # model.add(BatchNormalization())
+        # model.add(MaxPooling2D(pool_size=(2,2)))
+        # model.add(Dropout(0.4))
+
+        # model.add(Flatten())
+        # model.add(Dense(10))
 
         return model
 
@@ -140,7 +161,7 @@ class Classifier:
                     return lrate
 
                 model.fit_generator(datagen.flow(x_train, y_train, batch_size=self.__batch),\
-                    steps_per_epoch=x_train.shape[0] // self.__batch, epochs=125,\
+                    steps_per_epoch=x_train.shape[0] // self.__batch, epochs=self.__epochs,\
                     verbose=1,validation_data=(x_test,y_test),callbacks=[LearningRateScheduler(lr_schedule)])
                 
                 # Final evaluation of the model
@@ -159,31 +180,32 @@ class Classifier:
         print("Main classifier's baseline error: %.2f%%" % (100-scores[1]*100))
 
     def get_model(self, logits = True):
-        if not logits:
+        if logits:
             if self.__data.dataset_name.upper() == "MNIST":
                 model = self.__mnist_model()
-                model.add(Activation('softmax'))
-                model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+                model.add(Activation('linear'))
+                model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
             else:
                 model = self.__cifar10_model()
-                model.add(Activation('softmax'))
+                model.add(Activation('linear'))
                 opt_rms = keras.optimizers.rmsprop(lr=0.001,decay=1e-6)
-                model.compile(loss='categorical_crossentropy', optimizer=opt_rms, metrics=['accuracy'])
+                model.compile(loss='sparse_categorical_crossentropy', optimizer=opt_rms, metrics=['accuracy'])     
+                model.load_weights(os.path.dirname(os.path.realpath(__file__)) + '\\model_parameters\\cifar10.h5')       
         else:        
             if self.__data.dataset_name.upper() == "MNIST":
                 model = self.__mnist_model()
-                model.add(Activation('linear'))
+                model.add(Activation('softmax'))
                 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
             else:
                 model = self.__cifar10_model()
-                model.add(Activation('linear'))
-                opt_rms = keras.optimizers.rmsprop(lr=0.001,decay=1e-6)
-                model.compile(loss='categorical_crossentropy', optimizer=opt_rms, metrics=['accuracy'])
+                model.add(Activation('softmax'))
+                model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+                # opt_rms = keras.optimizers.rmsprop(lr=0.001,decay=1e-6)
+                # model.compile(loss='categorical_crossentropy', optimizer=opt_rms, metrics=['accuracy'])
                 
         self.__sess.run(tf.global_variables_initializer())
         return model        
         
     def train_model(self, model):
-        import tensorflow as tf
         keras.backend.set_session(self.__sess)
         model.fit(self.__data.x_train, self.__data.y_train, epochs=self.__epochs, verbose=1)
