@@ -17,6 +17,7 @@ from art.attacks.deepfool import DeepFool
 from art.attacks.carlini import CarliniL2Method
 from art.attacks.fast_gradient import FastGradientMethod
 from art.attacks.iterative_method import BasicIterativeMethod
+from art.attacks.carlini import CarliniL2Method
 from cleverhans.utils_keras import cnn_model
 from cleverhans.utils_keras import KerasModelWrapper
 from keras.callbacks import EarlyStopping
@@ -96,16 +97,8 @@ class Adversarial_Attack:
         
         elif self.__attack.startswith("CW"):
             print('\nCrafting adversarial examples using CW attack...\n')
-            cw = CW(wrap, sess = self.__sess)
-
-            cw_params = {'binary_search_steps': 3,
-                    'max_iterations': 100,
-                    'learning_rate': 0.1,
-                    'batch_size': self._length,
-                    'initial_const': 10}
-
-            x_adv_images = cw.generate_np(self.__data.x_test[self.idx_adv][:self._length], **cw_params)
-
+            cw = CarliniL2Method(wrap, confidence=0.0, targeted=False, binary_search_steps=3, learning_rate=0.5, initial_const=1, max_iter=100)
+            x_adv_images = cw.generate(self.__data.x_test[self.idx_adv][:self._length])
             helpers.save_imgs_pkl(x_adv_images, self.__dataset.lower() + '_test_set_cw.pkl')
             return x_adv_images
             
