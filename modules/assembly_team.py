@@ -87,20 +87,20 @@ class Assembly_Team():
             self.__team.append(cae5) 
         
         if data.dataset_name == 'CIFAR':
-            # cae = CAE_CIFAR(data, name='cifar_cae1_opt1', batch_size=128, epochs=20)
-            # self.__team.append(cae)
+            cae = CAE_CIFAR(data, name='cifar_cae1_opt1', batch_size=32, epochs=30)
+            self.__team.append(cae)
 
-            # cae2 = CAE_CIFAR(data, name='cifar_cae2_opt1', batch_size=100, epochs=20)
-            # self.__team.append(cae2)
+            cae2 = CAE_CIFAR(data, name='cifar_cae2_opt1', batch_size=32, epochs=30)
+            self.__team.append(cae2)
 
-            # cae3 = CAE_CIFAR(data, name='cifar_cae3_opt2', opt=2, batch_size=64, epochs=20)
-            # self.__team.append(cae3)
+            cae3 = CAE_CIFAR(data, name='cifar_cae3_opt2', opt=2, batch_size=64, epochs=20)
+            self.__team.append(cae3)
 
-            # dae = DAE_CIFAR(data, name='cifar_dae1_opt1', epochs=20, noise_factor=0.1)
-            # self.__team.append(dae)
+            dae = DAE_CIFAR(data, name='cifar_dae1_opt1', epochs=20, noise_factor=0.1)
+            self.__team.append(dae)
 
-            # dae2 = DAE_CIFAR(data, name='cifar_dae1_opt2', opt=2, epochs=20, noise_factor=0.1)
-            # self.__team.append(dae2)
+            dae2 = DAE_CIFAR(data, name='cifar_dae1_opt2', opt=2, epochs=20, noise_factor=0.1)
+            self.__team.append(dae2)
 
             dae3 = DAE_CIFAR(data, name='cifar_dae1_opt3', opt=3, epochs=20, noise_factor=0.1)
             self.__team.append(dae3)
@@ -108,17 +108,17 @@ class Assembly_Team():
             dae4 = DAE_CIFAR(data, name='cifar_dae1_opt4', opt=4, epochs=20, noise_factor=0.1)
             self.__team.append(dae4)
 
-            dae5 = DAE_CIFAR(data, name='cifar_dae2_opt3', opt=3, epochs=30, noise_factor=0.5)
+            dae5 = DAE_CIFAR(data, name='cifar_dae2_opt3', opt=3, epochs=30, noise_factor=0.1, batch_size=64)
             self.__team.append(dae5)
 
-            dae6 = DAE_CIFAR(data, name='cifar_dae2_opt4', opt=4, epochs=30, noise_factor=0.5)
+            dae6 = DAE_CIFAR(data, name='cifar_dae2_opt4', opt=4, epochs=30, noise_factor=0.1, batch_size=64)
             self.__team.append(dae6)
 
             cae4 = CAE_CIFAR(data, name='cifar_cae4_opt2', opt=2, batch_size=128, epochs=20)
             self.__team.append(cae4)
 
 
-    def __train_and_choose_team(self, plot_rec_images=False):
+    def train_and_choose_team(self, plot_rec_images=False):
         """
         This method returns the created team R with its autoencoders randomly selected.
         """
@@ -143,7 +143,7 @@ class Assembly_Team():
         returning their respective reconstruction errors thresholds.
 
         """
-        self.__train_and_choose_team(plot_rec_images)
+        self.train_and_choose_team(plot_rec_images)
         thresholds = []
         num = round(drop_rate * len(data))
 

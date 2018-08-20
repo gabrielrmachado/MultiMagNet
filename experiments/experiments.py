@@ -34,6 +34,10 @@ class Experiment:
 
         self._data = Data(dataset_name=dataset)  
 
+    def train_autoencoders(self):
+        team = Assembly_Team(self._sess, self._data, 1)
+        team.train_and_choose_team(plot_rec_images=True)
+
     def all_cases_experiment(self, *args, length=1000):
         """
         Creates an cartesian product with '*args' in order to make the experiments on several different scenarios. 

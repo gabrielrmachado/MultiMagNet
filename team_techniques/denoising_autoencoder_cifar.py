@@ -149,6 +149,7 @@ class TF_DAE_CIFAR(Technique):
             x = Activation('relu')(x)
             x = UpSampling2D((2, 2))(x)
             x = Conv2D(3, (3, 3), padding='same')(x)
+            x = UpSampling2D((2, 2))(x)
             decoded = Activation('sigmoid')(x)
 
         self.autoencoder = Model(input_img, decoded)
