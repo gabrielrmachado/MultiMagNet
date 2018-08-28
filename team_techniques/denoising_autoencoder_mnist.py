@@ -15,7 +15,7 @@ from keras import regularizers as regs
 
 class TF_DAE_MNIST(Technique):
     def __init__(self, data, name, epochs = 10, batch_size = 256, noise_factor = 0.5):
-        super().__init__(data, None)
+        super().__init__(data,  None)
         self.__epochs = epochs
         self.__batch_size = batch_size
 

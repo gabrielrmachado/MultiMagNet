@@ -13,8 +13,5 @@ def mnist_experiment():
 
     # exp.all_cases_experiment([10], reduction_models, attacks, drop_rate, tau)
 
-def cifar_experiment():
-    exp = Experiment("CIFAR")
-    exp.simple_experiment(reduction_models=3, attack="CW_40.0", drop_rate=0.01, tau="minRE", length=2000)
-
-cifar_experiment()
+exp = Experiment("CIFAR")
+exp.simple_experiment(reduction_models=3, attack="CW_40.0", drop_rate=0.01, tau="minRE", length=2000)

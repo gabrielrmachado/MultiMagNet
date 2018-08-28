@@ -13,7 +13,7 @@ from keras import regularizers as regs
 
 class TF_CAE_MNIST(Technique):
     def __init__(self, data, name, opt = 1, epochs = 5, batch_size = 256):
-        super().__init__(data, None)
+        super().__init__(data, id, None)
         self.__epochs = epochs
         self.__batch_size = batch_size
         self.__opt = opt
