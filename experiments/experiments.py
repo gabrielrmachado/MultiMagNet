@@ -74,7 +74,7 @@ class Experiment:
 
                 for exp in range(n_experiments):
                     multiple_thresholds = multiple_team.get_thresholds(self._data.x_val, tau=tau, drop_rate=drop_rate, p = 1, plot_rec_images=False)
-                    multiple_x_marks = Image_Reduction.apply_techniques(x, multiple_team.r, p = 1)
+                    multiple_x_marks = Image_Reduction.apply_techniques(x, multiple_team, p = 1)
 
                     y_pred_team = poll_votes(x, y, multiple_x_marks, multiple_thresholds, reduction_models)
                     team_stats[exp,0], team_stats[exp,1], team_stats[exp,2], team_stats[exp,3], team_stats[exp,4], confusion_matrix_team = helpers.get_cm_and_statistics(y, y_pred_team)
@@ -111,21 +111,21 @@ class Experiment:
         """
         start = time.time()
 
-        # # test inputs on main classifier
-        # classifier = Classifier(self._sess, self._data, epochs=120)
-        # model = classifier.execute()
+        # test inputs on main classifier
+        classifier = Classifier(self._sess, self._data, epochs=120)
+        model = classifier.execute()
 
         # # Creates surrogate model and returns the perturbed NumPy test set  
         x_test_adv = Adversarial_Attack(self._sess, self._data, length=length, attack=attack, epochs=12).attack()
 
-        # # Evaluates the brand-new adversarial examples on the main model.
-        # scores = model.evaluate(x_test_adv[:length], self._data.y_test[self._idx_adv][:length], verbose=0)
-        # print("\nMain classifier's baseline error: %.2f%%" % (100-scores[1]*100))
+        # Evaluates the brand-new adversarial examples on the main model.
+        scores = model.evaluate(x_test_adv[:length], self._data.y_test[self._idx_adv][:length], verbose=0)
+        print("\nMain classifier's baseline error: %.2f%%" % (100-scores[1]*100))
 
-        # # plots the adversarial images
-        # helpers.plot_images(self._data.x_test[self._idx_adv][:length], x_test_adv[:length], x_test_adv.shape)
+        # plots the adversarial images
+        helpers.plot_images(self._data.x_test[self._idx_adv][:length], x_test_adv[:length], x_test_adv.shape)
 
-        # # Creates a test set containing 'length * 2' input images 'x', where half are benign images and half are adversarial.
+        # Creates a test set containing 'length * 2' input images 'x', where half are benign images and half are adversarial.
         _, x, y = helpers.join_test_sets(self._data.x_test, x_test_adv, length)
           
         # # Creates, trains and returns the 'R' dimensionality reduction team
@@ -209,8 +209,8 @@ class Experiment:
 
                 x_ = x[i].reshape(1, x.shape[1], x.shape[2], x.shape[3])
 
-                x_marks = Image_Reduction.apply_techniques(x_, multiple_team.r, p = p)
-                x_marks_u = Image_Reduction.apply_techniques(x_, unique_autoencoder.r, p = p)
+                x_marks = Image_Reduction.apply_techniques(x_, multiple_team, p = p)
+                x_marks_u = Image_Reduction.apply_techniques(x_, unique_autoencoder, p = p)
 
                 y_pred_team[i] = poll_votes_each_x(x_, y[i], x_marks, thresholds, reduction_models)
                 y_pred_unique[i] = poll_votes_each_x(x_, y[i], x_marks_u, threshold, 1)

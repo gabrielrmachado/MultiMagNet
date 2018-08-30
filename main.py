@@ -1,8 +1,10 @@
 from experiments.experiments import Experiment
 
-def mnist_experiment():
+def simple_mnist_experiment():
     exp = Experiment("MNIST")
     exp.simple_experiment(reduction_models=3, attack="CW_0.0", drop_rate=0.01, tau="minRE", length=2000)
+    
+def 
     # exp.multimagnet_vs_magnet_experiment(n_experiments=5, reduction_models=3, attack="CW_40.0", drop_rate=0.01, tau="minRE")
     # exp.choose_team_each_jump_experiment(n_experiments=1, reduction_models=3, attack="CW_10.0", drop_rate=0.01, tau="RE", jump=50, length=1000)
 
