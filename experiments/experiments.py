@@ -116,7 +116,7 @@ class Experiment:
         # model = classifier.execute()
 
         # # Creates surrogate model and returns the perturbed NumPy test set  
-        # x_test_adv = Adversarial_Attack(self._sess, self._data, length=length, attack=attack, epochs=12).attack()
+        x_test_adv = Adversarial_Attack(self._sess, self._data, length=length, attack=attack, epochs=12).attack()
 
         # # Evaluates the brand-new adversarial examples on the main model.
         # scores = model.evaluate(x_test_adv[:length], self._data.y_test[self._idx_adv][:length], verbose=0)
@@ -126,22 +126,22 @@ class Experiment:
         # helpers.plot_images(self._data.x_test[self._idx_adv][:length], x_test_adv[:length], x_test_adv.shape)
 
         # # Creates a test set containing 'length * 2' input images 'x', where half are benign images and half are adversarial.
-        # _, x, y = helpers.join_test_sets(self._data.x_test, x_test_adv, length)
+        _, x, y = helpers.join_test_sets(self._data.x_test, x_test_adv, length)
           
         # # Creates, trains and returns the 'R' dimensionality reduction team
         team = Assembly_Team(self._sess, self._data, reduction_models)
         thresholds = team.get_thresholds(self._data.x_val, tau=tau, drop_rate=drop_rate, p = p, plot_rec_images=False)
-        # x_marks = Image_Reduction.apply_techniques(x, team.r, p = p)
+        x_marks = Image_Reduction.apply_techniques(x, team, p = p)
 
-        # y_pred = poll_votes(x, y, x_marks, thresholds, reduction_models)
+        y_pred = poll_votes(x, y, x_marks, thresholds, reduction_models)
 
-        # print("\nEXPERIMENT USING {0} DATASET: {1} Input Images 'x', {2} Attack, p = {3}, reduction models = {4}, drop_rate = {5}\n"
-        # .format(self._data.dataset_name, len(x), attack, p, reduction_models, drop_rate))
+        print("\nEXPERIMENT USING {0} DATASET: {1} Input Images 'x', {2} Attack, p = {3}, reduction models = {4}, drop_rate = {5}\n"
+        .format(self._data.dataset_name, len(x), attack, p, reduction_models, drop_rate))
 
-        # acc, pp, nn, auc, f1, cm = helpers.get_cm_and_statistics(y, y_pred)
+        acc, pp, nn, auc, f1, cm = helpers.get_cm_and_statistics(y, y_pred)
 
-        # print('Threshold used: {0}\nConfusion Matrix:\n{1}\nACC: {2}, Positive Precision: {3}, Negative Precision: {4}, AUC: {5:.3}, F1: {6:.3}'
-        #     .format(thresholds, cm, acc, pp, nn, auc, f1))
+        print('Threshold used: {0}\nConfusion Matrix:\n{1}\nACC: {2}, Positive Precision: {3}, Negative Precision: {4}, AUC: {5:.3}, F1: {6:.3}'
+            .format(thresholds, cm, acc, pp, nn, auc, f1))
 
         print("\nExperiment's elapsed time: {0}".format(timedelta(seconds=time.time() - start)))
 

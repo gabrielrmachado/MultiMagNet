@@ -146,7 +146,6 @@ class Assembly_Team():
 
         for i in range(self.team.size):
             autoencoder = self.load_autoencoder(self.team[i])
-            autoencoder.execute()
             rec = autoencoder.predict(data)
 
             if plot_rec_images == True:
@@ -189,7 +188,6 @@ class Assembly_Team():
         #     return [np.min(thresholds)] * self.__number
 
     def load_autoencoder(self, team_member):
-        print(team_member)
         model = team_member.model
 
         if self.__data.dataset_name == "MNIST":
@@ -205,6 +203,7 @@ class Assembly_Team():
             elif model == "CAE":
                 autoencoder = CAE_CIFAR(self.__data, name=team_member.name, opt=team_member.opt, epochs=team_member.epochs, batch_size=team_member.batch_size)
         
+        autoencoder.execute()
         return autoencoder
             
         
