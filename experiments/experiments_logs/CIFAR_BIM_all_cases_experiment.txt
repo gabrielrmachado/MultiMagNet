@@ -1,0 +1,217 @@
+
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 1, drop_rate = 0.001, tau = RE
+
+Team Statistics: ACC Mean: 50.10%, Positive Mean: 100.00%, Negative Mean: 0.20%, AUC mean: 0.501, F1 Mean: 0.667
+-----------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:00:04.662594
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 1, drop_rate = 0.01, tau = RE
+
+Team Statistics: ACC Mean: 50.75%, Positive Mean: 98.50%, Negative Mean: 3.00%, AUC mean: 0.507, F1 Mean: 0.667
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:00:06.490520
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 1, drop_rate = 0.05, tau = RE
+
+Team Statistics: ACC Mean: 54.33%, Positive Mean: 94.90%, Negative Mean: 13.75%, AUC mean: 0.543, F1 Mean: 0.675
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:00:10.199539
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 3, drop_rate = 0.001, tau = RE
+
+Team Statistics: ACC Mean: 50.10%, Positive Mean: 100.00%, Negative Mean: 0.20%, AUC mean: 0.501, F1 Mean: 0.667
+-----------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:00:35.769794
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 3, drop_rate = 0.001, tau = minRE
+
+Team Statistics: ACC Mean: 50.08%, Positive Mean: 100.00%, Negative Mean: 0.15%, AUC mean: 0.501, F1 Mean: 0.667
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:01:21.014964
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 3, drop_rate = 0.01, tau = RE
+
+Team Statistics: ACC Mean: 54.52%, Positive Mean: 98.85%, Negative Mean: 10.20%, AUC mean: 0.545, F1 Mean: 0.685
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:02:07.282052
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 3, drop_rate = 0.01, tau = minRE
+
+Team Statistics: ACC Mean: 51.15%, Positive Mean: 98.55%, Negative Mean: 3.75%, AUC mean: 0.511, F1 Mean: 0.669
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:02:36.925839
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 3, drop_rate = 0.05, tau = RE
+
+Team Statistics: ACC Mean: 54.85%, Positive Mean: 95.00%, Negative Mean: 14.70%, AUC mean: 0.548, F1 Mean: 0.678
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:02:53.420497
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 3, drop_rate = 0.05, tau = minRE
+
+Team Statistics: ACC Mean: 66.27%, Positive Mean: 46.65%, Negative Mean: 85.90%, AUC mean: 0.663, F1 Mean: 0.58
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:03:27.627630
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 5, drop_rate = 0.001, tau = RE
+
+Team Statistics: ACC Mean: 50.32%, Positive Mean: 99.95%, Negative Mean: 0.70%, AUC mean: 0.503, F1 Mean: 0.668
+-----------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:05:06.029566
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 5, drop_rate = 0.001, tau = minRE
+
+Team Statistics: ACC Mean: 67.15%, Positive Mean: 47.50%, Negative Mean: 86.80%, AUC mean: 0.671, F1 Mean: 0.591
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:06:36.786113
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 5, drop_rate = 0.01, tau = RE
+
+Team Statistics: ACC Mean: 51.00%, Positive Mean: 99.40%, Negative Mean: 2.60%, AUC mean: 0.51, F1 Mean: 0.67
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:08:31.181610
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 5, drop_rate = 0.01, tau = minRE
+
+Team Statistics: ACC Mean: 79.12%, Positive Mean: 75.20%, Negative Mean: 83.05%, AUC mean: 0.791, F1 Mean: 0.783
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:10:15.657521
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 5, drop_rate = 0.05, tau = RE
+
+Team Statistics: ACC Mean: 55.12%, Positive Mean: 95.35%, Negative Mean: 14.90%, AUC mean: 0.551, F1 Mean: 0.68
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:12:04.916312
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 5, drop_rate = 0.05, tau = minRE
+
+Team Statistics: ACC Mean: 66.00%, Positive Mean: 41.20%, Negative Mean: 90.80%, AUC mean: 0.66, F1 Mean: 0.548
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:13:45.600891
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 7, drop_rate = 0.001, tau = RE
+
+Team Statistics: ACC Mean: 50.18%, Positive Mean: 100.00%, Negative Mean: 0.35%, AUC mean: 0.502, F1 Mean: 0.667
+-----------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:16:38.431207
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 7, drop_rate = 0.001, tau = minRE
+
+Team Statistics: ACC Mean: 66.67%, Positive Mean: 46.05%, Negative Mean: 87.30%, AUC mean: 0.667, F1 Mean: 0.58
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:19:48.905645
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 7, drop_rate = 0.01, tau = RE
+
+Team Statistics: ACC Mean: 51.05%, Positive Mean: 99.05%, Negative Mean: 3.05%, AUC mean: 0.51, F1 Mean: 0.669
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:23:10.086341
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 7, drop_rate = 0.01, tau = minRE
+
+Team Statistics: ACC Mean: 61.32%, Positive Mean: 26.10%, Negative Mean: 96.55%, AUC mean: 0.613, F1 Mean: 0.403
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:26:49.645804
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 7, drop_rate = 0.05, tau = RE
+
+Team Statistics: ACC Mean: 55.60%, Positive Mean: 95.40%, Negative Mean: 15.80%, AUC mean: 0.556, F1 Mean: 0.682
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:30:51.011574
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 7, drop_rate = 0.05, tau = minRE
+
+Team Statistics: ACC Mean: 72.90%, Positive Mean: 51.05%, Negative Mean: 94.75%, AUC mean: 0.729, F1 Mean: 0.653
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:35:25.421388
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 9, drop_rate = 0.001, tau = RE
+
+Team Statistics: ACC Mean: 50.15%, Positive Mean: 100.00%, Negative Mean: 0.30%, AUC mean: 0.502, F1 Mean: 0.667
+-----------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:41:36.942888
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 9, drop_rate = 0.001, tau = minRE
+
+Team Statistics: ACC Mean: 67.58%, Positive Mean: 48.95%, Negative Mean: 86.20%, AUC mean: 0.676, F1 Mean: 0.602
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:48:08.075895
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 9, drop_rate = 0.01, tau = RE
+
+Team Statistics: ACC Mean: 50.98%, Positive Mean: 99.05%, Negative Mean: 2.90%, AUC mean: 0.51, F1 Mean: 0.669
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:55:17.549662
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 9, drop_rate = 0.01, tau = minRE
+
+Team Statistics: ACC Mean: 59.92%, Positive Mean: 23.10%, Negative Mean: 96.75%, AUC mean: 0.599, F1 Mean: 0.366
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 1:03:01.229000
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 9, drop_rate = 0.05, tau = RE
+
+Team Statistics: ACC Mean: 56.23%, Positive Mean: 95.70%, Negative Mean: 16.75%, AUC mean: 0.562, F1 Mean: 0.686
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 1:11:27.968889
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 9, drop_rate = 0.05, tau = minRE
+
+Team Statistics: ACC Mean: 56.43%, Positive Mean: 14.70%, Negative Mean: 98.15%, AUC mean: 0.564, F1 Mean: 0.252
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 1:20:42.803687

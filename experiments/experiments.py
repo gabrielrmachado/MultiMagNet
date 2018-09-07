@@ -35,7 +35,7 @@ class Experiment:
         self._data = Data(dataset_name=dataset) 
         print("\nDataset loaded.")
 
-    def all_cases_experiment(self, *args, length=1000):
+    def all_cases_experiment(self, *args, length=2000):
         """
         Creates an cartesian product with '*args' in order to make the experiments on several different scenarios. 
         All the experiments' results are saved in a .TXT file called 'all_cases_experiment.txt'
@@ -52,9 +52,8 @@ class Experiment:
         import itertools
 
         start = time.time()
-
-        f = open("./experiments/experiments_logs/all_cases_experiment.txt", "w+")
         combinations = list(itertools.product(*args))
+        att = ""
 
         for combination in combinations:
             n_experiments = combination[0]
@@ -62,14 +61,20 @@ class Experiment:
             attack = combination[2]
             drop_rate = combination[3]
             tau = combination[4]
+            
+            if att != attack:
+                f = open("./experiments/experiments_logs/" + self._data.dataset_name + "_" + attack + "_all_cases_experiment.txt", "a+")
 
             if tau == "minRE" and reduction_models == 1:
                 continue
             else:     
                 team_stats = np.zeros((n_experiments, 5))
-                x_test_adv = Adversarial_Attack(self._sess, self._data, length=length, attack=attack, epochs=5).attack()
                 
-                _, x, y = helpers.join_test_sets(self._data.x_test, x_test_adv, length)
+                if att != attack:
+                    x_test_adv = Adversarial_Attack(self._sess, self._data, length=length, attack=attack, epochs=5).attack()                
+                    _, x, y = helpers.join_test_sets(self._data.x_test, x_test_adv, length)
+                    att = attack
+
                 multiple_team = Assembly_Team(self._sess, self._data, reduction_models)
 
                 for exp in range(n_experiments):
