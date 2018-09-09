@@ -11,7 +11,7 @@ def choose_team_each_jump_experiment(dataset):
 
 def all_cases_experiment(dataset):
     exp = Experiment(dataset)
-    attacks = ["CW_20.0"]
+    attacks = ["CW_40.0"]
     # attacks = ["FGSM", "BIM", "DEEPFOOL", "CW_0.0", "CW_10.0", "CW_20.0", "CW_30.0", "CW_40.0"]
     drop_rate = [0.001, 0.01, 0.05]
     reduction_models = [1, 3, 5, 7, 9]

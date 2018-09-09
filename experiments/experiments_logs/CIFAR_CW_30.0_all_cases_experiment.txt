@@ -1,0 +1,217 @@
+
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 1, drop_rate = 0.001, tau = RE
+
+Team Statistics: ACC Mean: 50.02%, Positive Mean: 99.95%, Negative Mean: 0.10%, AUC mean: 0.5, F1 Mean: 0.667
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:00:04.660454
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 1, drop_rate = 0.01, tau = RE
+
+Team Statistics: ACC Mean: 50.35%, Positive Mean: 99.20%, Negative Mean: 1.50%, AUC mean: 0.504, F1 Mean: 0.666
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:00:08.193232
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 1, drop_rate = 0.05, tau = RE
+
+Team Statistics: ACC Mean: 51.50%, Positive Mean: 96.15%, Negative Mean: 6.85%, AUC mean: 0.515, F1 Mean: 0.665
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:00:12.061393
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 3, drop_rate = 0.001, tau = RE
+
+Team Statistics: ACC Mean: 50.00%, Positive Mean: 99.90%, Negative Mean: 0.10%, AUC mean: 0.5, F1 Mean: 0.666
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:00:57.723244
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 3, drop_rate = 0.001, tau = minRE
+
+Team Statistics: ACC Mean: 56.77%, Positive Mean: 43.10%, Negative Mean: 70.45%, AUC mean: 0.568, F1 Mean: 0.499
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:01:31.229269
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 3, drop_rate = 0.01, tau = RE
+
+Team Statistics: ACC Mean: 50.42%, Positive Mean: 99.35%, Negative Mean: 1.50%, AUC mean: 0.504, F1 Mean: 0.667
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:02:05.995254
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 3, drop_rate = 0.01, tau = minRE
+
+Team Statistics: ACC Mean: 56.17%, Positive Mean: 56.90%, Negative Mean: 55.45%, AUC mean: 0.562, F1 Mean: 0.565
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:02:59.070926
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 3, drop_rate = 0.05, tau = RE
+
+Team Statistics: ACC Mean: 51.28%, Positive Mean: 95.95%, Negative Mean: 6.60%, AUC mean: 0.513, F1 Mean: 0.663
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:04:08.189848
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 3, drop_rate = 0.05, tau = minRE
+
+Team Statistics: ACC Mean: 61.40%, Positive Mean: 76.60%, Negative Mean: 46.20%, AUC mean: 0.614, F1 Mean: 0.665
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:05:26.119374
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 5, drop_rate = 0.001, tau = RE
+
+Team Statistics: ACC Mean: 50.02%, Positive Mean: 99.95%, Negative Mean: 0.10%, AUC mean: 0.5, F1 Mean: 0.667
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:06:51.933001
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 5, drop_rate = 0.001, tau = minRE
+
+Team Statistics: ACC Mean: 52.08%, Positive Mean: 93.05%, Negative Mean: 11.10%, AUC mean: 0.521, F1 Mean: 0.66
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:08:31.733983
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 5, drop_rate = 0.01, tau = RE
+
+Team Statistics: ACC Mean: 50.45%, Positive Mean: 99.70%, Negative Mean: 1.20%, AUC mean: 0.505, F1 Mean: 0.668
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:10:34.011575
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 5, drop_rate = 0.01, tau = minRE
+
+Team Statistics: ACC Mean: 54.83%, Positive Mean: 77.80%, Negative Mean: 31.85%, AUC mean: 0.548, F1 Mean: 0.633
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:12:07.313547
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 5, drop_rate = 0.05, tau = RE
+
+Team Statistics: ACC Mean: 51.73%, Positive Mean: 96.45%, Negative Mean: 7.00%, AUC mean: 0.517, F1 Mean: 0.666
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:14:04.310712
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 5, drop_rate = 0.05, tau = minRE
+
+Team Statistics: ACC Mean: 54.75%, Positive Mean: 12.00%, Negative Mean: 97.50%, AUC mean: 0.547, F1 Mean: 0.21
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:16:09.192352
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 7, drop_rate = 0.001, tau = RE
+
+Team Statistics: ACC Mean: 50.00%, Positive Mean: 100.00%, Negative Mean: 0.00%, AUC mean: 0.5, F1 Mean: 0.667
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:19:06.990978
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 7, drop_rate = 0.001, tau = minRE
+
+Team Statistics: ACC Mean: 52.02%, Positive Mean: 95.15%, Negative Mean: 8.90%, AUC mean: 0.52, F1 Mean: 0.665
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:22:37.124922
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 7, drop_rate = 0.01, tau = RE
+
+Team Statistics: ACC Mean: 50.45%, Positive Mean: 99.45%, Negative Mean: 1.45%, AUC mean: 0.505, F1 Mean: 0.667
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:25:54.899631
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 7, drop_rate = 0.01, tau = minRE
+
+Team Statistics: ACC Mean: 57.70%, Positive Mean: 26.25%, Negative Mean: 89.15%, AUC mean: 0.577, F1 Mean: 0.383
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:30:02.255781
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 7, drop_rate = 0.05, tau = RE
+
+Team Statistics: ACC Mean: 51.65%, Positive Mean: 96.85%, Negative Mean: 6.45%, AUC mean: 0.516, F1 Mean: 0.667
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:34:32.234921
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 7, drop_rate = 0.05, tau = minRE
+
+Team Statistics: ACC Mean: 55.60%, Positive Mean: 14.60%, Negative Mean: 96.60%, AUC mean: 0.556, F1 Mean: 0.247
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:39:05.811246
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 9, drop_rate = 0.001, tau = RE
+
+Team Statistics: ACC Mean: 50.02%, Positive Mean: 100.00%, Negative Mean: 0.05%, AUC mean: 0.5, F1 Mean: 0.667
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:45:38.445192
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 9, drop_rate = 0.001, tau = minRE
+
+Team Statistics: ACC Mean: 57.98%, Positive Mean: 51.65%, Negative Mean: 64.30%, AUC mean: 0.58, F1 Mean: 0.551
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:52:38.054832
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 9, drop_rate = 0.01, tau = RE
+
+Team Statistics: ACC Mean: 50.45%, Positive Mean: 99.60%, Negative Mean: 1.30%, AUC mean: 0.505, F1 Mean: 0.668
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 1:00:17.132081
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 9, drop_rate = 0.01, tau = minRE
+
+Team Statistics: ACC Mean: 57.57%, Positive Mean: 25.70%, Negative Mean: 89.45%, AUC mean: 0.576, F1 Mean: 0.377
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 1:08:31.089562
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 9, drop_rate = 0.05, tau = RE
+
+Team Statistics: ACC Mean: 51.73%, Positive Mean: 96.85%, Negative Mean: 6.60%, AUC mean: 0.517, F1 Mean: 0.667
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 1:17:05.050019
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 9, drop_rate = 0.05, tau = minRE
+
+Team Statistics: ACC Mean: 56.17%, Positive Mean: 18.30%, Negative Mean: 94.05%, AUC mean: 0.562, F1 Mean: 0.295
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 1:26:14.397346
