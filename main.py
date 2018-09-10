@@ -20,4 +20,7 @@ def all_cases_experiment(dataset):
     exp.all_cases_experiment([1], reduction_models, attacks, drop_rate, tau)
 
 # executes chosen experiment
-all_cases_experiment("CIFAR")
+#all_cases_experiment("CIFAR")
+
+exp = Experiment("CIFAR")
+exp.simple_experiment(reduction_models=3, attack="DEEPFOOL", drop_rate=0.01, tau="minRE", length=2000)

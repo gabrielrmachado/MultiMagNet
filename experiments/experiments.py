@@ -35,6 +35,16 @@ class Experiment:
         self._data = Data(dataset_name=dataset) 
         print("\nDataset loaded.")
 
+    def test_logits(self):
+        classifier = Classifier(self._sess, self._data, epochs=120)
+        model = classifier.get_model(logits=True)
+        print(model.predict(self._data.x_test[0:1]))
+        print(np.sum(model.predict(self._data.x_test[0:1])))
+
+        model = classifier.get_model(logits=False)
+        print(model.predict(self._data.x_test[0:1]))
+        print(np.sum(model.predict(self._data.x_test[0:1])))
+
     def all_cases_experiment(self, *args, length=2000):
         """
         Creates an cartesian product with '*args' in order to make the experiments on several different scenarios. 
@@ -136,7 +146,11 @@ class Experiment:
         # # Creates, trains and returns the 'R' dimensionality reduction team
         team = Assembly_Team(self._sess, self._data, reduction_models)
         thresholds = team.get_thresholds(self._data.x_val, tau=tau, drop_rate=drop_rate, p = p, plot_rec_images=False)
-        x_marks = Image_Reduction.apply_techniques(x, team, p = p)
+        
+        if self._data.dataset_name == "MNIST":
+            x_marks = Image_Reduction.apply_techniques(x, team, p = p)
+        else:
+            x_marks = Image_Reduction.apply_techniques_jsd(x, team, classifier, T=10, p = p)
 
         y_pred = poll_votes(x, y, x_marks, thresholds, reduction_models)
 

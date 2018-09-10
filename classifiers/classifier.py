@@ -129,7 +129,7 @@ class Classifier:
 
         #print("Main model parameters:\n{0}".format(model.summary()))
 
-    def execute(self):
+    def execute(self, logits=False):
         """
         Fits and evaluates the main model, which is used for classifying input samples.
 
@@ -141,7 +141,7 @@ class Classifier:
         y_train = self.__data.y_train
         y_test = self.__data.y_test
 
-        model = self.get_model(logits=False)
+        model = self.get_model(logits)
 
         if self.__data.dataset_name.upper() == 'MNIST':
             # Builds the main model
@@ -210,12 +210,9 @@ class Classifier:
             if self.__data.dataset_name.upper() == "MNIST":
                 model = self.__mnist_model()
                 model.add(Activation('linear'))
-                model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
             else:
                 model = self.__cifar10_model()
-                model.add(Activation('linear'))
-                opt_rms = keras.optimizers.rmsprop(lr=0.001,decay=1e-6)
-                model.compile(loss='sparse_categorical_crossentropy', optimizer=opt_rms, metrics=['accuracy'])     
+                model.add(Activation('linear'))   
                 model.load_weights(os.path.dirname(os.path.realpath(__file__)) + '\\model_parameters\\cifar10.h5')       
         else:        
             if self.__data.dataset_name.upper() == "MNIST":
