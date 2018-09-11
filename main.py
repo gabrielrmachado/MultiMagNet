@@ -22,5 +22,5 @@ def all_cases_experiment(dataset):
 # executes chosen experiment
 #all_cases_experiment("CIFAR")
 
-exp = Experiment("CIFAR")
+exp = Experiment("MNIST")
 exp.simple_experiment(reduction_models=3, attack="DEEPFOOL", drop_rate=0.01, tau="minRE", length=2000)

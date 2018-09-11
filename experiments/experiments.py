@@ -138,18 +138,19 @@ class Experiment:
         print("\nMain classifier's baseline error: %.2f%%" % (100-scores[1]*100))
 
         # plots the adversarial images
-        helpers.plot_images(self._data.x_test[self._idx_adv][:length], x_test_adv[:length], x_test_adv.shape)
+        #helpers.plot_images(self._data.x_test[self._idx_adv][:length], x_test_adv[:length], x_test_adv.shape)
 
         # Creates a test set containing 'length * 2' input images 'x', where half are benign images and half are adversarial.
         _, x, y = helpers.join_test_sets(self._data.x_test, x_test_adv, length)
           
         # # Creates, trains and returns the 'R' dimensionality reduction team
         team = Assembly_Team(self._sess, self._data, reduction_models)
-        thresholds = team.get_thresholds(self._data.x_val, tau=tau, drop_rate=drop_rate, p = p, plot_rec_images=False)
-        
+
         if self._data.dataset_name == "MNIST":
+            thresholds = team.get_thresholds(tau=tau, drop_rate=drop_rate, p = p, plot_rec_images=False)
             x_marks = Image_Reduction.apply_techniques(x, team, p = p)
         else:
+            thresholds = team.get_thresholds_jsd(tau=tau, classifier = classifier, T=10, drop_rate=drop_rate, p = p, plot_rec_images=False)
             x_marks = Image_Reduction.apply_techniques_jsd(x, team, classifier, T=10, p = p)
 
         y_pred = poll_votes(x, y, x_marks, thresholds, reduction_models)

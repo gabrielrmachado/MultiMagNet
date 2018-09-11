@@ -5,6 +5,12 @@ from team_techniques.denoising_autoencoder_cifar import TF_DAE_CIFAR as DAE_CIFA
 from team_techniques.conv_autoencoder_mnist import TF_CAE_MNIST as CAE_MNIST
 from team_techniques.conv_autoencoder_cifar import TF_CAE_CIFAR as CAE_CIFAR
 from team_techniques.magnet_autoencoder_mnist import TF_DAE_MagNet as DAE_MagNet
+from utils.helpers import JSD
+from scipy.stats import entropy
+from numpy.linalg import norm
+from keras.models import Sequential
+from keras.layers import Lambda
+from keras.activations import softmax
 
 import utils.helpers as helpers
 from numpy import array
@@ -59,75 +65,54 @@ class Assembly_Team():
 
         self.repository = [m1, m2, m3, m4, m5, m6, m7, m8, m9, m10]
 
-        # if data.dataset_name == 'MNIST':
-            #magnet_i = DAE_MagNet(data, "MNIST_I", [3, "average", 3], epochs=100, activation = 'sigmoid', v_noise=0.1)
-            # self.__team.append(magnet_i)
+    def get_thresholds_jsd(self, classifier, drop_rate=0.001, T = 10, p = 2, tau="RE", plot_rec_images=False):
+        """
+        Predicts the 'data' using the selected autoencoders, 
+        returning their respective probability divergence thresholds.
 
-            # magnet_ii = DAE_MagNet(data,"MNIST_II", [3], epochs=50, activation = 'sigmoid', v_noise=0.1)
-            # self.__team.append(magnet_ii)
+        """
+        s = array(self.repository)
+        if (self.__number > s.size):
+            raise Exception("Number_team_members: {0} is bigger than the number of avaiable models into repository: {1}."
+                                            .format(self.__number, s.size))
+        else: 
+            print('\nTotal members into repository: {0}\nNumber of members chosen: {1}'.format(s.size, self.__number))
+            self.team = np.random.choice(s, size=self.__number, replace=False)
 
-            # mag_dae3 = DAE_MagNet(data, "magnet_dae3", [3], epochs=50, activation = 'relu', v_noise=0.2)
-            # self.__team.append(mag_dae3)
+        thresholds = []
+        num = round(drop_rate * len(self.__data.x_val))
+        model = classifier.get_model(logits=True)
+        sft = Sequential()
+        sft.add(Lambda(lambda X: softmax(X, axis=1), input_shape=(10,)))
 
-            # mag_dae2 = DAE_MagNet(data, "magnet_dae2", [5, "max", 5], epochs=100, activation = 'sigmoid', v_noise=0.3)
-            # self.__team.append(mag_dae2)
+        for i in range(self.team.size):
+            autoencoder = self.load_autoencoder(self.team[i])
+            rec = autoencoder.predict(self.__data.x_val)
 
-            # mag_dae = DAE_MagNet(data, "magnet_dae", [3, "average", 3], epochs=100, activation = 'sigmoid', v_noise=0.1)
-            # self.__team.append(mag_dae)
+            if plot_rec_images == True:
+                rec_ex = autoencoder.predict(self.__data.x_test[:10])
+                helpers.plot_images(self.__data.x_test[:10], rec_ex[:10], rec_ex.shape)
+                del rec_ex
 
-            # dae = DAE_MNIST(data, name='mnist_dae_opt1', epochs=7)
-            # self.__team.append(dae)
+            print('Reconstructing images using {0} model ({1}/{2}).'.format(self.team[i].name, i+1, self.team.size))
 
-            # dae2 = DAE_MNIST(data, name='mnist_dae_opt2', batch_size=256, noise_factor = 0.1)
-            # self.__team.append(dae2)            
+            if self.__data.x_val.shape[1:] != rec.shape[1:]:
+                rec = rec.reshape(rec.shape[0], self.__data.x_val.shape[1], self.__data.x_val.shape[2], self.__data.x_val.shape[3]).astype('float32')
 
-            # cae = CAE_MNIST(data, name='mnist_cae_opt1', batch_size=32, epochs=2)
-            # self.__team.append(cae)
+            oc = sft.predict(model.predict(self.__data.x_val)/T)
+            rc = sft.predict(model.predict(rec)/T)
 
-            # cae2 = CAE_MNIST(data, name='mnist_cae_opt2', batch_size=100, epochs=2)
-            # self.__team.append(cae2)            
-
-            # cae3 = CAE_MNIST(data, opt=2, name='mnist_cae_opt3', batch_size=64, epochs=5)
-            # self.__team.append(cae3)
-
-            # cae4 = CAE_MNIST(data, name='mnist_cae4_opt1', batch_size=128, epochs=5)
-            # self.__team.append(cae4)
-
-            # cae5 = CAE_MNIST(data, name='mnist_cae5_opt2', batch_size=128, epochs=5)
-            # self.__team.append(cae5) 
+            marks = [(JSD(oc[j], rc[j])) for j in range(len(rc))]
+            marks_iset = np.sort(marks)
+            thresholds.append(marks_iset[-num])
+            del autoencoder
         
-        # if data.dataset_name == 'CIFAR':
-            #cae = CAE_CIFAR(data, name='cifar_cae1_opt1', batch_size=32, epochs=30)
-            # self.__team.append(cae)
+        if tau == "minRE":
+            thresholds = [np.min(thresholds)] * self.__number
 
-            # cae2 = CAE_CIFAR(data, name='cifar_cae2_opt1', batch_size=32, epochs=30)
-            # self.__team.append(cae2)
+        return thresholds
 
-            # cae3 = CAE_CIFAR(data, name='cifar_cae3_opt2', opt=2, batch_size=64, epochs=20)
-            # self.__team.append(cae3)
-
-            # dae = DAE_CIFAR(data, name='cifar_dae1_opt1', epochs=20, noise_factor=0.1)
-            # self.__team.append(dae)
-
-            # dae2 = DAE_CIFAR(data, name='cifar_dae1_opt2', opt=2, epochs=20, noise_factor=0.1)
-            # self.__team.append(dae2)
-
-            # dae3 = DAE_CIFAR(data, name='cifar_dae1_opt3', opt=3, epochs=20, noise_factor=0.1)
-            # self.__team.append(dae3)
-
-            # dae4 = DAE_CIFAR(data, name='cifar_dae1_opt4', opt=4, epochs=20, noise_factor=0.1)
-            # self.__team.append(dae4)
-
-            # dae5 = DAE_CIFAR(data, name='cifar_dae2_opt3', opt=3, epochs=30, noise_factor=0.1, batch_size=64)
-            # self.__team.append(dae5)
-
-            # dae6 = DAE_CIFAR(data, name='cifar_dae2_opt4', opt=4, epochs=30, noise_factor=0.1, batch_size=64)
-            # self.__team.append(dae6)
-
-            # cae4 = CAE_CIFAR(data, name='cifar_cae4_opt2', opt=2, batch_size=128, epochs=20)
-            # self.__team.append(cae4)
-
-    def get_thresholds(self, data, drop_rate=0.001, p = 2, tau="RE", plot_rec_images=False):
+    def get_thresholds(self, drop_rate=0.001, p = 2, tau="RE", plot_rec_images=False):
         """
         Predicts the 'data' using the selected autoencoders, 
         returning their respective reconstruction errors thresholds.
@@ -142,11 +127,11 @@ class Assembly_Team():
             self.team = np.random.choice(s, size=self.__number, replace=False)
 
         thresholds = []
-        num = round(drop_rate * len(data))
+        num = round(drop_rate * len(self.__data.x_val))
 
         for i in range(self.team.size):
             autoencoder = self.load_autoencoder(self.team[i])
-            rec = autoencoder.predict(data)
+            rec = autoencoder.predict(self.__data.x_val)
 
             if plot_rec_images == True:
                 rec_ex = autoencoder.predict(self.__data.x_test[:10])
@@ -154,10 +139,10 @@ class Assembly_Team():
 
             print('Reconstructing images using {0} model ({1}/{2}).'.format(self.team[i].name, i+1, self.team.size))
 
-            if data.shape[1:] != rec.shape[1:]:
-                rec = rec.reshape(rec.shape[0], data.shape[1], data.shape[2], data.shape[3]).astype('float32')
+            if self.__data.x_val.shape[1:] != rec.shape[1:]:
+                rec = rec.reshape(rec.shape[0], self.__data.x_val.shape[1], self.__data.x_val.shape[2], self.__data.x_val.shape[3]).astype('float32')
 
-            diff = np.abs(data - rec)
+            diff = np.abs(self.__data.x_val - rec)
             marks = np.mean(np.power(diff, p), axis=(1,2,3))
 
             marks_iset = np.sort(marks)
@@ -168,24 +153,6 @@ class Assembly_Team():
             thresholds = [np.min(thresholds)] * self.__number
 
         return thresholds
-
-        # for i in range(self.__number):
-        #     print('Reconstructing images using {0} model ({1}/{2}).'.format(self.r[i].name, i+1, self.r.size))
-        #     rec_set = self.r[i].predict(data)
-
-        #     if data.shape[1:] != rec_set.shape[1:]:
-        #         rec_set = rec_set.reshape(rec_set.shape[0], data.shape[1], data.shape[2], data.shape[3]).astype('float32')
-
-        #     diff = np.abs(data - rec_set)
-        #     marks = np.mean(np.power(diff, p), axis=(1,2,3))
-
-        #     marks_iset = np.sort(marks)
-        #     thresholds.append(marks_iset[-num])
-        
-        # if tau == "RE":
-        #     return thresholds
-        # elif tau == "minRE":
-        #     return [np.min(thresholds)] * self.__number
 
     def load_autoencoder(self, team_member):
         model = team_member.model

@@ -7,12 +7,7 @@ from numpy.linalg import norm
 from keras.models import Sequential
 from keras.layers import Lambda
 from keras.activations import softmax
-
-def JSD(P, Q):
-        _P = P / norm(P, ord=1)
-        _Q = Q / norm(Q, ord=1)
-        _M = 0.5 * (_P + _Q)
-        return 0.5 * (entropy(_P, _M) + entropy(_Q, _M))
+from utils.helpers import JSD
 
 class Image_Reduction:
     @staticmethod
@@ -52,7 +47,7 @@ class Image_Reduction:
         return x_marks
 
     @staticmethod
-    def apply_techniques_jsd(x, team_obj, classifier, T=10, p=2):
+    def apply_techniques_jsd(x, team_obj, classifier, T=10, p=1):
         """
         Apply reduction team members on input 'x' and returns the marks computed using JSD divergence.
         """
@@ -69,11 +64,11 @@ class Image_Reduction:
             if x.shape[1:] != rec.shape[1:]:
                 rec = rec.reshape(rec.shape[0], x.shape[1], x.shape[2], x.shape[3]).astype('float32')
                 
-                oc = sft.predict(model.predict(x)/T)
-                rc = sft.predict(model.predict(rec)/T)
+            oc = sft.predict(model.predict(x)/T)
+            rc = sft.predict(model.predict(rec)/T)
 
-                marks = [(JSD(oc[i], rc[i])) for i in range(len(rc))]
-                x_marks.append(marks)
+            marks = [(JSD(oc[j], rc[j])) for j in range(len(rc))]
+            x_marks.append(marks)
 
-                del autoencoder
-            return x_marks    
+            del autoencoder
+        return x_marks    

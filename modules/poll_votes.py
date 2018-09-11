@@ -21,12 +21,12 @@ def poll_votes_each_x(x, y, x_marks, thresholds, reduction_models):
 def poll_votes(x, y, x_marks, thresholds, reduction_models):
     y_pred = np.zeros((len(y)))
     for i in range(len(x)):
-            # checks whether 'x' is adversarial or not by votating using each reduction model's threshold.
+            # checks whether 'x' is adversarial or not by voting using each reduction model's threshold.
             v_adv = 0
             v_leg = 0
 
             for j in range(reduction_models):
-                #print("'x' input RE: {0}\nThreshold: {1}".format(x_marks[j][i], thresholds[j]))
+                print("'x' input RE: {0}\nThreshold: {1}".format(x_marks[j][i], thresholds[j]))
                 if x_marks[j][i] < thresholds[j]:
                     v_leg = v_leg + 1
                 else: 

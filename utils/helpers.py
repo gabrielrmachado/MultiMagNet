@@ -5,6 +5,11 @@ import random
 import pickle
 import os
 from sklearn.utils import shuffle
+from scipy.stats import entropy
+from numpy.linalg import norm
+from keras.models import Sequential
+from keras.layers import Lambda
+from keras.activations import softmax
 
 def save_imgs_pkl(imgs, name):
         try:
@@ -194,5 +199,11 @@ def get_statistics_experiments(experiment, stats):
 def write_txt(f, *string):                        
         for s in string:
                 f.write(s)
+
+def JSD(P, Q):
+        _P = P / norm(P, ord=1)
+        _Q = Q / norm(Q, ord=1)
+        _M = 0.5 * (_P + _Q)
+        return 0.5 * (entropy(_P, _M) + entropy(_Q, _M))        
 
 
