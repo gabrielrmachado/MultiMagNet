@@ -25,7 +25,7 @@ from keras.models import Sequential
 from keras.layers import Activation
 from keras.layers.core import Dense, Dropout, Flatten
 from keras.layers.convolutional import Conv2D
-from adversarial_robustness_toolbox.art.attacks.deepfool import DeepFool
+from art.attacks.deepfool import DeepFool
 from keras.optimizers import Adam
 from keras.layers.pooling import MaxPooling2D
 import classifiers

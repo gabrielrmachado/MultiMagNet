@@ -206,4 +206,19 @@ def JSD(P, Q):
         _M = 0.5 * (_P + _Q)
         return 0.5 * (entropy(_P, _M) + entropy(_Q, _M))        
 
+def get_output_model_layer(x, model, logits=False):
+        from keras import backend as K
+        
+        if logits == False:
+                model.outputs = [model.layers[len(model.layers)-1].output]
+        else: 
+                model.outputs = [model.layers[len(model.layers)-2].output]
+        
+        return model.predict(x)
+
+def get_logits(model):
+        model.outputs = [model.layers[len(model.layers)-2].output]
+        return model
+
+
 

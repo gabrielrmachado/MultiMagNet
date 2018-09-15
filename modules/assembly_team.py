@@ -65,25 +65,26 @@ class Assembly_Team():
 
         self.repository = [m1, m2, m3, m4, m5, m6, m7, m8, m9, m10]
 
-    def get_thresholds_jsd(self, classifier, drop_rate=0.001, T = 10, p = 2, tau="RE", plot_rec_images=False):
-        """
-        Predicts the 'data' using the selected autoencoders, 
-        returning their respective probability divergence thresholds.
-
-        """
+    def get_team(self):
         s = array(self.repository)
         if (self.__number > s.size):
             raise Exception("Number_team_members: {0} is bigger than the number of avaiable models into repository: {1}."
                                             .format(self.__number, s.size))
         else: 
             print('\nTotal members into repository: {0}\nNumber of members chosen: {1}'.format(s.size, self.__number))
-            self.team = np.random.choice(s, size=self.__number, replace=False)
+            team = np.random.choice(s, size=self.__number, replace=False)
+            return team
 
+    def get_thresholds_jsd(self, classifier, drop_rate=0.001, T = 10, p = 2, tau="RE", plot_rec_images=False):
+        """
+        Predicts the 'data' using the selected autoencoders, 
+        returning their respective probability divergence thresholds.
+
+        """
+        self.team = self.get_team()
         thresholds = []
         num = round(drop_rate * len(self.__data.x_val))
-        model = classifier.get_model(logits=True)
-        sft = Sequential()
-        sft.add(Lambda(lambda X: softmax(X, axis=1), input_shape=(10,)))
+        model = helpers.get_logits(classifier.model)
 
         for i in range(self.team.size):
             autoencoder = self.load_autoencoder(self.team[i])
@@ -99,8 +100,8 @@ class Assembly_Team():
             if self.__data.x_val.shape[1:] != rec.shape[1:]:
                 rec = rec.reshape(rec.shape[0], self.__data.x_val.shape[1], self.__data.x_val.shape[2], self.__data.x_val.shape[3]).astype('float32')
 
-            oc = sft.predict(model.predict(self.__data.x_val)/T)
-            rc = sft.predict(model.predict(rec)/T)
+            oc = model.predict(model.predict(self.__data.x_val)/T)
+            rc = model.predict(model.predict(rec)/T)
 
             marks = [(JSD(oc[j], rc[j])) for j in range(len(rc))]
             marks_iset = np.sort(marks)

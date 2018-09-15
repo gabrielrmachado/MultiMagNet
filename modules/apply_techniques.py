@@ -52,9 +52,7 @@ class Image_Reduction:
         Apply reduction team members on input 'x' and returns the marks computed using JSD divergence.
         """
         x_marks = []
-        model = classifier.get_model(logits=True)
-        sft = Sequential()
-        sft.add(Lambda(lambda X: softmax(X, axis=1), input_shape=(10,)))
+        model = helpers.get_logits(classifier.model)
 
         for i in range(len(team_obj.team)):
             autoencoder = team_obj.load_autoencoder(team_obj.team[i])
@@ -64,8 +62,8 @@ class Image_Reduction:
             if x.shape[1:] != rec.shape[1:]:
                 rec = rec.reshape(rec.shape[0], x.shape[1], x.shape[2], x.shape[3]).astype('float32')
                 
-            oc = sft.predict(model.predict(x)/T)
-            rc = sft.predict(model.predict(rec)/T)
+            oc = classifier.model.predict(model.predict(x)/T)
+            rc = classifier.model.predict(model.predict(rec)/T)
 
             marks = [(JSD(oc[j], rc[j])) for j in range(len(rc))]
             x_marks.append(marks)

@@ -1,6 +1,5 @@
 import tensorflow as tf
 import cleverhans
-import foolbox
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
@@ -109,6 +108,42 @@ class Experiment:
                 helpers.write_txt(f, "\nExperiment's elapsed time: {0}".format(timedelta(seconds=time.time() - start)))
         f.close()
 
+    def testJSD(self, length, reduction_models, attack, logits=True):
+        np.set_printoptions(threshold=np.nan)
+        print("Loading adversarial images...\n")
+
+        idx = np.random.permutation(2000)[:length]
+
+        x_test_adv = Adversarial_Attack(self._sess, self._data, length=length, attack=attack, epochs=12).attack()
+        x_test_adv = x_test_adv[idx]
+
+        print("Loading team of autoencoders...\n")
+        team_obj = Assembly_Team(self._sess, self._data, reduction_models)
+        team = team_obj.get_team()
+        
+        print("Loading classifier...\n")
+        classifier = Classifier(self._sess, self._data, epochs=120)
+        classifier.execute()
+        x = self._data.x_test[self._idx_adv][idx]
+        
+        print("Reforming legitimate images...\n")        
+        for i in range(len(team)):
+            autoencoder = team_obj.load_autoencoder(team[i])
+            rec = autoencoder.predict(x)
+            rec_adv = autoencoder.predict(x_test_adv)
+
+            out_leg = helpers.get_output_model_layer(x, classifier.model, logits=logits)
+            out_rec = helpers.get_output_model_layer(rec, classifier.model, logits=logits)
+            adv = helpers.get_output_model_layer(x_test_adv, classifier.model, logits=logits)
+            adv_rec = helpers.get_output_model_layer(rec_adv, classifier.model, logits=logits)
+
+            print("\nModel's logits (original legitimate samples): \n{0}\n".format(out_leg))
+            print("Model's logits (rec legitimate samples): \n{0}\n".format(out_rec))
+            print("Model's logits (original adversarial samples): \n{0}\n".format(adv))
+            print("Model's logits (rec adversarial samples): \n{0}\n".format(adv_rec))
+
+            del autoencoder
+
     def simple_experiment(self, reduction_models = 3, attack="FGSM", drop_rate=0.001, tau="RE", p = 1, length=2000):
         """
         Evaluates MultiMagNet with test dataset containing half legitimate and adversarial images, and prints the its metrics.
@@ -128,13 +163,13 @@ class Experiment:
 
         # test inputs on main classifier
         classifier = Classifier(self._sess, self._data, epochs=120)
-        model = classifier.execute()
+        classifier.execute()
 
         # # Creates surrogate model and returns the perturbed NumPy test set  
         x_test_adv = Adversarial_Attack(self._sess, self._data, length=length, attack=attack, epochs=12).attack()
 
         # Evaluates the brand-new adversarial examples on the main model.
-        scores = model.evaluate(x_test_adv[:length], self._data.y_test[self._idx_adv][:length], verbose=0)
+        scores = classifier.model.evaluate(x_test_adv[:length], self._data.y_test[self._idx_adv][:length], verbose=0)
         print("\nMain classifier's baseline error: %.2f%%" % (100-scores[1]*100))
 
         # plots the adversarial images
@@ -150,8 +185,8 @@ class Experiment:
             thresholds = team.get_thresholds(tau=tau, drop_rate=drop_rate, p = p, plot_rec_images=False)
             x_marks = Image_Reduction.apply_techniques(x, team, p = p)
         else:
-            thresholds = team.get_thresholds_jsd(tau=tau, classifier = classifier, T=10, drop_rate=drop_rate, p = p, plot_rec_images=False)
-            x_marks = Image_Reduction.apply_techniques_jsd(x, team, classifier, T=10, p = p)
+            thresholds = team.get_thresholds_jsd(tau=tau, classifier = classifier, T=1, drop_rate=drop_rate, p = p, plot_rec_images=False)
+            x_marks = Image_Reduction.apply_techniques_jsd(x, team, classifier, T=1, p = p)
 
         y_pred = poll_votes(x, y, x_marks, thresholds, reduction_models)
 
@@ -195,7 +230,7 @@ class Experiment:
         model = classifier.execute()
 
         # Creates surrogate model and returns the perturbed NumPy test set  
-        x_test_adv = Adversarial_Attack(self._sess, self._data, length=length, attack=attack, epochs=5).attack(classifier.get_model(logits=True))
+        x_test_adv = Adversarial_Attack(self._sess, self._data, length=length, attack=attack, epochs=5).attack(helpers.get_logits(classifier.model))
 
         # Evaluates the brand-new adversarial examples on the main model.
         scores = model.evaluate(x_test_adv[:length], self._data.y_test[self._idx_adv][:length], verbose=0)
