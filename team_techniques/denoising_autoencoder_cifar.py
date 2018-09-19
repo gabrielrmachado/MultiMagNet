@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import math
 import utils.helpers as helpers
 from team_techniques.techinique import Technique
-from keras.layers import Input, Dense, Conv2D, MaxPooling2D, UpSampling2D, BatchNormalization, Activation, Flatten, Reshape
+from keras.layers import Input, Dense, Dropout, Conv2D, MaxPooling2D, UpSampling2D, BatchNormalization, Activation, Flatten, Reshape
 from keras.models import Model
 from keras import backend as K
 from keras import regularizers
@@ -117,40 +117,33 @@ class TF_DAE_CIFAR(Technique):
             decoded = Activation('sigmoid')(x)
 
         if self.__opt == 4:
-            x = Conv2D(32, (3, 3), padding='same')(input_img)
+            x = Conv2D(32,3,3, init='normal', border_mode='same', input_shape=(32,32,3))(input_img)
+            x = BatchNormalization()(x)
             x = Activation('relu')(x)
-            x = MaxPooling2D((2, 2), padding='same')(x)
-            x = Conv2D(64, (3, 3), padding='same')(input_img)
+            x = Dropout(0.25)(x)
+            x = Conv2D(32,3,3, init='normal', border_mode='same')(x)
+            x = BatchNormalization()(x)
             x = Activation('relu')(x)
-            x = MaxPooling2D((2, 2), padding='same')(x)
-            x = Conv2D(96, (3, 3), padding='same')(input_img)
+            x = MaxPooling2D((2,2), border_mode='same')(x)
+            x = Dropout(0.25)(x)
+            x = Conv2D(32,3,3, init='normal', border_mode='same')(x)
+            x = BatchNormalization()(x)
             x = Activation('relu')(x)
-            x = MaxPooling2D((2, 2), padding='same')(x)
-            x = Conv2D(128, (3, 3), padding='same')(x)
-            x = Activation('relu')(x)
-            x = MaxPooling2D((2, 2), padding='same')(x)
-            x = Conv2D(256, (3, 3), padding='same')(x)
-            x = Activation('relu')(x)
-            encoded = MaxPooling2D((2, 2), padding='same')(x)
+            encoded = MaxPooling2D((2,2), border_mode='same')(x)
 
-            x = Conv2D(256, (3, 3), padding='same')(encoded)
+            # Define decoding layer
+            x = Conv2D(32,3,3, init='normal', border_mode='same')(encoded)
+            x = BatchNormalization()(x)
             x = Activation('relu')(x)
-            x = UpSampling2D((2, 2))(x)
-            x = Conv2D(128, (3, 3), padding='same')(encoded)
+            x = UpSampling2D((2,2))(x)
+            x = Conv2D(32,3,3, init='normal', border_mode='same')(x)
+            x = BatchNormalization()(x)
             x = Activation('relu')(x)
-            x = UpSampling2D((2, 2))(x)
-            x = Conv2D(96, (3, 3), padding='same')(encoded)
+            x = UpSampling2D((2,2))(x)
+            x = Conv2D(32,3,3, init='normal', border_mode='same')(x)
+            x = BatchNormalization()(x)
             x = Activation('relu')(x)
-            x = UpSampling2D((2, 2))(x)
-            x = Conv2D(64, (3, 3), padding='same')(encoded)
-            x = Activation('relu')(x)
-            x = UpSampling2D((2, 2))(x)
-            x = Conv2D(32, (3, 3), padding='same')(x)
-            x = Activation('relu')(x)
-            x = UpSampling2D((2, 2))(x)
-            x = Conv2D(3, (3, 3), padding='same')(x)
-            x = UpSampling2D((2, 2))(x)
-            decoded = Activation('sigmoid')(x)
+            decoded = Conv2D(3,3,3, init='normal', border_mode='same')(x)
 
         self.autoencoder = Model(input_img, decoded)
         self.encoder = Model(input_img, encoded)

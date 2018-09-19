@@ -29,6 +29,12 @@ class Data(object):
             self.x_train = self.x_train.astype('float32') / np.max(self.x_train)
             self.x_test = self.x_test.astype('float32') / np.max(self.x_test)
 
+            # mean = 120.707
+            # std = 64.15
+
+            # self.x_train = (self.x_train.astype('float32') - mean) / (std + 1e-7)
+            # self.x_test = (self.x_test.astype('float32') - mean) / (std + 1e-7)
+
             # one hot encode outputs
             self.y_train = np_utils.to_categorical(self.y_train)
             self.y_test = np_utils.to_categorical(self.y_test)

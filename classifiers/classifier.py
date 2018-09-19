@@ -5,6 +5,7 @@ from keras.layers import Dense, Dropout, Activation, Flatten
 from keras.layers.convolutional import MaxPooling2D
 from keras.layers.convolutional import Convolution2D
 from keras.optimizers import SGD
+from keras.callbacks import EarlyStopping
 import os
 import tensorflow as tf
 import numpy as np
@@ -21,7 +22,7 @@ from keras import regularizers
 import keras
 
 class Classifier:
-    def __init__(self, sess, data, epochs = 10, batch_size = 64, learning_rate = 0.001, lr_decay = 1e-4, lr_drop = 20):
+    def __init__(self, sess, data, epochs = 170, batch_size = 64, learning_rate = 0.1, lr_decay = 1e-4, lr_drop = 20):
         self.__sess = sess
         self.__epochs = epochs
         self.__batch = batch_size
@@ -44,88 +45,123 @@ class Classifier:
         self.model.add(Flatten())
         self.model.add(Dense(128, activation='relu'))
         self.model.add(Dense(10))
-        self.model.add(Activation('softmax'))
+        self.model.add(Activation("softmax"))
         self.model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
     def __cifar10_model(self):
-        # model = Sequential()
-        # model.add(Conv2D(32, (3, 3), padding='same', input_shape=self.__data.x_train.shape[1:]))
-        # model.add(Activation('relu'))
-        # model.add(Conv2D(32, (3, 3)))
-        # model.add(Activation('relu'))
-        # model.add(MaxPooling2D(pool_size=(2, 2)))
-        # model.add(Dropout(0.25))
-
-        # model.add(Conv2D(64, (3, 3), padding='same'))
-        # model.add(Activation('relu'))
-        # model.add(Conv2D(64, (3, 3)))
-        # model.add(Activation('relu'))
-        # model.add(MaxPooling2D(pool_size=(2, 2)))
-        # model.add(Dropout(0.25))
-
-        # model.add(Flatten())
-        # model.add(Dense(512))
-        # model.add(Activation('relu'))
-        # model.add(Dropout(0.5))
-        # model.add(Dense(10))
-
         self.model = Sequential()
         self.model.add(Conv2D(32, (3,3), padding='same', input_shape=self.__data.x_train.shape[1:]))
-        self.model.add(Activation('elu'))
+        self.model.add(Activation('relu'))
         self.model.add(Conv2D(32, (3,3), padding='same'))
-        self.model.add(Activation('elu'))
+        self.model.add(Activation('relu'))
         self.model.add(MaxPooling2D(pool_size=(2,2)))
         self.model.add(Dropout(0.2))
 
         self.model.add(Conv2D(64, (3,3), padding='same'))
-        self.model.add(Activation('elu'))
+        self.model.add(Activation('relu'))
         self.model.add(Conv2D(64, (3,3), padding='same'))
-        self.model.add(Activation('elu'))
+        self.model.add(Activation('relu'))
+        self.model.add(MaxPooling2D(pool_size=(2,2)))
+        self.model.add(Dropout(0.25))
+
+        self.model.add(Conv2D(128, (3,3), padding='same'))
+        self.model.add(Activation('relu'))
+        self.model.add(Conv2D(128, (3,3), padding='same'))
+        self.model.add(Activation('relu'))
         self.model.add(MaxPooling2D(pool_size=(2,2)))
         self.model.add(Dropout(0.3))
 
-        self.model.add(Conv2D(128, (3,3), padding='same'))
-        self.model.add(Activation('elu'))
-        self.model.add(Conv2D(128, (3,3), padding='same'))
-        self.model.add(Activation('elu'))
-        self.model.add(MaxPooling2D(pool_size=(2,2)))
-        self.model.add(Dropout(0.4))
-
         self.model.add(Flatten())
         self.model.add(Dense(10))
-        self.model.add(Activation('softmax'))
+        self.model.add(Activation("softmax"))
         self.model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-        # model = Sequential()
-        # model.add(Conv2D(32, (3,3), padding='same', kernel_regularizer=regularizers.l2(self.__lr_decay), input_shape=self.__data.x_train.shape[1:]))
-        # model.add(Activation('elu'))
-        # model.add(BatchNormalization())
-        # model.add(Conv2D(32, (3,3), padding='same', kernel_regularizer=regularizers.l2(self.__lr_decay)))
-        # model.add(Activation('elu'))
-        # model.add(BatchNormalization())
-        # model.add(MaxPooling2D(pool_size=(2,2)))
-        # model.add(Dropout(0.2))
+        # self.model = Sequential()
+        # weight_decay = 0.0005
 
-        # model.add(Conv2D(64, (3,3), padding='same', kernel_regularizer=regularizers.l2(self.__lr_decay)))
-        # model.add(Activation('elu'))
-        # model.add(BatchNormalization())
-        # model.add(Conv2D(64, (3,3), padding='same', kernel_regularizer=regularizers.l2(self.__lr_decay)))
-        # model.add(Activation('elu'))
-        # model.add(BatchNormalization())
-        # model.add(MaxPooling2D(pool_size=(2,2)))
-        # model.add(Dropout(0.3))
+        # self.model.add(Conv2D(64, (3, 3), padding='same', input_shape=self.__data.x_train.shape[1:], 
+        #     kernel_regularizer=regularizers.l2(weight_decay)))
+        # self.model.add(Activation('relu'))
+        # self.model.add(BatchNormalization())
+        # self.model.add(Dropout(0.3))
 
-        # model.add(Conv2D(128, (3,3), padding='same', kernel_regularizer=regularizers.l2(self.__lr_decay)))
-        # model.add(Activation('elu'))
-        # model.add(BatchNormalization())
-        # model.add(Conv2D(128, (3,3), padding='same', kernel_regularizer=regularizers.l2(self.__lr_decay)))
-        # model.add(Activation('elu'))
-        # model.add(BatchNormalization())
-        # model.add(MaxPooling2D(pool_size=(2,2)))
-        # model.add(Dropout(0.4))
+        # self.model.add(Conv2D(64, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+        # self.model.add(Activation('relu'))
+        # self.model.add(BatchNormalization())
 
-        # model.add(Flatten())
-        # model.add(Dense(10))
+        # self.model.add(MaxPooling2D(pool_size=(2, 2)))
+
+        # self.model.add(Conv2D(128, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+        # self.model.add(Activation('relu'))
+        # self.model.add(BatchNormalization())
+        # self.model.add(Dropout(0.4))
+
+        # self.model.add(Conv2D(128, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+        # self.model.add(Activation('relu'))
+        # self.model.add(BatchNormalization())
+
+        # self.model.add(MaxPooling2D(pool_size=(2, 2)))
+
+        # self.model.add(Conv2D(256, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+        # self.model.add(Activation('relu'))
+        # self.model.add(BatchNormalization())
+        # self.model.add(Dropout(0.4))
+
+        # self.model.add(Conv2D(256, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+        # self.model.add(Activation('relu'))
+        # self.model.add(BatchNormalization())
+        # self.model.add(Dropout(0.4))
+
+        # self.model.add(Conv2D(256, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+        # self.model.add(Activation('relu'))
+        # self.model.add(BatchNormalization())
+
+        # self.model.add(MaxPooling2D(pool_size=(2, 2)))
+
+        # self.model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+        # self.model.add(Activation('relu'))
+        # self.model.add(BatchNormalization())
+        # self.model.add(Dropout(0.4))
+
+        # self.model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+        # self.model.add(Activation('relu'))
+        # self.model.add(BatchNormalization())
+        # self.model.add(Dropout(0.4))
+
+        # self.model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+        # self.model.add(Activation('relu'))
+        # self.model.add(BatchNormalization())
+
+        # self.model.add(MaxPooling2D(pool_size=(2, 2)))
+
+        # self.model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+        # self.model.add(Activation('relu'))
+        # self.model.add(BatchNormalization())
+        # self.model.add(Dropout(0.4))
+
+        # self.model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+        # self.model.add(Activation('relu'))
+        # self.model.add(BatchNormalization())
+        # self.model.add(Dropout(0.4))
+
+        # self.model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+        # self.model.add(Activation('relu'))
+        # self.model.add(BatchNormalization())
+
+        # self.model.add(MaxPooling2D(pool_size=(2, 2)))
+        # self.model.add(Dropout(0.5))
+
+        # self.model.add(Flatten())
+        # self.model.add(Dense(512,kernel_regularizer=regularizers.l2(weight_decay)))
+        # self.model.add(Activation('relu'))
+        # self.model.add(BatchNormalization())
+
+        # self.model.add(Dropout(0.5))
+        # self.model.add(Dense(10))
+        # self.model.add(Activation('softmax'))
+        
+        # sgd = optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
+        # self.model.compile(loss='categorical_crossentropy', optimizer=sgd,metrics=['accuracy'])
 
         #print("Main model parameters:\n{0}".format(model.summary()))
 
@@ -170,26 +206,38 @@ class Classifier:
             except:
                 print('\nTraining the CIFAR10 main classifier...')
 
-                # datagen = ImageDataGenerator(
-                #     rotation_range=15,
-                #     width_shift_range=0.1,
-                #     height_shift_range=0.1,
-                #     horizontal_flip=True,)
-                # datagen.fit(x_train)
+                def lr_scheduler(epoch):
+                    return self.__lr * (0.5 ** (epoch // 10))
+                reduce_lr = keras.callbacks.LearningRateScheduler(lr_scheduler)
 
-                # def lr_schedule(epoch):
-                #     lrate = self.__lr
-                #     if epoch > 75:
-                #         lrate = 0.0005
-                #     elif epoch > 100:
-                #         lrate = 0.0003        
-                #     return lrate
+                datagen = ImageDataGenerator(
+                    featurewise_center=False,  # set input mean to 0 over the dataset
+                    samplewise_center=False,  # set each sample mean to 0
+                    featurewise_std_normalization=False,  # divide inputs by std of the dataset
+                    samplewise_std_normalization=False,  # divide each input by its std
+                    zca_whitening=False,  # apply ZCA whitening
+                    zoom_range=0.2,
+                    rotation_range=15,  # randomly rotate images in the range (degrees, 0 to 180)
+                    width_shift_range=0.1,  # randomly shift images horizontally (fraction of total width)
+                    height_shift_range=0.1,  # randomly shift images vertically (fraction of total height)
+                    horizontal_flip=True,  # randomly flip images
+                    vertical_flip=False)  # randomly flip images
+                # (std, mean, and principal components if ZCA whitening is applied).
 
-                # model.fit_generator(datagen.flow(x_train, y_train, batch_size=self.__batch),\
-                #     steps_per_epoch=x_train.shape[0] // self.__batch, epochs=self.__epochs,\
-                #     verbose=1,validation_data=(x_test,y_test),callbacks=[LearningRateScheduler(lr_schedule)])
-                
-                self.model.fit(x_train, y_train, verbose=1, epochs=self.__epochs, batch_size=128)
+                datagen.fit(x_train)                
+
+                sgd = optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
+                self.model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
+
+                # early_stop = EarlyStopping(monitor='val_acc', min_delta=0.00001, patience=10, \
+                #                 verbose=1, mode='auto')
+
+                historytemp = self.model.fit_generator(datagen.flow(x_train, y_train,
+                                         batch_size=self.__batch),
+                            steps_per_epoch=x_train.shape[0] // self.__batch,
+                            epochs=self.__epochs,
+                            validation_data=(x_test, y_test),callbacks=[reduce_lr],verbose=1)
+
                 # Final evaluation of the model
                 scores = self.model.evaluate(x_test, y_test, verbose=0)
                 print("Baseline Error: %.2f%%" % (100-scores[1]*100))

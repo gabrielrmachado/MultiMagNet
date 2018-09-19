@@ -26,7 +26,7 @@ def poll_votes(x, y, x_marks, thresholds, reduction_models):
             v_leg = 0
 
             for j in range(reduction_models):
-                #print("'x' input RE: {0}\nThreshold: {1}".format(x_marks[j][i], thresholds[j]))
+                # print("'x' input RE: {0}\nThreshold: {1}".format(x_marks[j][i], thresholds[j]))
                 if x_marks[j][i] < thresholds[j]:
                     v_leg = v_leg + 1
                 else: 

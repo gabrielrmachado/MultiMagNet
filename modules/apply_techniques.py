@@ -53,6 +53,8 @@ class Image_Reduction:
         """
         x_marks = []
         model = helpers.get_logits(classifier.model)
+        sft = Sequential()
+        sft.add(Lambda(lambda X: softmax(X, axis=0), input_shape=(10,)))
 
         for i in range(len(team_obj.team)):
             autoencoder = team_obj.load_autoencoder(team_obj.team[i])
@@ -61,11 +63,13 @@ class Image_Reduction:
 
             if x.shape[1:] != rec.shape[1:]:
                 rec = rec.reshape(rec.shape[0], x.shape[1], x.shape[2], x.shape[3]).astype('float32')
-                
-            oc = classifier.model.predict(model.predict(x)/T)
-            rc = classifier.model.predict(model.predict(rec)/T)
 
-            marks = [(JSD(oc[j], rc[j])) for j in range(len(rc))]
+            #marks = np.mean(np.power(np.abs(model.predict(x) - model.predict(rec)), 1), axis=1)
+                
+            oc = sft.predict(model.predict(x)/T)
+            rc = sft.predict(model.predict(rec)/T)
+
+            marks = JSD(oc, rc)
             x_marks.append(marks)
 
             del autoencoder

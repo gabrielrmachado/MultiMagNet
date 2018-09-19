@@ -58,12 +58,13 @@ class Assembly_Team():
             m4 = Autoencoder_Params(model="DAE", name="cifar_dae1_opt1", opt=1, batch_size=128, epochs=20, noise=0.1)
             m5 = Autoencoder_Params(model="DAE", name="cifar_dae1_opt2", opt=2, epochs=20, batch_size=128, noise=0.1)
             m6 = Autoencoder_Params(model="DAE", name="cifar_dae1_opt3", opt=3, epochs=20, batch_size=128, noise=0.1)
-            m7 = Autoencoder_Params(model="DAE", name="cifar_dae1_opt4", opt=4, epochs=20, batch_size=128, noise=0.1)
+            m7 = Autoencoder_Params(model="DAE", name="cifar_dae1_opt4", opt=4, epochs=50, batch_size=128, noise=0.5)
             m8 = Autoencoder_Params(model="DAE", name="cifar_dae2_opt3", opt=3, epochs=30, batch_size=64, noise=0.1)
-            m9 = Autoencoder_Params(model="DAE", name="cifar_dae2_opt4", opt=4, epochs=30, batch_size=64, noise=0.1)
+            m9 = Autoencoder_Params(model="DAE", name="cifar_dae2_opt4", opt=4, epochs=40, batch_size=64, noise=0.5)
             m10 = Autoencoder_Params(model="CAE", name="cifar_cae4_opt2", opt=2, batch_size=128, epochs=20)
 
-        self.repository = [m1, m2, m3, m4, m5, m6, m7, m8, m9, m10]
+        # self.repository = [m1, m2, m3, m4, m5, m6, m7, m8, m9, m10]
+        self.repository = [m6]
 
     def get_team(self):
         s = array(self.repository)
@@ -85,6 +86,8 @@ class Assembly_Team():
         thresholds = []
         num = round(drop_rate * len(self.__data.x_val))
         model = helpers.get_logits(classifier.model)
+        sft = Sequential()
+        sft.add(Lambda(lambda X: softmax(X, axis=1), input_shape=(10,)))
 
         for i in range(self.team.size):
             autoencoder = self.load_autoencoder(self.team[i])
@@ -100,12 +103,14 @@ class Assembly_Team():
             if self.__data.x_val.shape[1:] != rec.shape[1:]:
                 rec = rec.reshape(rec.shape[0], self.__data.x_val.shape[1], self.__data.x_val.shape[2], self.__data.x_val.shape[3]).astype('float32')
 
-            oc = model.predict(model.predict(self.__data.x_val)/T)
-            rc = model.predict(model.predict(rec)/T)
-
-            marks = [(JSD(oc[j], rc[j])) for j in range(len(rc))]
+            #marks = np.mean(np.power(np.abs(model.predict(self.__data.x_val) - model.predict(rec)), 1), axis=1)
+            oc = sft.predict(model.predict(self.__data.x_val)/T)
+            rc = sft.predict(model.predict(rec)/T)
+            
+            marks = JSD(oc, rc)            
             marks_iset = np.sort(marks)
-            thresholds.append(marks_iset[-num])
+            thresholds.append(marks_iset[num])
+            
             del autoencoder
         
         if tau == "minRE":
