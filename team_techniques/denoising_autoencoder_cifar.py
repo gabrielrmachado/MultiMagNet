@@ -5,18 +5,22 @@ import matplotlib.pyplot as plt
 import math
 import utils.helpers as helpers
 from team_techniques.techinique import Technique
-from keras.layers import Input, Dense, Dropout, Conv2D, MaxPooling2D, UpSampling2D, BatchNormalization, Activation, Flatten, Reshape
+from keras.layers import Input, Dense, Dropout, Conv2D, MaxPooling2D, AveragePooling2D, UpSampling2D, BatchNormalization, Activation, Flatten, Reshape
 from keras.models import Model
 from keras import backend as K
-from keras import regularizers
+import keras.regularizers as regs
+import keras
 
 class TF_DAE_CIFAR(Technique):
-    def __init__(self, data, name, opt = 1, epochs = 5, batch_size = 128, 
-                    noise_factor = 0.5):
+    def __init__(self, data, structure, name, epochs = 5, batch_size = 128, 
+                    noise_factor = 0.1, reg = 0.0, compiler='adam', batch_norm = False):
             super().__init__(data, None)
             self.__epochs = epochs
             self.__batch_size = batch_size
-            self.__opt = opt
+            self.structure = structure
+            self.reg = reg
+            self.compiler = compiler
+            self.batch_norm = batch_norm
 
             self.__x_train = self.tec_data.x_train
             self.__x_test = self.tec_data.x_test
@@ -34,120 +38,57 @@ class TF_DAE_CIFAR(Technique):
 
     def __createAutoencoder(self):
         input_img = Input(shape=(32, 32, 3))  # adapt this if using `channels_first` image data format
+        x = input_img
 
-        if self.__opt == 1:
-            x = Conv2D(32, (3, 3), padding='same')(input_img)
-            x = BatchNormalization()(x)
-            x = Activation('relu')(x)
-            x = MaxPooling2D((2, 2), padding='same')(x)
-            x = Conv2D(64, (3, 3), padding='same')(input_img)
-            x = BatchNormalization()(x)
-            x = Activation('relu')(x)
-            x = MaxPooling2D((2, 2), padding='same')(x)
-            x = Conv2D(128, (3, 3), padding='same')(x)
-            x = BatchNormalization()(x)
-            x = Activation('relu')(x)
-            encoded = MaxPooling2D((2, 2), padding='same')(x)
+        for layer in self.structure:
+            if isinstance(layer, int):
+                if self.reg != 0.0:
+                    x = Conv2D(layer, (3,3), padding='same', activity_regularizer=regs.l2(self.reg))(x)
+                else:
+                    x = Conv2D(layer, (3,3), padding='same')(x)
 
-            x = Conv2D(128, (3, 3), padding='same')(encoded)
-            x = BatchNormalization()(x)
-            x = Activation('relu')(x)
-            x = UpSampling2D((2, 2))(x)
-            x = Conv2D(64, (3, 3), padding='same')(encoded)
-            x = BatchNormalization()(x)
-            x = Activation('relu')(x)
-            x = UpSampling2D((2, 2))(x)
-            x = Conv2D(32, (3, 3), padding='same')(x)
-            x = BatchNormalization()(x)
-            x = Activation('relu')(x)
-            x = UpSampling2D((2, 2))(x)
-            x = Conv2D(3, (3, 3), padding='same')(x)
-            x = BatchNormalization()(x)
-            decoded = Activation('sigmoid')(x)
+                if self.batch_norm:
+                    x = BatchNormalization()(x)
+                x = Activation('relu')(x)
+            
+            elif layer == "max":
+                x = MaxPooling2D((2, 2), padding="same")(x)
+            elif layer == "average":
+                x = AveragePooling2D((2, 2), padding="same")(x)
+            else:
+                print(layer, "is not recognized!")
+                exit(0)
 
-        if self.__opt == 2:
-            x = Conv2D(32, (3, 3), padding='same')(input_img)
-            x = BatchNormalization()(x)
-            x = Activation('relu')(x)
-            x = MaxPooling2D((2, 2), padding='same')(x)
-            x = Conv2D(32, (3, 3), padding='same')(x)
-            x = BatchNormalization()(x)
-            x = Activation('relu')(x)
-            encoded = MaxPooling2D((2, 2), padding='same')(x)
+        encoded = x
 
-            x = Conv2D(32, (3, 3), padding='same')(encoded)
-            x = BatchNormalization()(x)
-            x = Activation('relu')(x)
-            x = UpSampling2D((2, 2))(x)
-            x = Conv2D(32, (3, 3), padding='same')(x)
-            x = BatchNormalization()(x)
-            x = Activation('relu')(x)
-            x = UpSampling2D((2, 2))(x)
-            x = Conv2D(3, (3, 3), padding='same')(x)
-            x = BatchNormalization()(x)
-            decoded = Activation('sigmoid')(x)
+        for layer in reversed(self.structure):
+            if isinstance(layer, int):
+                if self.reg != 0.0:
+                    x = Conv2D(layer, (3, 3), padding="same",
+                               activity_regularizer=regs.l2(self.reg))(x)
+                else:
+                    x = Conv2D(layer, (3, 3), activation='relu', padding="same")(x)
 
-        if self.__opt == 3:
-            x = Conv2D(32, (3, 3), padding='same')(input_img)
-            x = Activation('relu')(x)
-            x = MaxPooling2D((2, 2), padding='same')(x)
-            x = Conv2D(64, (3, 3), padding='same')(input_img)
-            x = Activation('relu')(x)
-            x = MaxPooling2D((2, 2), padding='same')(x)
-            x = Conv2D(96, (3, 3), padding='same')(input_img)
-            x = Activation('relu')(x)
-            x = MaxPooling2D((2, 2), padding='same')(x)
-            x = Conv2D(128, (3, 3), padding='same')(x)
-            x = Activation('relu')(x)
-            encoded = MaxPooling2D((2, 2), padding='same')(x)
+                if self.batch_norm:
+                    x = BatchNormalization()(x)
+                x = Activation('relu')(x)
 
-            x = Conv2D(128, (3, 3), padding='same')(encoded)
-            x = Activation('relu')(x)
-            x = UpSampling2D((2, 2))(x)
-            x = Conv2D(96, (3, 3), padding='same')(encoded)
-            x = Activation('relu')(x)
-            x = UpSampling2D((2, 2))(x)
-            x = Conv2D(64, (3, 3), padding='same')(encoded)
-            x = Activation('relu')(x)
-            x = UpSampling2D((2, 2))(x)
-            x = Conv2D(32, (3, 3), padding='same')(x)
-            x = Activation('relu')(x)
-            x = UpSampling2D((2, 2))(x)
-            x = Conv2D(3, (3, 3), padding='same')(x)
-            decoded = Activation('sigmoid')(x)
+            elif layer == "max" or layer == "average":
+                x = UpSampling2D((2, 2))(x)
 
-        if self.__opt == 4:
-            x = Conv2D(32,3,3, init='normal', border_mode='same', input_shape=(32,32,3))(input_img)
-            x = BatchNormalization()(x)
-            x = Activation('relu')(x)
-            x = Dropout(0.25)(x)
-            x = Conv2D(32,3,3, init='normal', border_mode='same')(x)
-            x = BatchNormalization()(x)
-            x = Activation('relu')(x)
-            x = MaxPooling2D((2,2), border_mode='same')(x)
-            x = Dropout(0.25)(x)
-            x = Conv2D(32,3,3, init='normal', border_mode='same')(x)
-            x = BatchNormalization()(x)
-            x = Activation('relu')(x)
-            encoded = MaxPooling2D((2,2), border_mode='same')(x)
-
-            # Define decoding layer
-            x = Conv2D(32,3,3, init='normal', border_mode='same')(encoded)
-            x = BatchNormalization()(x)
-            x = Activation('relu')(x)
-            x = UpSampling2D((2,2))(x)
-            x = Conv2D(32,3,3, init='normal', border_mode='same')(x)
-            x = BatchNormalization()(x)
-            x = Activation('relu')(x)
-            x = UpSampling2D((2,2))(x)
-            x = Conv2D(32,3,3, init='normal', border_mode='same')(x)
-            x = BatchNormalization()(x)
-            x = Activation('relu')(x)
-            decoded = Conv2D(3,3,3, init='normal', border_mode='same')(x)
+        x = Conv2D(3, (3, 3), activation='sigmoid', padding='same',
+                         activity_regularizer=regs.l2(self.reg))(x)
+        x = BatchNormalization()(x)
+        decoded = Activation('sigmoid')(x)
 
         self.autoencoder = Model(input_img, decoded)
         self.encoder = Model(input_img, encoded)
-        self.autoencoder.compile(optimizer='adam', loss='mean_squared_error')
+        
+        if self.compiler == 'adam':
+            self.autoencoder.compile(optimizer='adam', loss='mean_squared_error')
+        else:
+            sgd = keras.optimizers.SGD(lr=0.01, momentum=0.9, decay=1e-4, nesterov=False)
+            self.autoencoder.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
 
     def execute(self):
         self.__createAutoencoder()

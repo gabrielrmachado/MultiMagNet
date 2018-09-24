@@ -69,7 +69,7 @@ class Image_Reduction:
             oc = sft.predict(model.predict(x)/T)
             rc = sft.predict(model.predict(rec)/T)
 
-            marks = JSD(oc, rc)
+            marks = [JSD(oc[j], rc[j]) for j in range(len(rc))]       
             x_marks.append(marks)
 
             del autoencoder

@@ -118,16 +118,19 @@ class Experiment:
 
         idx = np.random.permutation(2000)[:length]
 
+        print("Loading classifier...\n")
+        classifier = Classifier(self._sess, self._data, epochs=170)
+        classifier.execute()
+
         x_test_adv = Adversarial_Attack(self._sess, self._data, length=length, attack=attack, epochs=12).attack()
+        print("Accuracy on test samples: {0:.2%}".format(classifier.model.evaluate(self._data.x_test[self._idx_adv], self._data.y_test[self._idx_adv])[1]))
+        print("Accuracy on adversarial test samples: {0:.2%}".format(classifier.model.evaluate(x_test_adv, self._data.y_test[self._idx_adv][:2000])[1]))
         x_test_adv = x_test_adv[idx]
 
         print("Loading team of autoencoders...\n")
         team_obj = Assembly_Team(self._sess, self._data, reduction_models)
         team = team_obj.get_team()
-        
-        print("Loading classifier...\n")
-        classifier = Classifier(self._sess, self._data, epochs=170)
-        classifier.execute()
+
         sft = Sequential()
         sft.add(Lambda(lambda X: softmax(X, axis=1), input_shape=(10,)))
         
@@ -145,10 +148,10 @@ class Experiment:
             sft = Sequential()
             sft.add(Lambda(lambda X: softmax(X, axis=1), input_shape=(10,)))
 
-            out_leg = sft.predict(helpers.get_output_model_layer(x, classifier.model, logits=logits)/10)
-            out_rec = sft.predict(helpers.get_output_model_layer(rec, classifier.model, logits=logits)/10)
-            out_adv = sft.predict(helpers.get_output_model_layer(x_test_adv, classifier.model, logits=logits)/10)
-            adv_rec = sft.predict(helpers.get_output_model_layer(rec_adv, classifier.model, logits=logits)/10)
+            out_leg = sft.predict(helpers.get_output_model_layer(x, classifier.model, logits=logits)/1)
+            out_rec = sft.predict(helpers.get_output_model_layer(rec, classifier.model, logits=logits)/1)
+            out_adv = sft.predict(helpers.get_output_model_layer(x_test_adv, classifier.model, logits=logits)/1)
+            adv_rec = sft.predict(helpers.get_output_model_layer(rec_adv, classifier.model, logits=logits)/1)
 
             leg = JSD(out_leg, out_rec)
             adv = JSD(out_adv, adv_rec)
@@ -190,7 +193,7 @@ class Experiment:
         start = time.time()
 
         # test inputs on main classifier
-        classifier = Classifier(self._sess, self._data, epochs=170, learning_rate=0.01)
+        classifier = Classifier(self._sess, self._data, epochs=200, learning_rate=0.01, batch_size=32)
         classifier.execute()
 
         # # Creates surrogate model and returns the perturbed NumPy test set  
@@ -201,7 +204,7 @@ class Experiment:
         print("\nMain classifier's baseline error: %.2f%%" % (100-scores[1]*100))
 
         # plots the adversarial images
-        helpers.plot_images(self._data.x_test[self._idx_adv][:length], x_test_adv[:length], x_test_adv.shape)
+        #helpers.plot_images(self._data.x_test[self._idx_adv][:length], x_test_adv[:length], x_test_adv.shape)
 
         # Creates a test set containing 'length * 2' input images 'x', where half are benign images and half are adversarial.
         _, x, y = helpers.join_test_sets(self._data.x_test, x_test_adv, length)
@@ -213,8 +216,8 @@ class Experiment:
             thresholds = team.get_thresholds(tau=tau, drop_rate=drop_rate, p = p, plot_rec_images=False)
             x_marks = Image_Reduction.apply_techniques(x, team, p = p)
         else:
-            thresholds = team.get_thresholds_jsd(tau=tau, classifier = classifier, T=20, drop_rate=drop_rate, p = p, plot_rec_images=True)
-            x_marks = Image_Reduction.apply_techniques_jsd(x, team, classifier, T=20, p = p)
+            thresholds = team.get_thresholds_jsd(tau=tau, classifier = classifier, T=1, drop_rate=drop_rate, p = p, plot_rec_images=False)
+            x_marks = Image_Reduction.apply_techniques_jsd(x, team, classifier, T=1, p = p)
 
         y_pred = poll_votes(x, y, x_marks, thresholds, reduction_models)
 

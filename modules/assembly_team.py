@@ -1,10 +1,9 @@
 from team_techniques.sparse_autoencoder import TF_SAE as SPAE
 from team_techniques.deep_autoencoder import TF_StackAE as STAE
-from team_techniques.denoising_autoencoder_mnist import TF_DAE_MNIST as DAE_MNIST
 from team_techniques.denoising_autoencoder_cifar import TF_DAE_CIFAR as DAE_CIFAR
 from team_techniques.conv_autoencoder_mnist import TF_CAE_MNIST as CAE_MNIST
 from team_techniques.conv_autoencoder_cifar import TF_CAE_CIFAR as CAE_CIFAR
-from team_techniques.magnet_autoencoder_mnist import TF_DAE_MagNet as DAE_MagNet
+from team_techniques.magnet_autoencoder_mnist import TF_DAE_MNIST as DAE_MNIST
 from utils.helpers import JSD
 from scipy.stats import entropy
 from numpy.linalg import norm
@@ -17,15 +16,18 @@ from numpy import array
 import numpy as np
 
 class Autoencoder_Params():
-        def __init__(self, model, name, struct=None, activation=None, opt = 1, batch_size = 128, epochs=100, noise=0.0):
-            self.model = model
+        def __init__(self, name, struct=None, model = "", activation="sigmoid", batch_size = 128, epochs=100, 
+            noise=0.0, regularizer=0.0, compiler="adam", batch_normalization=False):
             self.name = name
-            self.struct = struct
             self.activation = activation
-            self.opt = opt
+            self.model = model
+            self.struct = struct
             self.batch_size = batch_size
             self.epochs = epochs
             self.noise = noise
+            self.reg = regularizer
+            self.compiler=compiler
+            self.batch_norm = batch_normalization
 
 class Assembly_Team():        
     def __init__(self, sess, data, number_team_members = 5):
@@ -40,31 +42,60 @@ class Assembly_Team():
         self.__data = data
 
         if data.dataset_name == 'MNIST':
-            m1 = Autoencoder_Params(model="DAE_MagNet", name="MNIST_I", struct=[3, "average", 3], epochs=100, activation='sigmoid', noise=0.1)
-            m2 = Autoencoder_Params(model="DAE_MagNet", name="MNIST_II", struct=[3], epochs=50, activation='sigmoid', noise=0.1)
-            m3 = Autoencoder_Params(model="DAE_MagNet", name="magnet_dae3", struct=[3], epochs=50, activation='relu', noise=0.2)
-            m4 = Autoencoder_Params(model="DAE_MagNet", name="magnet_dae2", struct=[5, "max", 5], epochs=100, activation='sigmoid', noise=0.3)
-            m5 = Autoencoder_Params(model="DAE_MagNet", name="magnet_dae", struct=[3, "average", 3], epochs=100, activation='sigmoid', noise=0.1)
-            m6 = Autoencoder_Params(model="DAE", name="mnist_dae_opt1", epochs=7, batch_size=256, noise=0.5)
-            m7 = Autoencoder_Params(model="DAE", name="mnist_dae_opt2", epochs=10, batch_size=256, noise=0.1)
-            m8 = Autoencoder_Params(model="CAE", name="mnist_cae_opt1", opt=1, epochs=2, batch_size=32)
-            m9 = Autoencoder_Params(model="CAE", name="mnist_cae_opt2", opt=1, epochs=2, batch_size=100)
-            m10 = Autoencoder_Params(model="CAE", name="mnist_cae_opt3", opt=2, batch_size=64, epochs=5)
+            m1 = Autoencoder_Params(model="DAE", name="MNIST_I", struct=[3, "average", 3], epochs=100, activation='sigmoid', noise=0.1)
+            m2 = Autoencoder_Params(model="DAE", name="MNIST_II", struct=[3], epochs=50, activation='sigmoid', noise=0.1)
+            m3 = Autoencoder_Params(model="DAE", name="magnet_dae3", struct=[3], epochs=50, activation='relu', noise=0.2)
+            m4 = Autoencoder_Params(model="DAE", name="magnet_dae2", struct=[5, "max", 5], epochs=100, activation='sigmoid', noise=0.3)
+            m5 = Autoencoder_Params(model="DAE", name="magnet_dae1", struct=[3, "average", 3], epochs=100, activation='sigmoid', noise=0.1)
+            m6 = Autoencoder_Params(model="DAE", name="mnist_dae4", struct=[5, "max", 5, 5, "average"], epochs=7, batch_size=256, noise=0.5)
+            m7 = Autoencoder_Params(model="DAE", name="mnist_dae5", struct=[3, "max", 5], epochs=10, batch_size=128, noise=0.1)
+            m8 = Autoencoder_Params(model="CAE", name="mnist_cae1", struct=[3, "average", 3], epochs=2, batch_size=32)
+            m9 = Autoencoder_Params(model="CAE", name="mnist_cae2", struct=[16, "max", 32], epochs=10, batch_size=128)
+            m10 = m9 = Autoencoder_Params(model="CAE", name="mnist_cae2", struct=[32, "max", 32], epochs=10, batch_size=64)
 
         elif data.dataset_name == 'CIFAR':
-            m1 = Autoencoder_Params(model="CAE", name="cifar_cae1_opt1", opt=1, batch_size=32, epochs=30)
-            m2 = Autoencoder_Params(model="CAE", name="cifar_cae2_opt1", opt=1, batch_size=32, epochs=20)
-            m3 = Autoencoder_Params(model="CAE", name="cifar_cae3_opt2", opt=2, batch_size=64, epochs=20)
-            m4 = Autoencoder_Params(model="DAE", name="cifar_dae1_opt1", opt=1, batch_size=128, epochs=20, noise=0.1)
-            m5 = Autoencoder_Params(model="DAE", name="cifar_dae1_opt2", opt=2, epochs=20, batch_size=128, noise=0.1)
-            m6 = Autoencoder_Params(model="DAE", name="cifar_dae1_opt3", opt=3, epochs=20, batch_size=128, noise=0.1)
-            m7 = Autoencoder_Params(model="DAE", name="cifar_dae1_opt4", opt=4, epochs=50, batch_size=128, noise=0.5)
-            m8 = Autoencoder_Params(model="DAE", name="cifar_dae2_opt3", opt=3, epochs=30, batch_size=64, noise=0.1)
-            m9 = Autoencoder_Params(model="DAE", name="cifar_dae2_opt4", opt=4, epochs=40, batch_size=64, noise=0.5)
-            m10 = Autoencoder_Params(model="CAE", name="cifar_cae4_opt2", opt=2, batch_size=128, epochs=20)
+            m1 = Autoencoder_Params(name='cifar_dae1',batch_size=32, epochs=30,struct=[16,"max",32,"max",32], 
+                            regularizer=1e-9)
+
+            m2 = Autoencoder_Params(name='cifar_dae2',batch_size=32, epochs=30,struct=[32,"max",32], 
+                            regularizer=1e-9, batch_normalization=True)
+
+            m3 = Autoencoder_Params(name='cifar_dae3',batch_size=32, epochs=30,struct=[16,"max",32,"max",32])
+
+            m4 = Autoencoder_Params(name='cifar_dae4',batch_size=32, epochs=30,struct=[32,"max",32], 
+                            batch_normalization=True)
+
+            m5 = Autoencoder_Params(name='cifar_dae5',batch_size=64, epochs=30,struct=[32,"average",32], 
+                            batch_normalization=True)
+
+            m6 = Autoencoder_Params(name='cifar_dae6',batch_size=64, epochs=30,struct=[16,"max",32,"max",48], 
+                            regularizer=1e-9)
+
+            m7 = Autoencoder_Params(name='cifar_dae7',batch_size=64, epochs=30,struct=[32,"max",64], 
+                            regularizer=1e-9, batch_normalization=True, compiler='sgd')
+
+            m8 = Autoencoder_Params(name='cifar_dae8',batch_size=32, epochs=30,
+                            struct=[16,"max",32,"average",48], compiler='sgd')
+
+            m9 = Autoencoder_Params(name='cifar_dae9',batch_size=32, epochs=30,struct=[32,"max",64], 
+                            batch_normalization=True, regularizer=1e-9, compiler='sgd')
+
+            m10 = Autoencoder_Params(name='cifar_dae10',batch_size=32, epochs=30,struct=[48,"max",48], 
+                            batch_normalization=True, regularizer=1e-5, compiler='sgd')
+
+            # m1 = Autoencoder_Params(model="CAE", name="cifar_cae1_opt1", opt=1, batch_size=32, epochs=30)
+            # m2 = Autoencoder_Params(model="CAE", name="cifar_cae2_opt1", opt=1, batch_size=32, epochs=20)
+            # m3 = Autoencoder_Params(model="CAE", name="cifar_cae3_opt2", opt=2, batch_size=64, epochs=20)
+            # m4 = Autoencoder_Params(model="DAE", name="cifar_dae1_opt1", opt=1, batch_size=128, epochs=20, noise=0.1)
+            # m5 = Autoencoder_Params(model="DAE", name="cifar_dae1_opt2", opt=2, epochs=50, batch_size=64, noise=0.1)
+            # m6 = Autoencoder_Params(model="DAE", name="cifar_dae1_opt3", opt=3, epochs=50, batch_size=64, noise=0.25)
+            # m7 = Autoencoder_Params(model="DAE", name="cifar_dae1_opt4", opt=4, epochs=50, batch_size=128, noise=0.5)
+            # m8 = Autoencoder_Params(model="DAE", name="cifar_dae2_opt3", opt=3, epochs=30, batch_size=128, noise=0.1)
+            # m9 = Autoencoder_Params(model="DAE", name="cifar_dae2_opt4", opt=4, epochs=40, batch_size=64, noise=0.5)
+            # m10 = Autoencoder_Params(model="CAE", name="cifar_cae4_opt2", opt=2, batch_size=128, epochs=20)
 
         # self.repository = [m1, m2, m3, m4, m5, m6, m7, m8, m9, m10]
-        self.repository = [m6]
+        self.repository = [m1, m2, m3, m4, m5]
 
     def get_team(self):
         s = array(self.repository)
@@ -107,7 +138,7 @@ class Assembly_Team():
             oc = sft.predict(model.predict(self.__data.x_val)/T)
             rc = sft.predict(model.predict(rec)/T)
             
-            marks = JSD(oc, rc)            
+            marks = [JSD(oc[j], rc[j]) for j in range(len(rc))]            
             marks_iset = np.sort(marks)
             thresholds.append(marks_iset[num])
             
@@ -164,17 +195,15 @@ class Assembly_Team():
         model = team_member.model
 
         if self.__data.dataset_name == "MNIST":
-            if model == "DAE_MagNet":
-                autoencoder = DAE_MagNet(self.__data, name=team_member.name, structure=team_member.struct, epochs=team_member.epochs, activation=team_member.activation, v_noise=team_member.noise)
-            elif model == "DAE":
-                autoencoder = DAE_MNIST(self.__data, name=team_member.name, epochs=team_member.epochs, batch_size=team_member.batch_size, noise_factor=team_member.noise)
+            if model == "DAE":
+                autoencoder = DAE_MNIST(self.__data, name=team_member.name, structure=team_member.struct, epochs=team_member.epochs, activation=team_member.activation, v_noise=team_member.noise)
             elif model == "CAE":
                 autoencoder = CAE_MNIST(self.__data, name=team_member.name, opt=team_member.opt, epochs=team_member.epochs, batch_size=team_member.batch_size)
         else:
-            if model == "DAE":
-                autoencoder = DAE_CIFAR(self.__data, name=team_member.name, opt=team_member.opt, epochs=team_member.epochs, batch_size=team_member.batch_size, noise_factor=team_member.noise)
-            elif model == "CAE":
-                autoencoder = CAE_CIFAR(self.__data, name=team_member.name, opt=team_member.opt, epochs=team_member.epochs, batch_size=team_member.batch_size)
+            autoencoder = DAE_CIFAR(self.__data, name=team_member.name, epochs=team_member.epochs,
+                    batch_size=team_member.batch_size, noise_factor=team_member.noise, reg=team_member.reg,
+                    structure=team_member.struct, compiler=team_member.compiler, 
+                    batch_norm=team_member.batch_norm)
         
         autoencoder.execute()
         return autoencoder

@@ -9,7 +9,7 @@ from keras import regularizers as regs
 import numpy as np
 import os
 
-class TF_DAE_MagNet(Technique):
+class TF_DAE_MNIST(Technique):
     def __init__(self, data, name, structure, epochs = 100, v_noise=0.0, batch_size=256,
                  activation="relu", reg_strength=1e-9):
         super().__init__(data, None)
@@ -37,6 +37,8 @@ class TF_DAE_MagNet(Technique):
             else:
                 print(layer, "is not recognized!")
                 exit(0)
+            
+        encoded = x
 
         for layer in reversed(self.structure):
             if isinstance(layer, int):

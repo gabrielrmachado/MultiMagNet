@@ -13,7 +13,7 @@ import utils.helpers as helpers
 from cleverhans.utils_keras import cnn_model
 from cleverhans.utils_tf import model_train, model_eval, batch_eval
 from keras.preprocessing.image import ImageDataGenerator
-from keras.layers import Conv2D, MaxPooling2D, BatchNormalization
+from keras.layers import Conv2D, MaxPooling2D, BatchNormalization, GlobalAveragePooling2D
 from keras.callbacks import LearningRateScheduler
 from keras import optimizers
 from keras.layers.core import Lambda
@@ -22,7 +22,7 @@ from keras import regularizers
 import keras
 
 class Classifier:
-    def __init__(self, sess, data, epochs = 170, batch_size = 64, learning_rate = 0.1, lr_decay = 1e-4, lr_drop = 20):
+    def __init__(self, sess, data, epochs = 170, batch_size = 32, learning_rate = 0.01, lr_decay = 1e-4, lr_drop = 20):
         self.__sess = sess
         self.__epochs = epochs
         self.__batch = batch_size
@@ -49,6 +49,33 @@ class Classifier:
         self.model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
     def __cifar10_model(self):
+        # self.model = Sequential()
+        # self.model.add(Conv2D(96, (3, 3), input_shape=self.__data.x_train.shape[1:]))
+        # self.model.add(Activation('relu'))
+        # self.model.add(Conv2D(96, (3, 3)))
+        # self.model.add(Activation('relu'))
+        # self.model.add(Conv2D(96, (3, 3)))
+        # self.model.add(Activation('relu'))
+        # self.model.add(MaxPooling2D(pool_size=(2, 2)))
+
+        # self.model.add(Conv2D(192, (3, 3)))
+        # self.model.add(Activation('relu'))
+        # self.model.add(Conv2D(192, (3, 3)))
+        # self.model.add(Activation('relu'))
+        # self.model.add(Conv2D(192, (3, 3)))
+        # self.model.add(Activation('relu'))
+        # self.model.add(MaxPooling2D(pool_size=(2, 2)))
+
+        # self.model.add(Conv2D(192, (3, 3)))
+        # self.model.add(Activation('relu'))
+        # self.model.add(Conv2D(192, (1, 1)))
+        # self.model.add(Activation('relu'))
+        # self.model.add(Conv2D(10, (1, 1)))
+        # self.model.add(Activation('relu'))
+        # self.model.add(GlobalAveragePooling2D())
+        # self.model.add(Dense(10))
+        # self.model.add(Activation("softmax"))
+
         self.model = Sequential()
         self.model.add(Conv2D(32, (3,3), padding='same', input_shape=self.__data.x_train.shape[1:]))
         self.model.add(Activation('relu'))
@@ -75,95 +102,6 @@ class Classifier:
         self.model.add(Dense(10))
         self.model.add(Activation("softmax"))
         self.model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-
-        # self.model = Sequential()
-        # weight_decay = 0.0005
-
-        # self.model.add(Conv2D(64, (3, 3), padding='same', input_shape=self.__data.x_train.shape[1:], 
-        #     kernel_regularizer=regularizers.l2(weight_decay)))
-        # self.model.add(Activation('relu'))
-        # self.model.add(BatchNormalization())
-        # self.model.add(Dropout(0.3))
-
-        # self.model.add(Conv2D(64, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        # self.model.add(Activation('relu'))
-        # self.model.add(BatchNormalization())
-
-        # self.model.add(MaxPooling2D(pool_size=(2, 2)))
-
-        # self.model.add(Conv2D(128, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        # self.model.add(Activation('relu'))
-        # self.model.add(BatchNormalization())
-        # self.model.add(Dropout(0.4))
-
-        # self.model.add(Conv2D(128, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        # self.model.add(Activation('relu'))
-        # self.model.add(BatchNormalization())
-
-        # self.model.add(MaxPooling2D(pool_size=(2, 2)))
-
-        # self.model.add(Conv2D(256, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        # self.model.add(Activation('relu'))
-        # self.model.add(BatchNormalization())
-        # self.model.add(Dropout(0.4))
-
-        # self.model.add(Conv2D(256, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        # self.model.add(Activation('relu'))
-        # self.model.add(BatchNormalization())
-        # self.model.add(Dropout(0.4))
-
-        # self.model.add(Conv2D(256, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        # self.model.add(Activation('relu'))
-        # self.model.add(BatchNormalization())
-
-        # self.model.add(MaxPooling2D(pool_size=(2, 2)))
-
-        # self.model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        # self.model.add(Activation('relu'))
-        # self.model.add(BatchNormalization())
-        # self.model.add(Dropout(0.4))
-
-        # self.model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        # self.model.add(Activation('relu'))
-        # self.model.add(BatchNormalization())
-        # self.model.add(Dropout(0.4))
-
-        # self.model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        # self.model.add(Activation('relu'))
-        # self.model.add(BatchNormalization())
-
-        # self.model.add(MaxPooling2D(pool_size=(2, 2)))
-
-        # self.model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        # self.model.add(Activation('relu'))
-        # self.model.add(BatchNormalization())
-        # self.model.add(Dropout(0.4))
-
-        # self.model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        # self.model.add(Activation('relu'))
-        # self.model.add(BatchNormalization())
-        # self.model.add(Dropout(0.4))
-
-        # self.model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        # self.model.add(Activation('relu'))
-        # self.model.add(BatchNormalization())
-
-        # self.model.add(MaxPooling2D(pool_size=(2, 2)))
-        # self.model.add(Dropout(0.5))
-
-        # self.model.add(Flatten())
-        # self.model.add(Dense(512,kernel_regularizer=regularizers.l2(weight_decay)))
-        # self.model.add(Activation('relu'))
-        # self.model.add(BatchNormalization())
-
-        # self.model.add(Dropout(0.5))
-        # self.model.add(Dense(10))
-        # self.model.add(Activation('softmax'))
-        
-        # sgd = optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
-        # self.model.compile(loss='categorical_crossentropy', optimizer=sgd,metrics=['accuracy'])
-
-        #print("Main model parameters:\n{0}".format(model.summary()))
 
     def execute(self, logits=False):
         """
@@ -207,7 +145,7 @@ class Classifier:
                 print('\nTraining the CIFAR10 main classifier...')
 
                 def lr_scheduler(epoch):
-                    return self.__lr * (0.5 ** (epoch // 10))
+                    return self.__lr * (0.2 ** (epoch // 10))
                 reduce_lr = keras.callbacks.LearningRateScheduler(lr_scheduler)
 
                 datagen = ImageDataGenerator(
@@ -224,11 +162,13 @@ class Classifier:
                     vertical_flip=False)  # randomly flip images
                 # (std, mean, and principal components if ZCA whitening is applied).
 
+                # datagen = ImageDataGenerator(
+                #     width_shift_range=0.2,  # randomly shift images horizontally (fraction of total width)
+                #     height_shift_range=0.2,  # randomly shift images vertically (fraction of total height)
+                #     horizontal_flip=True)  # randomly flip images
+
                 datagen.fit(x_train)                
-
-                sgd = optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
-                self.model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
-
+                
                 # early_stop = EarlyStopping(monitor='val_acc', min_delta=0.00001, patience=10, \
                 #                 verbose=1, mode='auto')
 
@@ -237,6 +177,13 @@ class Classifier:
                             steps_per_epoch=x_train.shape[0] // self.__batch,
                             epochs=self.__epochs,
                             validation_data=(x_test, y_test),callbacks=[reduce_lr],verbose=1)
+
+                
+                # historytemp = self.model.fit_generator(datagen.flow(x_train, y_train,
+                #                          batch_size=self.__batch),
+                #             steps_per_epoch=x_train.shape[0] // self.__batch,
+                #             epochs=self.__epochs,
+                #             validation_data=(x_test, y_test),verbose=1)
 
                 # Final evaluation of the model
                 scores = self.model.evaluate(x_test, y_test, verbose=0)
