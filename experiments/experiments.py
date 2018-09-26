@@ -216,8 +216,8 @@ class Experiment:
             thresholds = team.get_thresholds(tau=tau, drop_rate=drop_rate, p = p, plot_rec_images=False)
             x_marks = Image_Reduction.apply_techniques(x, team, p = p)
         else:
-            thresholds = team.get_thresholds_jsd(tau=tau, classifier = classifier, T=1, drop_rate=drop_rate, p = p, plot_rec_images=False)
-            x_marks = Image_Reduction.apply_techniques_jsd(x, team, classifier, T=1, p = p)
+            thresholds = team.get_thresholds_jsd(tau=tau, classifier = classifier, T=10, drop_rate=drop_rate, p = p, plot_rec_images=False)
+            x_marks = Image_Reduction.apply_techniques_jsd(x, team, classifier, T=10, p = p)
 
         y_pred = poll_votes(x, y, x_marks, thresholds, reduction_models)
 

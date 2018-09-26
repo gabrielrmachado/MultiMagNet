@@ -88,7 +88,7 @@ class TF_DAE_CIFAR(Technique):
             self.autoencoder.compile(optimizer='adam', loss='mean_squared_error')
         else:
             sgd = keras.optimizers.SGD(lr=0.01, momentum=0.9, decay=1e-4, nesterov=False)
-            self.autoencoder.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
+            self.autoencoder.compile(loss='categorical_crossentropy', optimizer=sgd)
 
     def execute(self):
         self.__createAutoencoder()
