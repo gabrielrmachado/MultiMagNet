@@ -23,5 +23,5 @@ def all_cases_experiment(dataset):
 #all_cases_experiment("CIFAR")
 
 exp = Experiment("CIFAR")
-#exp.testJSD(10, 1, "DEEPFOOL", logits=True)
-exp.simple_experiment(reduction_models=5, attack="DEEPFOOL", drop_rate=0.1, tau="RE", length=2000)
+exp.testJSD(10, 1, "BIM", logits=True, T=10)
+exp.simple_experiment(reduction_models=5, attack="DEEPFOOL", drop_rate=0.1, tau="minRE", length=2000)

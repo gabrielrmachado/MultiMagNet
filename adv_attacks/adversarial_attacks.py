@@ -90,7 +90,7 @@ class Adversarial_Attack:
             if self.__data.dataset_name == 'MNIST':
                 x_adv_images = fgsm.generate(x=self.__data.x_test[self.idx_adv][:self._length], eps = 0.2)
             else:
-                x_adv_images = fgsm.generate(x=self.__data.x_test[self.idx_adv][:self._length], eps = 0.04)
+                x_adv_images = fgsm.generate(x=self.__data.x_test[self.idx_adv][:self._length], eps = 0.025)
 
             helpers.save_imgs_pkl(x_adv_images, self.__dataset.lower() + '_test_set_fgsm.pkl')
             return x_adv_images
@@ -108,7 +108,7 @@ class Adversarial_Attack:
             if self.__dataset == 'MNIST':
                 bim = BasicIterativeMethod(wrap, eps=0.2, eps_step=0.05, max_iter=50)
             if self.__dataset == 'CIFAR':
-                bim = BasicIterativeMethod(wrap, eps=0.05, eps_step=0.02, max_iter=100)
+                bim = BasicIterativeMethod(wrap, eps=0.025, eps_step=0.01, max_iter=1000, norm=np.inf)
 
             x_adv_images = bim.generate(x = self.__data.x_test[self.idx_adv][:self._length])
             helpers.save_imgs_pkl(x_adv_images, self.__dataset.lower() + '_test_set_bim.pkl')
@@ -162,7 +162,7 @@ class Adversarial_Attack:
             scores = self.surrogate_model.evaluate(x_test_adv, self.__data.y_test, verbose=0)
         else:
             scores = self.surrogate_model.evaluate(x_test_adv, y_test, verbose=0)
-        print("Surrogate model's baseline error: %.2f%%" % (100-scores[1]*100))
+        print("Surrogate model's baseline error: %.2f%%" % (scores[1]*100))
 
     def _load_images(self, attack_str):
         if attack_str == "":
