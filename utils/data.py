@@ -40,7 +40,7 @@ class Data(object):
             self.y_test = np_utils.to_categorical(self.y_test)
 
         # creates validation set by spliting training set into the first 'validation_data' samples.
-        if validation_data > 3000 and validation_data <= 8000:
+        if validation_data >= 0 and validation_data <= 8000:
             x_val = self.x_train[:validation_data]
             y_val = self.y_train[:validation_data]
             self.x_train = self.x_train[validation_data:]

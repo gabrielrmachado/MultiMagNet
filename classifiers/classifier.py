@@ -7,6 +7,7 @@ from keras.layers.convolutional import Convolution2D
 from keras.optimizers import SGD
 from keras.callbacks import EarlyStopping
 import os
+from keras.models import Model
 import tensorflow as tf
 import numpy as np
 import utils.helpers as helpers
@@ -18,8 +19,11 @@ from keras.callbacks import LearningRateScheduler
 from keras import optimizers
 from keras.layers.core import Lambda
 from keras import backend as K
+from keras.callbacks import ModelCheckpoint
 from keras import regularizers
 import keras
+from keras.applications import ResNet50
+from keras.layers import Input
 
 class Classifier:
     def __init__(self, sess, data, epochs = 170, batch_size = 32, learning_rate = 0.01, lr_decay = 1e-4, lr_drop = 20):
@@ -48,34 +52,36 @@ class Classifier:
         self.model.add(Activation("softmax"))
         self.model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-    def __cifar10_model(self):
-        # self.model = Sequential()
-        # self.model.add(Conv2D(96, (3, 3), input_shape=self.__data.x_train.shape[1:]))
-        # self.model.add(Activation('relu'))
-        # self.model.add(Conv2D(96, (3, 3)))
-        # self.model.add(Activation('relu'))
-        # self.model.add(Conv2D(96, (3, 3)))
-        # self.model.add(Activation('relu'))
-        # self.model.add(MaxPooling2D(pool_size=(2, 2)))
+    def __cifar10_model_2(self):
+        self.model = Sequential()
 
-        # self.model.add(Conv2D(192, (3, 3)))
-        # self.model.add(Activation('relu'))
-        # self.model.add(Conv2D(192, (3, 3)))
-        # self.model.add(Activation('relu'))
-        # self.model.add(Conv2D(192, (3, 3)))
-        # self.model.add(Activation('relu'))
-        # self.model.add(MaxPooling2D(pool_size=(2, 2)))
+        self.model.add(Convolution2D(96, 3, 3, border_mode = 'same', input_shape=self.__data.x_train.shape[1:]))
+        self.model.add(Activation('relu'))
+        self.model.add(Convolution2D(96, 3, 3, border_mode='same'))
+        self.model.add(Activation('relu'))
+        self.model.add(Convolution2D(96, 3, 3, border_mode='same', subsample = (2,2)))
+        self.model.add(Dropout(0.5))
 
-        # self.model.add(Conv2D(192, (3, 3)))
-        # self.model.add(Activation('relu'))
-        # self.model.add(Conv2D(192, (1, 1)))
-        # self.model.add(Activation('relu'))
-        # self.model.add(Conv2D(10, (1, 1)))
-        # self.model.add(Activation('relu'))
-        # self.model.add(GlobalAveragePooling2D())
-        # self.model.add(Dense(10))
-        # self.model.add(Activation("softmax"))
+        self.model.add(Convolution2D(192, 3, 3, border_mode = 'same'))
+        self.model.add(Activation('relu'))
+        self.model.add(Convolution2D(192, 3, 3,border_mode='same'))
+        self.model.add(Activation('relu'))
+        self.model.add(Convolution2D(192, 3, 3, border_mode='same', subsample = (2,2)))
+        self.model.add(Dropout(0.5))
 
+        self.model.add(Convolution2D(192, 3, 3, border_mode = 'same'))
+        self.model.add(Activation('relu'))
+        self.model.add(Convolution2D(192, 1, 1, border_mode='valid'))
+        self.model.add(Activation('relu'))
+        self.model.add(Convolution2D(10, 1, 1, border_mode='valid'))
+
+        self.model.add(GlobalAveragePooling2D())
+        self.model.add(Activation('softmax'))
+
+        sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
+        self.model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
+
+    def __cifar10_model_1(self):        
         self.model = Sequential()
         self.model.add(Conv2D(32, (3,3), padding='same', input_shape=self.__data.x_train.shape[1:]))
         self.model.add(Activation('relu'))
@@ -101,6 +107,7 @@ class Classifier:
         self.model.add(Flatten())
         self.model.add(Dense(10))
         self.model.add(Activation("softmax"))
+
         self.model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
     def execute(self, logits=False):
@@ -136,63 +143,45 @@ class Classifier:
                     print("It has not been possible to save MNIST model's parameters.")
         
         if self.__data.dataset_name.upper() == 'CIFAR':
-            self.__cifar10_model()
+            self.__cifar10_model_2()
             try:
                 self.model.load_weights(os.path.dirname(os.path.realpath(__file__)) + '\\model_parameters\\cifar10.h5')
                 scores = self.model.evaluate(x_test, y_test, verbose=0)
                 print("Baseline Error: %.2f%%" % (100-scores[1]*100))
             except:
-                print('\nTraining the CIFAR10 main classifier...')
-
-                def lr_scheduler(epoch):
-                    return self.__lr * (0.2 ** (epoch // 10))
-                reduce_lr = keras.callbacks.LearningRateScheduler(lr_scheduler)
+                print('\nTraining the CIFAR-10 main classifier...')
 
                 datagen = ImageDataGenerator(
-                    featurewise_center=False,  # set input mean to 0 over the dataset
-                    samplewise_center=False,  # set each sample mean to 0
-                    featurewise_std_normalization=False,  # divide inputs by std of the dataset
-                    samplewise_std_normalization=False,  # divide each input by its std
-                    zca_whitening=False,  # apply ZCA whitening
-                    zoom_range=0.2,
-                    rotation_range=15,  # randomly rotate images in the range (degrees, 0 to 180)
-                    width_shift_range=0.1,  # randomly shift images horizontally (fraction of total width)
-                    height_shift_range=0.1,  # randomly shift images vertically (fraction of total height)
-                    horizontal_flip=True,  # randomly flip images
-                    vertical_flip=False)  # randomly flip images
-                # (std, mean, and principal components if ZCA whitening is applied).
+                featurewise_center=False,  # set input mean to 0 over the dataset
+                samplewise_center=False,  # set each sample mean to 0
+                featurewise_std_normalization=False,  # divide inputs by std of the dataset
+                samplewise_std_normalization=False,  # divide each input by its std
+                zca_whitening=False,  # apply ZCA whitening
+                rotation_range=0,  # randomly rotate images in the range (degrees, 0 to 180)
+                width_shift_range=0.1,  # randomly shift images horizontally (fraction of total width)
+                height_shift_range=0.1,  # randomly shift images vertically (fraction of total height)
+                horizontal_flip=True,  # randomly flip images
+                vertical_flip=False) 
 
-                # datagen = ImageDataGenerator(
-                #     width_shift_range=0.2,  # randomly shift images horizontally (fraction of total width)
-                #     height_shift_range=0.2,  # randomly shift images vertically (fraction of total height)
-                #     horizontal_flip=True)  # randomly flip images
+                datagen.fit(x_train)
+                checkpoint = ModelCheckpoint(os.path.dirname(os.path.realpath(__file__)) + '\\model_parameters\\cifar10.h5', monitor='val_acc', verbose=1, save_best_only=True, save_weights_only=False, mode='max')
 
-                datagen.fit(x_train)                
-                
-                # early_stop = EarlyStopping(monitor='val_acc', min_delta=0.00001, patience=10, \
-                #                 verbose=1, mode='auto')
+                callbacks_list = [checkpoint]
+                    # Fit the model on the batches generated by datagen.flow().
+                history_callback = self.model.fit_generator(datagen.flow(x_train, y_train,
+                                                    batch_size=self.__batch),
+                                        samples_per_epoch=x_train.shape[0],
+                                        nb_epoch=self.__epochs, validation_data=(x_test, y_test), callbacks=callbacks_list, verbose=1)
 
-                historytemp = self.model.fit_generator(datagen.flow(x_train, y_train,
-                                         batch_size=self.__batch),
-                            steps_per_epoch=x_train.shape[0] // self.__batch,
-                            epochs=self.__epochs,
-                            validation_data=(x_test, y_test),callbacks=[reduce_lr],verbose=1)
-
-                
-                # historytemp = self.model.fit_generator(datagen.flow(x_train, y_train,
-                #                          batch_size=self.__batch),
-                #             steps_per_epoch=x_train.shape[0] // self.__batch,
-                #             epochs=self.__epochs,
-                #             validation_data=(x_test, y_test),verbose=1)
 
                 # Final evaluation of the model
                 scores = self.model.evaluate(x_test, y_test, verbose=0)
                 print("Baseline Error: %.2f%%" % (100-scores[1]*100))
 
-                try:
-                    self.model.save_weights(os.path.dirname(os.path.realpath(__file__)) + '\\model_parameters\\cifar10.h5')
-                except:
-                    print("It has not been possible to save CIFAR-10 model's parameters.")
+                # try:
+                #     self.model.save_weights(os.path.dirname(os.path.realpath(__file__)) + '\\model_parameters\\cifar10.h5')
+                # except:
+                #     print("It has not been possible to save CIFAR-10 model's parameters.")
 
     def evaluate_model(self, x_test, y_test):
         scores = self.model.evaluate(x_test, y_test, verbose=0)
