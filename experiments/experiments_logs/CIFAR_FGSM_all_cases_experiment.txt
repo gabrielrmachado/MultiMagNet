@@ -1,217 +1,42 @@
 
+for 3 experiments
 
-EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 1, drop_rate = 0.001, tau = RE
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 1, drop_rate = 0.1, tau = minRE, T = 15
 
-Team Statistics: ACC Mean: 49.95%, Positive Mean: 99.85%, Negative Mean: 0.05%, AUC mean: 0.499, F1 Mean: 0.666
-------------------------------------------------------------------------------------------------------------------------------------
+Team Statistics: ACC Mean: 56.98%, ACC STD: 2.31%, Positive mean: 89.27%, Positive STD: 0.57%, Negative mean: 24.68%, Negative STD: 4.05%
+---------------------------------------------------------------------------------------------------------------------------------------------
 
 
-Experiment's elapsed time: 0:00:18.713019
+Experiment's elapsed time: 0:01:16.432810
 
-EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 1, drop_rate = 0.01, tau = RE
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 3, drop_rate = 0.1, tau = minRE, T = 15
 
-Team Statistics: ACC Mean: 49.83%, Positive Mean: 98.85%, Negative Mean: 0.80%, AUC mean: 0.498, F1 Mean: 0.663
------------------------------------------------------------------------------------------------------------------------------------
+Team Statistics: ACC Mean: 63.62%, ACC STD: 2.40%, Positive mean: 78.22%, Positive STD: 12.43%, Negative mean: 49.02%, Negative STD: 13.00%
+---------------------------------------------------------------------------------------------------------------------------------------------
 
 
-Experiment's elapsed time: 0:00:36.284302
+Experiment's elapsed time: 0:05:14.590677
 
-EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 1, drop_rate = 0.05, tau = RE
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 5, drop_rate = 0.1, tau = minRE, T = 15
 
-Team Statistics: ACC Mean: 53.50%, Positive Mean: 94.80%, Negative Mean: 12.20%, AUC mean: 0.535, F1 Mean: 0.671
------------------------------------------------------------------------------------------------------------------------------------
+Team Statistics: ACC Mean: 66.27%, ACC STD: 0.96%, Positive mean: 70.25%, Positive STD: 5.52%, Negative mean: 62.30%, Negative STD: 5.47%
+---------------------------------------------------------------------------------------------------------------------------------------------
 
 
-Experiment's elapsed time: 0:00:37.818593
+Experiment's elapsed time: 0:12:42.148379
 
-EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 3, drop_rate = 0.001, tau = RE
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 7, drop_rate = 0.1, tau = minRE, T = 15
 
-Team Statistics: ACC Mean: 50.08%, Positive Mean: 100.00%, Negative Mean: 0.15%, AUC mean: 0.501, F1 Mean: 0.667
-------------------------------------------------------------------------------------------------------------------------------------
+Team Statistics: ACC Mean: 67.41%, ACC STD: 0.53%, Positive mean: 64.50%, Positive STD: 1.89%, Negative mean: 70.32%, Negative STD: 2.93%
+---------------------------------------------------------------------------------------------------------------------------------------------
 
 
-Experiment's elapsed time: 0:01:19.764291
+Experiment's elapsed time: 0:25:36.126159
 
-EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 3, drop_rate = 0.001, tau = minRE
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 9, drop_rate = 0.1, tau = minRE, T = 15
 
-Team Statistics: ACC Mean: 66.92%, Positive Mean: 49.15%, Negative Mean: 84.70%, AUC mean: 0.669, F1 Mean: 0.598
----------------------------------------------------------------------------------------------------------------------------------------
+Team Statistics: ACC Mean: 67.00%, ACC STD: 0.29%, Positive mean: 69.30%, Positive STD: 3.27%, Negative mean: 64.70%, Negative STD: 3.57%
+---------------------------------------------------------------------------------------------------------------------------------------------
 
 
-Experiment's elapsed time: 0:02:03.334892
-
-EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 3, drop_rate = 0.01, tau = RE
-
-Team Statistics: ACC Mean: 50.70%, Positive Mean: 99.15%, Negative Mean: 2.25%, AUC mean: 0.507, F1 Mean: 0.668
------------------------------------------------------------------------------------------------------------------------------------
-
-
-Experiment's elapsed time: 0:02:33.680955
-
-EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 3, drop_rate = 0.01, tau = minRE
-
-Team Statistics: ACC Mean: 77.58%, Positive Mean: 96.90%, Negative Mean: 58.25%, AUC mean: 0.776, F1 Mean: 0.812
---------------------------------------------------------------------------------------------------------------------------------------
-
-
-Experiment's elapsed time: 0:03:22.658670
-
-EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 3, drop_rate = 0.05, tau = RE
-
-Team Statistics: ACC Mean: 54.85%, Positive Mean: 95.55%, Negative Mean: 14.15%, AUC mean: 0.548, F1 Mean: 0.679
------------------------------------------------------------------------------------------------------------------------------------
-
-
-Experiment's elapsed time: 0:03:58.799973
-
-EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 3, drop_rate = 0.05, tau = minRE
-
-Team Statistics: ACC Mean: 57.80%, Positive Mean: 16.05%, Negative Mean: 99.55%, AUC mean: 0.578, F1 Mean: 0.276
---------------------------------------------------------------------------------------------------------------------------------------
-
-
-Experiment's elapsed time: 0:04:51.395547
-
-EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 5, drop_rate = 0.001, tau = RE
-
-Team Statistics: ACC Mean: 50.20%, Positive Mean: 100.00%, Negative Mean: 0.40%, AUC mean: 0.502, F1 Mean: 0.668
-------------------------------------------------------------------------------------------------------------------------------------
-
-
-Experiment's elapsed time: 0:06:19.127781
-
-EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 5, drop_rate = 0.001, tau = minRE
-
-Team Statistics: ACC Mean: 66.67%, Positive Mean: 59.50%, Negative Mean: 73.85%, AUC mean: 0.667, F1 Mean: 0.641
----------------------------------------------------------------------------------------------------------------------------------------
-
-
-Experiment's elapsed time: 0:08:08.738440
-
-EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 5, drop_rate = 0.01, tau = RE
-
-Team Statistics: ACC Mean: 50.78%, Positive Mean: 99.15%, Negative Mean: 2.40%, AUC mean: 0.508, F1 Mean: 0.668
------------------------------------------------------------------------------------------------------------------------------------
-
-
-Experiment's elapsed time: 0:09:52.545738
-
-EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 5, drop_rate = 0.01, tau = minRE
-
-Team Statistics: ACC Mean: 60.92%, Positive Mean: 22.70%, Negative Mean: 99.15%, AUC mean: 0.609, F1 Mean: 0.367
---------------------------------------------------------------------------------------------------------------------------------------
-
-
-Experiment's elapsed time: 0:11:31.178582
-
-EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 5, drop_rate = 0.05, tau = RE
-
-Team Statistics: ACC Mean: 58.17%, Positive Mean: 96.20%, Negative Mean: 20.15%, AUC mean: 0.582, F1 Mean: 0.697
------------------------------------------------------------------------------------------------------------------------------------
-
-
-Experiment's elapsed time: 0:13:48.603324
-
-EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 5, drop_rate = 0.05, tau = minRE
-
-Team Statistics: ACC Mean: 74.70%, Positive Mean: 49.60%, Negative Mean: 99.80%, AUC mean: 0.747, F1 Mean: 0.662
---------------------------------------------------------------------------------------------------------------------------------------
-
-
-Experiment's elapsed time: 0:16:04.924327
-
-EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 7, drop_rate = 0.001, tau = RE
-
-Team Statistics: ACC Mean: 50.15%, Positive Mean: 99.95%, Negative Mean: 0.35%, AUC mean: 0.502, F1 Mean: 0.667
-------------------------------------------------------------------------------------------------------------------------------------
-
-
-Experiment's elapsed time: 0:19:25.198027
-
-EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 7, drop_rate = 0.001, tau = minRE
-
-Team Statistics: ACC Mean: 66.75%, Positive Mean: 47.50%, Negative Mean: 86.00%, AUC mean: 0.667, F1 Mean: 0.588
----------------------------------------------------------------------------------------------------------------------------------------
-
-
-Experiment's elapsed time: 0:22:39.926535
-
-EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 7, drop_rate = 0.01, tau = RE
-
-Team Statistics: ACC Mean: 50.65%, Positive Mean: 99.10%, Negative Mean: 2.20%, AUC mean: 0.507, F1 Mean: 0.668
------------------------------------------------------------------------------------------------------------------------------------
-
-
-Experiment's elapsed time: 0:26:33.955904
-
-EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 7, drop_rate = 0.01, tau = minRE
-
-Team Statistics: ACC Mean: 60.10%, Positive Mean: 21.05%, Negative Mean: 99.15%, AUC mean: 0.601, F1 Mean: 0.345
---------------------------------------------------------------------------------------------------------------------------------------
-
-
-Experiment's elapsed time: 0:30:29.007765
-
-EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 7, drop_rate = 0.05, tau = RE
-
-Team Statistics: ACC Mean: 55.65%, Positive Mean: 95.60%, Negative Mean: 15.70%, AUC mean: 0.556, F1 Mean: 0.683
------------------------------------------------------------------------------------------------------------------------------------
-
-
-Experiment's elapsed time: 0:34:47.914152
-
-EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 7, drop_rate = 0.05, tau = minRE
-
-Team Statistics: ACC Mean: 56.57%, Positive Mean: 13.15%, Negative Mean: 100.00%, AUC mean: 0.566, F1 Mean: 0.232
---------------------------------------------------------------------------------------------------------------------------------------
-
-
-Experiment's elapsed time: 0:39:43.953708
-
-EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 9, drop_rate = 0.001, tau = RE
-
-Team Statistics: ACC Mean: 50.10%, Positive Mean: 100.00%, Negative Mean: 0.20%, AUC mean: 0.501, F1 Mean: 0.667
-------------------------------------------------------------------------------------------------------------------------------------
-
-
-Experiment's elapsed time: 0:46:28.217312
-
-EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 9, drop_rate = 0.001, tau = minRE
-
-Team Statistics: ACC Mean: 67.33%, Positive Mean: 50.80%, Negative Mean: 83.85%, AUC mean: 0.673, F1 Mean: 0.609
----------------------------------------------------------------------------------------------------------------------------------------
-
-
-Experiment's elapsed time: 0:53:50.446858
-
-EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 9, drop_rate = 0.01, tau = RE
-
-Team Statistics: ACC Mean: 50.88%, Positive Mean: 99.05%, Negative Mean: 2.70%, AUC mean: 0.509, F1 Mean: 0.668
------------------------------------------------------------------------------------------------------------------------------------
-
-
-Experiment's elapsed time: 1:01:36.698212
-
-EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 9, drop_rate = 0.01, tau = minRE
-
-Team Statistics: ACC Mean: 62.15%, Positive Mean: 25.30%, Negative Mean: 99.00%, AUC mean: 0.622, F1 Mean: 0.401
---------------------------------------------------------------------------------------------------------------------------------------
-
-
-Experiment's elapsed time: 1:10:17.870663
-
-EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 9, drop_rate = 0.05, tau = RE
-
-Team Statistics: ACC Mean: 55.25%, Positive Mean: 95.75%, Negative Mean: 14.75%, AUC mean: 0.552, F1 Mean: 0.681
------------------------------------------------------------------------------------------------------------------------------------
-
-
-Experiment's elapsed time: 1:19:29.582202
-
-EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 9, drop_rate = 0.05, tau = minRE
-
-Team Statistics: ACC Mean: 55.70%, Positive Mean: 11.40%, Negative Mean: 100.00%, AUC mean: 0.557, F1 Mean: 0.205
---------------------------------------------------------------------------------------------------------------------------------------
-
-
-Experiment's elapsed time: 1:29:36.617301
+Experiment's elapsed time: 0:46:50.585662

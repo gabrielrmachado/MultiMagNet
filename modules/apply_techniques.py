@@ -32,7 +32,7 @@ class Image_Reduction:
 
         for i in range(len(team_obj.team)):
             autoencoder = team_obj.load_autoencoder(team_obj.team[i])
-            print('Reconstructing images using {0} model ({1}/{2}).'.format(autoencoder.name, i+1, team_obj.team.size))
+            print('Reconstructing test images using {0} model ({1}/{2}).'.format(autoencoder.name, i+1, team_obj.team.size))
             rec = autoencoder.predict(x)
 
             if x.shape[1:] != rec.shape[1:]:
@@ -58,7 +58,7 @@ class Image_Reduction:
 
         for i in range(len(team_obj.team)):
             autoencoder = team_obj.load_autoencoder(team_obj.team[i])
-            print('Reconstructing images using {0} model ({1}/{2}).'.format(autoencoder.name, i+1, team_obj.team.size))
+            print('Reconstructing test images using {0} model ({1}/{2}).'.format(autoencoder.name, i+1, team_obj.team.size))
             rec = autoencoder.predict(x)
 
             if x.shape[1:] != rec.shape[1:]:
@@ -69,7 +69,8 @@ class Image_Reduction:
             oc = sft.predict(model.predict(x)/T)
             rc = sft.predict(model.predict(rec)/T)
 
-            marks = [JSD(oc[j], rc[j]) for j in range(len(rc))]       
+            marks = [JSD(oc[j], rc[j]) for j in range(len(rc))]     
+            # print("X_MARKS: \n{0}".format(marks))  
             x_marks.append(marks)
 
             del autoencoder

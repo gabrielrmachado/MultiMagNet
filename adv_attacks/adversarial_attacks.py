@@ -97,7 +97,7 @@ class Adversarial_Attack:
         
         elif self.__attack.startswith("CW"):
             print('\nCrafting adversarial examples using CW attack...\n')
-            cw = CarliniL2Method(wrap, confidence=0.0, targeted=False, binary_search_steps=3, learning_rate=0.5, initial_const=1, max_iter=100)
+            cw = CarliniL2Method(wrap, confidence=0.0, targeted=False, binary_search_steps=3, learning_rate=0.5, initial_const=1, max_iter=500)
             x_adv_images = cw.generate(self.__data.x_test[self.idx_adv][:self._length])
             helpers.save_imgs_pkl(x_adv_images, self.__dataset.lower() + '_test_set_cw.pkl')
             return x_adv_images

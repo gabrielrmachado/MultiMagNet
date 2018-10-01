@@ -85,15 +85,19 @@ class Assembly_Team():
 
         self.repository = [m1, m2, m3, m4, m5, m6, m7, m8, m9, m10]
 
-    def get_team(self):
+    def get_team(self, number=0):
         s = array(self.repository)
         if (self.__number > s.size):
             raise Exception("Number_team_members: {0} is bigger than the number of avaiable models into repository: {1}."
-                                            .format(self.__number, s.size))
+                                           .format(self.__number, s.size))
+
+        elif number != 0:
+            print('\nTotal members into repository: {0}\nNumber of members chosen: {1}'.format(s.size, self.__number))
+            team = np.random.choice(s, size=number, replace=False)
         else: 
             print('\nTotal members into repository: {0}\nNumber of members chosen: {1}'.format(s.size, self.__number))
             team = np.random.choice(s, size=self.__number, replace=False)
-            return team
+        return team
 
     def get_thresholds_jsd(self, classifier, drop_rate=0.001, T = 10, p = 2, tau="RE", plot_rec_images=False):
         """
@@ -122,12 +126,13 @@ class Assembly_Team():
             if self.__data.x_val.shape[1:] != rec.shape[1:]:
                 rec = rec.reshape(rec.shape[0], self.__data.x_val.shape[1], self.__data.x_val.shape[2], self.__data.x_val.shape[3]).astype('float32')
 
-            #marks = np.mean(np.power(np.abs(model.predict(self.__data.x_val) - model.predict(rec)), 1), axis=1)
+            # marks = np.mean(np.power(np.abs(model.predict(self.__data.x_val) - model.predict(rec)), 1), axis=1)
             oc = sft.predict(model.predict(self.__data.x_val)/T)
             rc = sft.predict(model.predict(rec)/T)
             
             marks = [JSD(oc[j], rc[j]) for j in range(len(rc))]            
             marks_iset = np.sort(marks)
+            # print("MARKS_ISET: \n{0}".format(marks_iset))
             thresholds.append(marks_iset[-num])
             
             del autoencoder
@@ -196,6 +201,28 @@ class Assembly_Team():
         print("\nLoading {0} autoencoder".format(team_member.name))
         autoencoder.execute()
         return autoencoder
+
+    def load_all_autoencoders(self, team_member):
+        team = []
+        for i in range(len(team_member)):
+            model = team_member[i].model
+
+            if self.__data.dataset_name == "MNIST":
+                if model == "DAE":
+                    autoencoder = DAE_MNIST(self.__data, name=team_member[i].name, structure=team_member[i].struct, epochs=team_member[i].epochs, activation=team_member[i].activation, v_noise=team_member[i].noise)
+                elif model == "CAE":
+                    autoencoder = CAE_MNIST(self.__data, name=team_member[i].name, structure=team_member[i].struct, epochs=team_member[i].epochs, batch_size=team_member[i].batch_size)
+            else:
+                autoencoder = DAE_CIFAR(self.__data, name=team_member[i].name, epochs=team_member[i].epochs,
+                        batch_size=team_member[i].batch_size, noise_factor=team_member[i].noise, reg=team_member[i].reg,
+                        structure=team_member[i].struct, compiler=team_member[i].compiler, 
+                        batch_norm=team_member[i].batch_norm)
+            
+            print("\nLoading {0} autoencoder".format(team_member[i].name))
+            autoencoder.execute()
+            team.append(autoencoder)
+
+        return team
             
         
 

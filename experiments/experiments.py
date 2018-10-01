@@ -9,6 +9,7 @@ from utils.data import Data
 from modules.retrieve_module import Retrieval
 from modules.assembly_team import Assembly_Team
 from modules.poll_votes import poll_votes as poll_votes
+from modules.reformer import Reformer
 from modules.poll_votes import poll_votes_each_x as poll_votes_each_x
 from classifiers.classifier import Classifier
 from adv_attacks.adversarial_attacks import Adversarial_Attack
@@ -54,7 +55,7 @@ class Experiment:
             *args: each '*args' parameter is a list containing all possible MultiMagNet's parameters: 
                 NUMBER_EXPERIMENTS: how many times the code will run.
                 DATASETS: ("MNIST" or "CIFAR"),
-                ATTACKS: ("FGSM", "BIM", "DEEPFOOL", "CW_0.0", "CW_10.0", "CW_20.0", "CW_30.0", "CW_40.0"),
+                ATTACKS: ("FGSM", "BIM", "DEEPFOOL", "CW_0.0"),
                 DROP_RATE: (values below 1, preferably below 0.1),
                 REDUCTION_MODELS: (1,3,5,7,9 for MNIST),
                 TAU: ("RE" or "minRE")
@@ -64,6 +65,9 @@ class Experiment:
         start = time.time()
         combinations = list(itertools.product(*args))
         att = ""
+        
+        classifier = Classifier(self._sess, self._data, epochs=350, learning_rate=0.01, batch_size=32)
+        classifier.execute()
 
         for combination in combinations:
             n_experiments = combination[0]
@@ -71,11 +75,15 @@ class Experiment:
             attack = combination[2]
             drop_rate = combination[3]
             tau = combination[4]
+            try:
+                T = combination[5]
+            except:
+                T = 1
             
             if att != attack:
                 f = open("./experiments/experiments_logs/" + self._data.dataset_name + "_" + attack + "_all_cases_experiment.txt", "a+")
 
-            if tau == "minRE" and reduction_models == 1:
+            if tau == "RE" and reduction_models == 1:
                 continue
             else:     
                 team_stats = np.zeros((n_experiments, 5))
@@ -87,22 +95,31 @@ class Experiment:
 
                 multiple_team = Assembly_Team(self._sess, self._data, reduction_models)
 
+                scores_leg = classifier.model.evaluate(self._data.x_test[self._idx_adv][:length], self._data.y_test[self._idx_adv][:length], verbose=1)
+                scores = classifier.model.evaluate(x_test_adv[:length], self._data.y_test[self._idx_adv][:length], verbose=1)
+                print("\nMain classifier's accuracy on legitimate examples: %.2f%%" % (scores_leg[1]*100))
+                print("\nMain classifier's accuracy on adversarial examples: %.2f%%" % (scores[1]*100))
+
                 for exp in range(n_experiments):
-                    multiple_thresholds = multiple_team.get_thresholds(self._data.x_val, tau=tau, drop_rate=drop_rate, p = 1, plot_rec_images=False)
-                    multiple_x_marks = Image_Reduction.apply_techniques(x, multiple_team, p = 1)
+                    if self._data.dataset_name == "MNIST":
+                        multiple_thresholds = multiple_team.get_thresholds(tau=tau, drop_rate=drop_rate, p = 1, plot_rec_images=False)
+                        multiple_x_marks = Image_Reduction.apply_techniques(x, multiple_team, p = 1)
+                    else:
+                        multiple_thresholds = multiple_team.get_thresholds_jsd(tau=tau, classifier = classifier, T=T, drop_rate=drop_rate, p = 1, plot_rec_images=False)
+                        multiple_x_marks = Image_Reduction.apply_techniques_jsd(x, multiple_team, classifier, T=T, p = 1)
 
                     y_pred_team = poll_votes(x, y, multiple_x_marks, multiple_thresholds, reduction_models)
                     team_stats[exp,0], team_stats[exp,1], team_stats[exp,2], team_stats[exp,3], team_stats[exp,4], confusion_matrix_team = helpers.get_cm_and_statistics(y, y_pred_team)
                     
                     print("\nSCENARIO {0}/{1} FINISHED.\nTeam CM \n{2}\n".format(exp+1, n_experiments, confusion_matrix_team))
 
-                print("\nEXPERIMENT TERMINATED. {0} DATASET: {1} Input Images 'x', {2} Attack, p = {3}, reduction models = {4}, drop_rate = {5}, tau = {6}\n"
-                    .format(self._data.dataset_name, len(x), attack, 1, reduction_models, drop_rate, tau))
+                print("\nEXPERIMENT TERMINATED. {0} DATASET: {1} Input Images 'x', {2} Attack, p = {3}, reduction models = {4}, drop_rate = {5}, tau = {6}, T = {7}\n"
+                    .format(self._data.dataset_name, len(x), attack, 1, reduction_models, drop_rate, tau, T))
 
                 s1 = helpers.get_statistics_experiments("Team", team_stats)
 
                 if type(f) != type(None):
-                    s0 = "EXPERIMENT TERMINATED. {0} DATASET: {1} Input Images 'x', {2} Attack, p = {3}, reduction models = {4}, drop_rate = {5}, tau = {6}\n\n".format(self._data.dataset_name, len(x), attack, 1, reduction_models, drop_rate, tau)
+                    s0 = "EXPERIMENT TERMINATED. {0} DATASET: {1} Input Images 'x', {2} Attack, p = {3}, reduction models = {4}, drop_rate = {5}, tau = {6}, T = {7}\n\n".format(self._data.dataset_name, len(x), attack, 1, reduction_models, drop_rate, tau, T)
                     sep = '-' * len(s0)
                     helpers.write_txt(f, '\n','\n', s0, s1, '\n', sep, '\n', '\n')         
 
@@ -137,7 +154,7 @@ class Experiment:
         x = self._data.x_test[self._idx_adv][idx]
         y = self._data.y_test[self._idx_adv][idx]
 
-        helpers.plot_images(x, x_test_adv, shape=(10, 32, 32, 3))
+        # helpers.plot_images(x, x_test_adv, shape=(10, 32, 32, 3))
         
         print("Reforming legitimate images...\n")        
         for i in range(len(team)):
@@ -152,12 +169,13 @@ class Experiment:
             out_rec = sft.predict(helpers.get_output_model_layer(rec, classifier.model, logits=logits)/T)
             out_adv = sft.predict(helpers.get_output_model_layer(x_test_adv, classifier.model, logits=logits)/T)
             adv_rec = sft.predict(helpers.get_output_model_layer(rec_adv, classifier.model, logits=logits)/T)
+            
+            
+            leg = np.asarray([JSD(out_leg[j], out_rec[j]) for j in range(len(out_rec))])
+            adv = np.asarray([JSD(out_adv[j], adv_rec[j]) for j in range(len(adv_rec))])
 
-            leg = JSD(out_leg, out_rec)
-            adv = JSD(out_adv, adv_rec)
-
-            # leg = np.mean(np.power(np.abs(out_leg - out_rec), 2), axis=1)
-            # adv = np.mean(np.power(np.abs(out_adv - adv_rec), 2), axis=1)
+            # leg = np.mean(np.power(np.abs(out_leg - out_rec), 1), axis=1)
+            # adv = np.mean(np.power(np.abs(out_adv - adv_rec), 1), axis=1)
             
             print("\nModel's outputs (original legitimate samples): \n{0}\n".format(out_leg))
             print("Model's outputs (rec legitimate samples): \n{0}\n".format(out_rec))
@@ -173,9 +191,10 @@ class Experiment:
             float_formatter = lambda x: "%.4f" % x
             np.set_printoptions(formatter={'float_kind':float_formatter})
             print("\nLegitimate JSD: {0}\nAdversarial JSD: {1}".format(leg, adv))
+            print("LEG < ADV: {0} / {1}".format(len(np.where(leg < adv)[0]), length))
             del autoencoder
 
-    def simple_experiment(self, reduction_models = 3, attack="FGSM", drop_rate=0.001, tau="RE", p = 1, length=2000):
+    def simple_experiment(self, reduction_models = 3, attack="FGSM", drop_rate=0.001, tau="RE", p = 1, length=2000, T=1):
         """
         Evaluates MultiMagNet with test dataset containing half legitimate and adversarial images, and prints the its metrics.
 
@@ -200,14 +219,16 @@ class Experiment:
         x_test_adv = Adversarial_Attack(self._sess, self._data, length=length, attack=attack, epochs=12).attack(model=classifier.model)
 
         # Evaluates the brand-new adversarial examples on the main model.
+        scores_leg = classifier.model.evaluate(self._data.x_test[self._idx_adv][:length], self._data.y_test[self._idx_adv][:length], verbose=1)
         scores = classifier.model.evaluate(x_test_adv[:length], self._data.y_test[self._idx_adv][:length], verbose=1)
-        print("\nMain classifier's accuracy: %.2f%%" % (scores[1]*100))
+        print("\nMain classifier's accuracy on legitimate examples: %.2f%%" % (scores_leg[1]*100))
+        print("\nMain classifier's accuracy on adversarial examples: %.2f%%" % (scores[1]*100))
 
         # plots the adversarial images
-        helpers.plot_images(self._data.x_test[self._idx_adv][:length], x_test_adv[:length], x_test_adv.shape)
+        #helpers.plot_images(self._data.x_test[self._idx_adv][:length], x_test_adv[:length], x_test_adv.shape)
 
         # Creates a test set containing 'length * 2' input images 'x', where half are benign images and half are adversarial.
-        _, x, y = helpers.join_test_sets(self._data.x_test, x_test_adv, length)
+        _, x, y, y_ori = helpers.join_test_sets(self._data, x_test_adv, length, idx=self._idx_adv[:length])
           
         # # Creates, trains and returns the 'R' dimensionality reduction team
         team = Assembly_Team(self._sess, self._data, reduction_models)
@@ -216,18 +237,23 @@ class Experiment:
             thresholds = team.get_thresholds(tau=tau, drop_rate=drop_rate, p = p, plot_rec_images=False)
             x_marks = Image_Reduction.apply_techniques(x, team, p = p)
         else:
-            thresholds = team.get_thresholds_jsd(tau=tau, classifier = classifier, T=10, drop_rate=drop_rate, p = p, plot_rec_images=False)
-            x_marks = Image_Reduction.apply_techniques_jsd(x, team, classifier, T=10, p = p)
+            thresholds = team.get_thresholds_jsd(tau=tau, classifier = classifier, T=T, drop_rate=drop_rate, p = p, plot_rec_images=False)
+            x_marks = Image_Reduction.apply_techniques_jsd(x, team, classifier, T=T, p = p)
 
-        y_pred = poll_votes(x, y, x_marks, thresholds, reduction_models)
+        y_pred, filtered_indices = poll_votes(x, y, x_marks, thresholds, reduction_models)
 
-        print("\nEXPERIMENT USING {0} DATASET: {1} Input Images 'x', {2} Attack, p = {3}, reduction models = {4}, drop_rate = {5}\n"
-        .format(self._data.dataset_name, len(x), attack, p, reduction_models, drop_rate))
+        print("\nEXPERIMENT USING {0} DATASET: {1} Input Images 'x', {2} Attack, p = {3}, reduction models = {4}, drop_rate = {5}\n, T = {6}"
+        .format(self._data.dataset_name, len(x), attack, p, reduction_models, drop_rate, T))
 
         acc, pp, nn, auc, f1, cm = helpers.get_cm_and_statistics(y, y_pred)
 
         print('Threshold used: {0}\nConfusion Matrix:\n{1}\nACC: {2}, Positive Precision: {3}, Negative Precision: {4}, AUC: {5:.3}, F1: {6:.3}'
             .format(thresholds, cm, acc, pp, nn, auc, f1))
+
+        ori_acc, ref_acc = Reformer(classifier.model, team, x[filtered_indices], y_ori[filtered_indices])
+
+        print("\nModel accuracy on filtered images: %.2f%%" % (ori_acc*100))
+        print("Model accuracy on filtered and reformed images: %.2f%%" % (ref_acc*100))
 
         print("\nExperiment's elapsed time: {0}".format(timedelta(seconds=time.time() - start)))
 

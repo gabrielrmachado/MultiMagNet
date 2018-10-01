@@ -116,7 +116,7 @@ def compute_tau(d_set, mode="avg"):
         if (mode == 'p75'): return np.percentile(d_set_whole, 75)
         if (mode == 'maximum'): return np.max(d_set_whole)
 
-def join_test_sets(leg_set, adv_set, length=100, idx = []):
+def join_test_sets(data_obj, adv_set, length=100, idx = []):
         """
         Unifies the benign and adversarial test sets into an unique set and creates its corresponding labels set, where 
         '1' represents 'benign data' and '0' 'adversarial data'.
@@ -127,20 +127,19 @@ def join_test_sets(leg_set, adv_set, length=100, idx = []):
         # Returns: 
                 idx: the indices retrieved from original test set. The indices are two-folded because each image on leg_set was turned into adversarial.
                 x: the data (benign and adversarial);
-                y: the labels.
+                y: the labels (binary problem);
+                y_original: the original labels (the 10 classes).
         """
 
         leg_labels = np.ones(shape=length)
         adv_labels = np.zeros(shape=length)
 
-        idx_l = np.random.permutation(len(leg_set))[:length]
-        idx_a = np.random.permutation(len(adv_set))[:length]
-
-        x = np.concatenate((leg_set[idx_l], adv_set[idx_a]))
+        x = np.concatenate((data_obj.x_test[idx], adv_set))
+        y_original = np.concatenate((data_obj.y_test[idx], data_obj.y_test[idx]))
         y = np.concatenate((leg_labels, adv_labels))
 
         i = np.random.permutation(len(x))
-        return np.concatenate((idx_l, idx_a))[i], x[i], y[i]  
+        return np.concatenate((idx, idx))[i], x[i], y[i], y_original[i]  
 
 def assign_confusion_matrix(confusion_matrix, x_label, ans_label):
         if x_label == 1 and ans_label == 1: # 'x' is benign and it was classified as benign.
@@ -187,12 +186,15 @@ def get_statistics_experiments(experiment, stats):
         """
 
         acc_mean = np.mean(stats[:,0])
+        std_acc = np.std(stats[:,0])
         pp_mean = np.mean(stats[:,1])
+        std_pp = np.std(stats[:,1])
         nn_mean = np.mean(stats[:,2])
-        auc_mean = np.mean(stats[:,3])
-        f1_mean = np.mean(stats[:,4])
+        std_nn = np.std(stats[:,2])
+        # auc_mean = np.mean(stats[:,3])
+        # f1_mean = np.mean(stats[:,4])
 
-        s = "{0} Statistics: ACC Mean: {1:.2%}, Positive Mean: {2:.2%}, Negative Mean: {3:.2%}, AUC mean: {4:.3}, F1 Mean: {5:.3}".format(experiment, acc_mean, pp_mean, nn_mean, auc_mean, f1_mean)
+        s = "{0} Statistics: ACC Mean: {1:.2%}, ACC STD: {2:.2%}, Positive mean: {3:.2%}, Positive STD: {4:.2%}, Negative mean: {5:.2%}, Negative STD: {6:.2%}".format(experiment, acc_mean, std_acc, pp_mean, std_pp, nn_mean, std_nn)
         print(s)
         return s
 

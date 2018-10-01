@@ -20,6 +20,8 @@ def poll_votes_each_x(x, y, x_marks, thresholds, reduction_models):
 
 def poll_votes(x, y, x_marks, thresholds, reduction_models):
     y_pred = np.zeros((len(y)))
+    filtered_images = []
+
     for i in range(len(x)):
             # checks whether 'x' is adversarial or not by voting using each reduction model's threshold.
             v_adv = 0
@@ -29,6 +31,7 @@ def poll_votes(x, y, x_marks, thresholds, reduction_models):
                 # print("'x' input RE: {0}\nThreshold: {1}".format(x_marks[j][i], thresholds[j]))
                 if x_marks[j][i] < thresholds[j]:
                     v_leg = v_leg + 1
+                    filtered_images.append(i)
                 else: 
                     v_adv = v_adv + 1
             
@@ -36,4 +39,4 @@ def poll_votes(x, y, x_marks, thresholds, reduction_models):
             # helpers.assign_confusion_matrix(cm, y[i], ans)
             y_pred[i] = ans
     
-    return y_pred
+    return y_pred, np.asarray(filtered_images)
