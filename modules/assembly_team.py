@@ -91,7 +91,7 @@ class Assembly_Team():
             raise Exception("Number_team_members: {0} is bigger than the number of avaiable models into repository: {1}."
                                            .format(self.__number, s.size))
 
-        elif number != 0:
+        elif number > 0:
             print('\nTotal members into repository: {0}\nNumber of members chosen: {1}'.format(s.size, self.__number))
             team = np.random.choice(s, size=number, replace=False)
         else: 
@@ -99,7 +99,7 @@ class Assembly_Team():
             team = np.random.choice(s, size=self.__number, replace=False)
         return team
 
-    def get_thresholds_jsd(self, classifier, drop_rate=0.001, T = 10, p = 2, tau="RE", plot_rec_images=False):
+    def get_thresholds_pd(self, classifier, drop_rate=0.001, T = 10, p = 2, tau="RE", plot_rec_images=False, metric='JSD'):
         """
         Predicts the 'data' using the selected autoencoders, 
         returning their respective probability divergence thresholds.
@@ -127,10 +127,20 @@ class Assembly_Team():
                 rec = rec.reshape(rec.shape[0], self.__data.x_val.shape[1], self.__data.x_val.shape[2], self.__data.x_val.shape[3]).astype('float32')
 
             # marks = np.mean(np.power(np.abs(model.predict(self.__data.x_val) - model.predict(rec)), 1), axis=1)
+
             oc = sft.predict(model.predict(self.__data.x_val)/T)
-            rc = sft.predict(model.predict(rec)/T)
+            rc = sft.predict(model.predict(rec)/T)        
+
+            # print("OC[0]: {0}\nRC[0]: {1}".format(oc[0], rc[0]))
+            # print(oc.shape, rc.shape)
+
+            if metric == 'JSD':    
+                marks = [JSD(oc[j], rc[j]) for j in range(len(rc))]                   
             
-            marks = [JSD(oc[j], rc[j]) for j in range(len(rc))]            
+            elif metric == 'DKL':
+                from scipy.stats import entropy
+                marks = [entropy(pk=rc[j], qk=oc[j]) for j in range(len(rc))]                   
+
             marks_iset = np.sort(marks)
             # print("MARKS_ISET: \n{0}".format(marks_iset))
             thresholds.append(marks_iset[-num])
@@ -201,28 +211,6 @@ class Assembly_Team():
         print("\nLoading {0} autoencoder".format(team_member.name))
         autoencoder.execute()
         return autoencoder
-
-    def load_all_autoencoders(self, team_member):
-        team = []
-        for i in range(len(team_member)):
-            model = team_member[i].model
-
-            if self.__data.dataset_name == "MNIST":
-                if model == "DAE":
-                    autoencoder = DAE_MNIST(self.__data, name=team_member[i].name, structure=team_member[i].struct, epochs=team_member[i].epochs, activation=team_member[i].activation, v_noise=team_member[i].noise)
-                elif model == "CAE":
-                    autoencoder = CAE_MNIST(self.__data, name=team_member[i].name, structure=team_member[i].struct, epochs=team_member[i].epochs, batch_size=team_member[i].batch_size)
-            else:
-                autoencoder = DAE_CIFAR(self.__data, name=team_member[i].name, epochs=team_member[i].epochs,
-                        batch_size=team_member[i].batch_size, noise_factor=team_member[i].noise, reg=team_member[i].reg,
-                        structure=team_member[i].struct, compiler=team_member[i].compiler, 
-                        batch_norm=team_member[i].batch_norm)
-            
-            print("\nLoading {0} autoencoder".format(team_member[i].name))
-            autoencoder.execute()
-            team.append(autoencoder)
-
-        return team
             
         
 

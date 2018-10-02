@@ -1,0 +1,41 @@
+
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 1, drop_rate = 0.1, tau = minRE, T = 15
+
+Team Statistics: ACC Mean: 77.69%, ACC STD: 3.43%, Positive mean: 89.78%, Positive STD: 0.90%, Negative mean: 65.59%, Negative STD: 7.19%
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:02:12.487079
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 3, drop_rate = 0.1, tau = minRE, T = 15
+
+Team Statistics: ACC Mean: 77.67%, ACC STD: 5.77%, Positive mean: 71.04%, Positive STD: 18.74%, Negative mean: 84.29%, Negative STD: 8.45%
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:09:20.780057
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 5, drop_rate = 0.1, tau = minRE, T = 15
+
+Team Statistics: ACC Mean: 76.92%, ACC STD: 2.68%, Positive mean: 63.37%, Positive STD: 8.99%, Negative mean: 90.47%, Negative STD: 3.82%
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:24:26.713169
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 7, drop_rate = 0.1, tau = minRE, T = 15
+
+Team Statistics: ACC Mean: 76.46%, ACC STD: 4.62%, Positive mean: 62.41%, Positive STD: 13.84%, Negative mean: 90.50%, Negative STD: 4.62%
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:51:57.496966
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 9, drop_rate = 0.1, tau = minRE, T = 15
+
+Team Statistics: ACC Mean: 77.43%, ACC STD: 1.99%, Positive mean: 63.18%, Positive STD: 6.32%, Negative mean: 91.67%, Negative STD: 2.35%
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 1:44:10.709489

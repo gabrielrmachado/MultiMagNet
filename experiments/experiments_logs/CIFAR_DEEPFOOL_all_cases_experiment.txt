@@ -1,0 +1,41 @@
+
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 1, drop_rate = 0.07, tau = minRE, T = 1
+
+Team Statistics: ACC Mean: 72.15%, ACC STD: 20.09%, Positive mean: 93.13%, Positive STD: 0.55%, Negative mean: 51.18%, Negative STD: 40.01%
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:02:04.949811
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 3, drop_rate = 0.07, tau = minRE, T = 1
+
+Team Statistics: ACC Mean: 92.67%, ACC STD: 0.71%, Positive mean: 89.58%, Positive STD: 1.76%, Negative mean: 95.77%, Negative STD: 0.56%
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:08:42.605774
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 5, drop_rate = 0.07, tau = minRE, T = 1
+
+Team Statistics: ACC Mean: 93.73%, ACC STD: 0.75%, Positive mean: 89.75%, Positive STD: 1.96%, Negative mean: 97.71%, Negative STD: 0.78%
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:22:20.112343
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 7, drop_rate = 0.07, tau = minRE, T = 1
+
+Team Statistics: ACC Mean: 94.24%, ACC STD: 0.50%, Positive mean: 89.73%, Positive STD: 1.18%, Negative mean: 98.75%, Negative STD: 0.34%
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:48:17.608547
+
+EXPERIMENT TERMINATED. CIFAR DATASET: 4000 Input Images 'x', DEEPFOOL Attack, p = 1, reduction models = 9, drop_rate = 0.07, tau = minRE, T = 1
+
+Team Statistics: ACC Mean: 94.09%, ACC STD: 0.24%, Positive mean: 88.99%, Positive STD: 0.68%, Negative mean: 99.20%, Negative STD: 0.20%
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 1:36:00.508818

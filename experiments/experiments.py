@@ -90,7 +90,7 @@ class Experiment:
                 
                 if att != attack:
                     x_test_adv = Adversarial_Attack(self._sess, self._data, length=length, attack=attack, epochs=5).attack()                
-                    _, x, y = helpers.join_test_sets(self._data.x_test, x_test_adv, length)
+                    _, x, y, _ = helpers.join_test_sets(self._data, x_test_adv, length, idx=self._idx_adv[:length])
                     att = attack
 
                 multiple_team = Assembly_Team(self._sess, self._data, reduction_models)
@@ -105,10 +105,10 @@ class Experiment:
                         multiple_thresholds = multiple_team.get_thresholds(tau=tau, drop_rate=drop_rate, p = 1, plot_rec_images=False)
                         multiple_x_marks = Image_Reduction.apply_techniques(x, multiple_team, p = 1)
                     else:
-                        multiple_thresholds = multiple_team.get_thresholds_jsd(tau=tau, classifier = classifier, T=T, drop_rate=drop_rate, p = 1, plot_rec_images=False)
-                        multiple_x_marks = Image_Reduction.apply_techniques_jsd(x, multiple_team, classifier, T=T, p = 1)
+                        multiple_thresholds = multiple_team.get_thresholds_pd(tau=tau, classifier = classifier, T=T, drop_rate=drop_rate, p = 1, plot_rec_images=False,metric='DKL')
+                        multiple_x_marks = Image_Reduction.apply_techniques_pd(x, multiple_team, classifier, T=T, p = 1, metric='DKL')
 
-                    y_pred_team = poll_votes(x, y, multiple_x_marks, multiple_thresholds, reduction_models)
+                    y_pred_team, _ = poll_votes(x, y, multiple_x_marks, multiple_thresholds, reduction_models)
                     team_stats[exp,0], team_stats[exp,1], team_stats[exp,2], team_stats[exp,3], team_stats[exp,4], confusion_matrix_team = helpers.get_cm_and_statistics(y, y_pred_team)
                     
                     print("\nSCENARIO {0}/{1} FINISHED.\nTeam CM \n{2}\n".format(exp+1, n_experiments, confusion_matrix_team))
@@ -169,7 +169,6 @@ class Experiment:
             out_rec = sft.predict(helpers.get_output_model_layer(rec, classifier.model, logits=logits)/T)
             out_adv = sft.predict(helpers.get_output_model_layer(x_test_adv, classifier.model, logits=logits)/T)
             adv_rec = sft.predict(helpers.get_output_model_layer(rec_adv, classifier.model, logits=logits)/T)
-            
             
             leg = np.asarray([JSD(out_leg[j], out_rec[j]) for j in range(len(out_rec))])
             adv = np.asarray([JSD(out_adv[j], adv_rec[j]) for j in range(len(adv_rec))])
@@ -237,8 +236,8 @@ class Experiment:
             thresholds = team.get_thresholds(tau=tau, drop_rate=drop_rate, p = p, plot_rec_images=False)
             x_marks = Image_Reduction.apply_techniques(x, team, p = p)
         else:
-            thresholds = team.get_thresholds_jsd(tau=tau, classifier = classifier, T=T, drop_rate=drop_rate, p = p, plot_rec_images=False)
-            x_marks = Image_Reduction.apply_techniques_jsd(x, team, classifier, T=T, p = p)
+            thresholds = team.get_thresholds_pd(tau=tau, classifier = classifier, T=T, drop_rate=drop_rate, p = p, plot_rec_images=False, metric='DKL')
+            x_marks = Image_Reduction.apply_techniques_pd(x, team, classifier, T=T, p = p, metric='DKL')
 
         y_pred, filtered_indices = poll_votes(x, y, x_marks, thresholds, reduction_models)
 

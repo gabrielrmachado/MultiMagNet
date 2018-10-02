@@ -1,4 +1,6 @@
 def Reformer(classifier, team_obj, filtered_images, labels):
+    print("\nTotal of filtered images: {0}".format(filtered_images.shape[0]))
+
     # evaluates the classifier on the filtered images
     original = classifier.evaluate(filtered_images, labels)[1]
 

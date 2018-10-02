@@ -47,7 +47,7 @@ class Image_Reduction:
         return x_marks
 
     @staticmethod
-    def apply_techniques_jsd(x, team_obj, classifier, T=10, p=1):
+    def apply_techniques_pd(x, team_obj, classifier, T=10, p=1, metric='JSD'):
         """
         Apply reduction team members on input 'x' and returns the marks computed using JSD divergence.
         """
@@ -64,12 +64,19 @@ class Image_Reduction:
             if x.shape[1:] != rec.shape[1:]:
                 rec = rec.reshape(rec.shape[0], x.shape[1], x.shape[2], x.shape[3]).astype('float32')
 
-            #marks = np.mean(np.power(np.abs(model.predict(x) - model.predict(rec)), 1), axis=1)
+            #marks = np.mean(np.power(np.abs(model.predict(x) - model.predict(rec)), 1), axis=(1,2,3))
                 
             oc = sft.predict(model.predict(x)/T)
             rc = sft.predict(model.predict(rec)/T)
 
-            marks = [JSD(oc[j], rc[j]) for j in range(len(rc))]     
+            # print("OC[0]: {0}\nRC[0]: {1}".format(oc[0], rc[0]))
+            # print(oc.shape, rc.shape)
+
+            if metric == 'JSD':
+                marks = [JSD(oc[j], rc[j]) for j in range(len(rc))]     
+            elif metric == 'DKL':
+                from scipy.stats import entropy
+                marks = [entropy(pk=rc[j], qk=oc[j]) for j in range(len(rc))]
             # print("X_MARKS: \n{0}".format(marks))  
             x_marks.append(marks)
 
