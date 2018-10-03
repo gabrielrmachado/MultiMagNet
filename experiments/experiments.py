@@ -105,8 +105,8 @@ class Experiment:
                         multiple_thresholds = multiple_team.get_thresholds(tau=tau, drop_rate=drop_rate, p = 1, plot_rec_images=False)
                         multiple_x_marks = Image_Reduction.apply_techniques(x, multiple_team, p = 1)
                     else:
-                        multiple_thresholds = multiple_team.get_thresholds_pd(tau=tau, classifier = classifier, T=T, drop_rate=drop_rate, p = 1, plot_rec_images=False,metric='DKL')
-                        multiple_x_marks = Image_Reduction.apply_techniques_pd(x, multiple_team, classifier, T=T, p = 1, metric='DKL')
+                        multiple_thresholds = multiple_team.get_thresholds_pd(tau=tau, classifier = classifier, T=T, drop_rate=drop_rate, p = 1, plot_rec_images=False,metric='JSD')
+                        multiple_x_marks = Image_Reduction.apply_techniques_pd(x, multiple_team, classifier, T=T, p = 1, metric='JSD')
 
                     y_pred_team, _ = poll_votes(x, y, multiple_x_marks, multiple_thresholds, reduction_models)
                     team_stats[exp,0], team_stats[exp,1], team_stats[exp,2], team_stats[exp,3], team_stats[exp,4], confusion_matrix_team = helpers.get_cm_and_statistics(y, y_pred_team)
