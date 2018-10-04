@@ -42,16 +42,16 @@ class Assembly_Team():
         self.__data = data
 
         if data.dataset_name == 'MNIST':
-            m1 = Autoencoder_Params(model="DAE", name="MNIST_I", struct=[3, "average", 3], epochs=100, activation='sigmoid', noise=0.1)
+            m1 = Autoencoder_Params(model="DAE", name="MNIST_I", struct=[3, "average", 3], epochs=50, activation='sigmoid', noise=0.1)
             m2 = Autoencoder_Params(model="DAE", name="MNIST_II", struct=[3], epochs=50, activation='sigmoid', noise=0.1)
             m3 = Autoencoder_Params(model="DAE", name="mnist_dae1", struct=[3], epochs=50, activation='relu', noise=0.2)
-            m4 = Autoencoder_Params(model="DAE", name="mnist_dae2", struct=[5, "max", 5], epochs=100, activation='sigmoid', noise=0.3)
-            m5 = Autoencoder_Params(model="DAE", name="mnist_dae3", struct=[3, "average", 3], epochs=100, activation='sigmoid', noise=0.1)
-            m6 = Autoencoder_Params(model="DAE", name="mnist_dae4", struct=[5], epochs=7, batch_size=256, noise=0.5)
-            m7 = Autoencoder_Params(model="DAE", name="mnist_dae5", struct=[3, "max", 5], epochs=10, batch_size=128, noise=0.1)
-            m8 = Autoencoder_Params(model="CAE", name="mnist_cae1", struct=[3, "average", 3], epochs=10, batch_size=32)
-            m9 = Autoencoder_Params(model="CAE", name="mnist_cae2", struct=[16, "max", 32], epochs=10, batch_size=128)
-            m10 = Autoencoder_Params(model="CAE", name="mnist_cae3", struct=[32, "max", 32], epochs=10, batch_size=64)
+            m4 = Autoencoder_Params(model="DAE", name="mnist_dae2", struct=[5, "max", 5], epochs=40, activation='sigmoid', noise=0.3)
+            m5 = Autoencoder_Params(model="DAE", name="mnist_dae3", struct=[3, "average", 3], epochs=55, activation='sigmoid', noise=0.1)
+            m6 = Autoencoder_Params(model="DAE", name="mnist_dae4", struct=[5], epochs=50, batch_size=128, noise=0.2)
+            m7 = Autoencoder_Params(model="DAE", name="mnist_dae5", struct=[4, "max", 4], epochs=50, batch_size=128, noise=0.1)
+            m8 = Autoencoder_Params(model="DAE", name="mnist_dae6", struct=[3, "max", 3], epochs=35, activation='sigmoid', noise=0.3)
+            m9 = Autoencoder_Params(model="DAE", name="mnist_dae7", struct=[2, "max", 2], epochs=30, activation='sigmoid', noise=0.1)
+            m10 = Autoencoder_Params(model="DAE", name="mnist_dae8", struct=[5, "average", 5], epochs=35, activation='sigmoid', noise=0.2)
 
         elif data.dataset_name == 'CIFAR':
             m1 = Autoencoder_Params(name='cifar_dae1',batch_size=32, epochs=30,struct=[16,"max",32,"max",32], 
@@ -83,7 +83,8 @@ class Assembly_Team():
             m10 = Autoencoder_Params(name='cifar_dae10',batch_size=36, epochs=30,struct=[16,"max",32], 
                             batch_normalization=True, regularizer=1e-9)
 
-        self.repository = [m1, m2, m3, m4, m5, m6, m7, m8, m9, m10]
+        # self.repository = [m1, m2, m3, m4, m5, m6, m7, m8, m9, m10]
+        self.repository = [m7]
 
     def get_team(self, number=0):
         s = array(self.repository)

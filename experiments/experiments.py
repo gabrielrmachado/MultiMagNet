@@ -59,6 +59,8 @@ class Experiment:
                 DROP_RATE: (values below 1, preferably below 0.1),
                 REDUCTION_MODELS: (1,3,5,7,9 for MNIST),
                 TAU: ("RE" or "minRE")
+                T: Temperature (>= 1)
+                metric: "RE", "JSD", "DKL"
         """
         import itertools
 
@@ -77,8 +79,10 @@ class Experiment:
             tau = combination[4]
             try:
                 T = combination[5]
+                metric = combination[6]
             except:
                 T = 1
+                metric = "RE"
             
             if att != attack:
                 f = open("./experiments/experiments_logs/" + self._data.dataset_name + "_" + attack + "_all_cases_experiment.txt", "a+")
@@ -101,12 +105,12 @@ class Experiment:
                 print("\nMain classifier's accuracy on adversarial examples: %.2f%%" % (scores[1]*100))
 
                 for exp in range(n_experiments):
-                    if self._data.dataset_name == "MNIST":
+                    if metric == "RE":
                         multiple_thresholds = multiple_team.get_thresholds(tau=tau, drop_rate=drop_rate, p = 1, plot_rec_images=False)
                         multiple_x_marks = Image_Reduction.apply_techniques(x, multiple_team, p = 1)
                     else:
-                        multiple_thresholds = multiple_team.get_thresholds_pd(tau=tau, classifier = classifier, T=T, drop_rate=drop_rate, p = 1, plot_rec_images=False,metric='JSD')
-                        multiple_x_marks = Image_Reduction.apply_techniques_pd(x, multiple_team, classifier, T=T, p = 1, metric='JSD')
+                        multiple_thresholds = multiple_team.get_thresholds_pd(tau=tau, classifier = classifier, T=T, drop_rate=drop_rate, p = 1, plot_rec_images=False,metric=metric)
+                        multiple_x_marks = Image_Reduction.apply_techniques_pd(x, multiple_team, classifier, T=T, p = 1, metric=metric)
 
                     y_pred_team, _ = poll_votes(x, y, multiple_x_marks, multiple_thresholds, reduction_models)
                     team_stats[exp,0], team_stats[exp,1], team_stats[exp,2], team_stats[exp,3], team_stats[exp,4], confusion_matrix_team = helpers.get_cm_and_statistics(y, y_pred_team)
@@ -193,7 +197,7 @@ class Experiment:
             print("LEG < ADV: {0} / {1}".format(len(np.where(leg < adv)[0]), length))
             del autoencoder
 
-    def simple_experiment(self, reduction_models = 3, attack="FGSM", drop_rate=0.001, tau="RE", p = 1, length=2000, T=1):
+    def simple_experiment(self, reduction_models = 3, attack="FGSM", drop_rate=0.001, tau="RE", p = 1, length=2000, T=1, metric='JSD'):
         """
         Evaluates MultiMagNet with test dataset containing half legitimate and adversarial images, and prints the its metrics.
 
@@ -232,12 +236,12 @@ class Experiment:
         # # Creates, trains and returns the 'R' dimensionality reduction team
         team = Assembly_Team(self._sess, self._data, reduction_models)
 
-        if self._data.dataset_name == "MNIST":
+        if metric == "RE":
             thresholds = team.get_thresholds(tau=tau, drop_rate=drop_rate, p = p, plot_rec_images=False)
             x_marks = Image_Reduction.apply_techniques(x, team, p = p)
         else:
-            thresholds = team.get_thresholds_pd(tau=tau, classifier = classifier, T=T, drop_rate=drop_rate, p = p, plot_rec_images=False, metric='DKL')
-            x_marks = Image_Reduction.apply_techniques_pd(x, team, classifier, T=T, p = p, metric='DKL')
+            thresholds = team.get_thresholds_pd(tau=tau, classifier = classifier, T=T, drop_rate=drop_rate, p = p, plot_rec_images=False, metric=metric)
+            x_marks = Image_Reduction.apply_techniques_pd(x, team, classifier, T=T, p = p, metric=metric)
 
         y_pred, filtered_indices = poll_votes(x, y, x_marks, thresholds, reduction_models)
 
