@@ -254,7 +254,9 @@ class Experiment:
             .format(thresholds, cm, acc, pp, nn, auc, f1))
 
         ori_acc, ref_acc = Reformer(classifier.model, team, x[filtered_indices], y_ori[filtered_indices])
+        d_acc = classifier.model.evaluate(x, y_ori)[1]
 
+        print("\nModel accuracy on D set: %.2f%%" % (d_acc*100))
         print("\nModel accuracy on filtered images: %.2f%%" % (ori_acc*100))
         print("Model accuracy on filtered and reformed images: %.2f%%" % (ref_acc*100))
 

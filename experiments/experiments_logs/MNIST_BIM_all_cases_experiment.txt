@@ -1,0 +1,73 @@
+
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 1, drop_rate = 0.001, tau = minRE, T = 5
+
+Team Statistics: ACC Mean: 99.94%, ACC STD: 0.01%, Positive mean: 99.87%, Positive STD: 0.02%, Negative mean: 100.00%, Negative STD: 0.00%
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:00:07.287733
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 3, drop_rate = 0.001, tau = RE, T = 5
+
+Team Statistics: ACC Mean: 99.94%, ACC STD: 0.02%, Positive mean: 99.87%, Positive STD: 0.04%, Negative mean: 100.00%, Negative STD: 0.00%
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:00:27.732875
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 3, drop_rate = 0.001, tau = minRE, T = 5
+
+Team Statistics: ACC Mean: 93.32%, ACC STD: 11.68%, Positive mean: 86.65%, Positive STD: 23.36%, Negative mean: 100.00%, Negative STD: 0.00%
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:01:01.490619
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 5, drop_rate = 0.001, tau = RE, T = 5
+
+Team Statistics: ACC Mean: 99.93%, ACC STD: 0.02%, Positive mean: 99.86%, Positive STD: 0.04%, Negative mean: 100.00%, Negative STD: 0.00%
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:02:31.761046
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 5, drop_rate = 0.001, tau = minRE, T = 5
+
+Team Statistics: ACC Mean: 90.44%, ACC STD: 8.82%, Positive mean: 80.87%, Positive STD: 17.64%, Negative mean: 100.00%, Negative STD: 0.00%
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:04:49.214672
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 7, drop_rate = 0.001, tau = RE, T = 5
+
+Team Statistics: ACC Mean: 99.95%, ACC STD: 0.02%, Positive mean: 99.89%, Positive STD: 0.04%, Negative mean: 100.00%, Negative STD: 0.00%
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:09:28.016865
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 7, drop_rate = 0.001, tau = minRE, T = 5
+
+Team Statistics: ACC Mean: 86.70%, ACC STD: 9.15%, Positive mean: 73.40%, Positive STD: 18.29%, Negative mean: 100.00%, Negative STD: 0.00%
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:15:53.654309
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 9, drop_rate = 0.001, tau = RE, T = 5
+
+Team Statistics: ACC Mean: 99.94%, ACC STD: 0.01%, Positive mean: 99.88%, Positive STD: 0.02%, Negative mean: 100.00%, Negative STD: 0.00%
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:27:23.262849
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', BIM Attack, p = 1, reduction models = 9, drop_rate = 0.001, tau = minRE, T = 5
+
+Team Statistics: ACC Mean: 84.83%, ACC STD: 5.37%, Positive mean: 69.67%, Positive STD: 10.74%, Negative mean: 100.00%, Negative STD: 0.00%
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:42:43.326087

@@ -134,7 +134,7 @@ def join_test_sets(data_obj, adv_set, length=100, idx = []):
         leg_labels = np.ones(shape=length)
         adv_labels = np.zeros(shape=length)
 
-        x = np.concatenate((data_obj.x_test[idx], adv_set))
+        x = np.concatenate((data_obj.x_test[idx], adv_set[:length]))
         y_original = np.concatenate((data_obj.y_test[idx], data_obj.y_test[idx]))
         y = np.concatenate((leg_labels, adv_labels))
 

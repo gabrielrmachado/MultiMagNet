@@ -1,0 +1,73 @@
+
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 1, drop_rate = 0.001, tau = minRE, T = 5
+
+Team Statistics: ACC Mean: 82.60%, ACC STD: 11.65%, Positive mean: 99.83%, Positive STD: 0.07%, Negative mean: 65.37%, Negative STD: 23.31%
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:00:07.449977
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 3, drop_rate = 0.001, tau = RE, T = 5
+
+Team Statistics: ACC Mean: 85.99%, ACC STD: 6.89%, Positive mean: 99.85%, Positive STD: 0.03%, Negative mean: 72.14%, Negative STD: 13.78%
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:00:28.463747
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 3, drop_rate = 0.001, tau = minRE, T = 5
+
+Team Statistics: ACC Mean: 86.90%, ACC STD: 12.39%, Positive mean: 75.48%, Positive STD: 26.20%, Negative mean: 98.31%, Negative STD: 2.72%
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:01:02.952539
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 5, drop_rate = 0.001, tau = RE, T = 5
+
+Team Statistics: ACC Mean: 84.94%, ACC STD: 4.37%, Positive mean: 99.85%, Positive STD: 0.03%, Negative mean: 70.03%, Negative STD: 8.74%
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:02:33.461030
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 5, drop_rate = 0.001, tau = minRE, T = 5
+
+Team Statistics: ACC Mean: 92.43%, ACC STD: 7.76%, Positive mean: 86.36%, Positive STD: 16.05%, Negative mean: 98.50%, Negative STD: 2.18%
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:04:55.176053
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 7, drop_rate = 0.001, tau = RE, T = 5
+
+Team Statistics: ACC Mean: 82.78%, ACC STD: 2.69%, Positive mean: 99.87%, Positive STD: 0.05%, Negative mean: 65.69%, Negative STD: 5.38%
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:09:33.802108
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 7, drop_rate = 0.001, tau = minRE, T = 5
+
+Team Statistics: ACC Mean: 90.67%, ACC STD: 7.88%, Positive mean: 81.53%, Positive STD: 15.92%, Negative mean: 99.81%, Negative STD: 0.16%
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:16:02.918942
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 9, drop_rate = 0.001, tau = RE, T = 5
+
+Team Statistics: ACC Mean: 83.27%, ACC STD: 2.37%, Positive mean: 99.90%, Positive STD: 0.00%, Negative mean: 66.64%, Negative STD: 4.73%
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:27:39.159381
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', CW_30.0 Attack, p = 1, reduction models = 9, drop_rate = 0.001, tau = minRE, T = 5
+
+Team Statistics: ACC Mean: 92.53%, ACC STD: 5.68%, Positive mean: 85.15%, Positive STD: 11.40%, Negative mean: 99.92%, Negative STD: 0.04%
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:43:45.616285

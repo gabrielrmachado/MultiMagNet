@@ -1,0 +1,73 @@
+
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 1, drop_rate = 0.001, tau = minRE, T = 5
+
+Team Statistics: ACC Mean: 99.94%, ACC STD: 0.01%, Positive mean: 99.88%, Positive STD: 0.02%, Negative mean: 100.00%, Negative STD: 0.00%
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:00:08.515144
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 3, drop_rate = 0.001, tau = RE, T = 5
+
+Team Statistics: ACC Mean: 99.92%, ACC STD: 0.01%, Positive mean: 99.84%, Positive STD: 0.02%, Negative mean: 100.00%, Negative STD: 0.00%
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:00:29.833470
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 3, drop_rate = 0.001, tau = minRE, T = 5
+
+Team Statistics: ACC Mean: 97.28%, ACC STD: 2.10%, Positive mean: 94.57%, Positive STD: 4.20%, Negative mean: 100.00%, Negative STD: 0.00%
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:01:05.842567
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 5, drop_rate = 0.001, tau = RE, T = 5
+
+Team Statistics: ACC Mean: 99.92%, ACC STD: 0.00%, Positive mean: 99.85%, Positive STD: 0.00%, Negative mean: 100.00%, Negative STD: 0.00%
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:02:39.116207
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 5, drop_rate = 0.001, tau = minRE, T = 5
+
+Team Statistics: ACC Mean: 86.24%, ACC STD: 10.38%, Positive mean: 72.48%, Positive STD: 20.77%, Negative mean: 100.00%, Negative STD: 0.00%
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:05:00.040241
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 7, drop_rate = 0.001, tau = RE, T = 5
+
+Team Statistics: ACC Mean: 99.95%, ACC STD: 0.02%, Positive mean: 99.89%, Positive STD: 0.04%, Negative mean: 100.00%, Negative STD: 0.00%
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:09:47.207730
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 7, drop_rate = 0.001, tau = minRE, T = 5
+
+Team Statistics: ACC Mean: 92.99%, ACC STD: 6.69%, Positive mean: 85.98%, Positive STD: 13.39%, Negative mean: 100.00%, Negative STD: 0.00%
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:16:32.188206
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 9, drop_rate = 0.001, tau = RE, T = 5
+
+Team Statistics: ACC Mean: 99.94%, ACC STD: 0.01%, Positive mean: 99.88%, Positive STD: 0.02%, Negative mean: 100.00%, Negative STD: 0.00%
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:28:32.173193
+
+EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', FGSM Attack, p = 1, reduction models = 9, drop_rate = 0.001, tau = minRE, T = 5
+
+Team Statistics: ACC Mean: 84.43%, ACC STD: 5.55%, Positive mean: 68.86%, Positive STD: 11.11%, Negative mean: 100.00%, Negative STD: 0.00%
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Experiment's elapsed time: 0:44:17.830324

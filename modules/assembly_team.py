@@ -83,8 +83,7 @@ class Assembly_Team():
             m10 = Autoencoder_Params(name='cifar_dae10',batch_size=36, epochs=30,struct=[16,"max",32], 
                             batch_normalization=True, regularizer=1e-9)
 
-        # self.repository = [m1, m2, m3, m4, m5, m6, m7, m8, m9, m10]
-        self.repository = [m7]
+        self.repository = [m1, m2, m3, m4, m5, m6, m7, m8, m9, m10]
 
     def get_team(self, number=0):
         s = array(self.repository)

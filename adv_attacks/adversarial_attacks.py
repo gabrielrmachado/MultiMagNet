@@ -16,6 +16,7 @@ from cleverhans.utils_tf import model_train, model_eval
 from art.attacks.deepfool import DeepFool
 from art.attacks.carlini import CarliniL2Method
 from art.attacks.fast_gradient import FastGradientMethod
+from cleverhans.attacks import BasicIterativeMethod as BIM
 from art.attacks.iterative_method import BasicIterativeMethod
 from art.attacks.carlini import CarliniL2Method
 from cleverhans.utils_keras import cnn_model
@@ -97,7 +98,7 @@ class Adversarial_Attack:
         
         elif self.__attack.startswith("CW"):
             print('\nCrafting adversarial examples using CW attack...\n')
-            cw = CarliniL2Method(wrap, confidence=0.0, targeted=False, binary_search_steps=3, learning_rate=0.5, initial_const=1, max_iter=500)
+            cw = CarliniL2Method(wrap, confidence=0.0, targeted=False, binary_search_steps=1, learning_rate=0.2, initial_const=10, max_iter=100)
             x_adv_images = cw.generate(self.__data.x_test[self.idx_adv][:self._length])
             helpers.save_imgs_pkl(x_adv_images, self.__dataset.lower() + '_test_set_cw.pkl')
             return x_adv_images
@@ -106,10 +107,10 @@ class Adversarial_Attack:
             print('\nCrafting adversarial examples using BIM attack...\n')
 
             if self.__dataset == 'MNIST':
-                bim = BasicIterativeMethod(wrap, eps=0.2, eps_step=0.05, max_iter=50)
+                bim = BasicIterativeMethod(wrap, eps=0.25, eps_step=0.2, max_iter=100, norm=np.inf)
             if self.__dataset == 'CIFAR':
                 bim = BasicIterativeMethod(wrap, eps=0.025, eps_step=0.01, max_iter=1000, norm=np.inf)
-
+            
             x_adv_images = bim.generate(x = self.__data.x_test[self.idx_adv][:self._length])
             helpers.save_imgs_pkl(x_adv_images, self.__dataset.lower() + '_test_set_bim.pkl')
             return x_adv_images
