@@ -2,7 +2,7 @@ from experiments.experiments import Experiment
 
 def simple_experiment(dataset):
     exp = Experiment(dataset)
-    exp.simple_experiment(reduction_models=1, attack="CW_0.0", drop_rate=0.07, tau="minRE", length=2000, T=5, metric="JSD")
+    exp.simple_experiment(reduction_models=5, attack="CW_40.0", drop_rate=0.001, tau="minRE", length=2000, T=5, metric="RE")
     
 def choose_team_each_jump_experiment(dataset):
     exp = Experiment(dataset)
@@ -21,8 +21,8 @@ def all_cases_experiment(dataset):
 
     exp.all_cases_experiment([5], reduction_models, attacks, drop_rate, tau, T, metric)
 
-#simple_experiment("CIFAR")
+simple_experiment("MNIST")
 
 # executes chosen experiment
-all_cases_experiment("MNIST")
+#all_cases_experiment("MNIST")
 

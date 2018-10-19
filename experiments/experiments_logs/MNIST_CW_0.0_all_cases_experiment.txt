@@ -69,5 +69,16 @@ EXPERIMENT TERMINATED. MNIST DATASET: 4000 Input Images 'x', CW_0.0 Attack, p = 
 Team Statistics: ACC Mean: 56.05%, ACC STD: 2.94%, Positive mean: 42.35%, Positive STD: 15.20%, Negative mean: 69.74%, Negative STD: 9.32%
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
+Main classifier's accuracy on adversarial examples: 63.80%
 
 Experiment's elapsed time: 0:43:07.766733
+
+MAGNET REFORMER
+Model accuracy on D set: 81.60%
+Model accuracy on filtered images: 87.37%
+Model accuracy on filtered and reformed images: 95.18%
+
+MULTIMAGNET 9 AUTOENCODERS REFORMER
+Model accuracy on D set: 81.60%
+Model accuracy on filtered images: 98.31%
+Model accuracy on filtered and reformed images: 98.60%

@@ -71,3 +71,15 @@ Team Statistics: ACC Mean: 84.83%, ACC STD: 5.37%, Positive mean: 69.67%, Positi
 
 
 Experiment's elapsed time: 0:42:43.326087
+
+Main classifier's accuracy on adversarial examples: 63.50%
+
+MAGNET REFORMER
+Model accuracy on D set: 81.45%
+Model accuracy on filtered images: 99.40%
+Model accuracy on filtered and reformed images: 99.25%
+
+MULTIMAGNET REFORMER
+Model accuracy on D set: 81.45%
+Model accuracy on filtered images: 99.40%
+Model accuracy on filtered and reformed images: 99.45%
