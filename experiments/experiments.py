@@ -264,6 +264,7 @@ class Experiment:
         print("\nExperiment's elapsed time: {0}".format(timedelta(seconds=time.time() - start)))
 
     def choose_team_each_jump_experiment(self, jump=0, magnet=False, attack="FGSM", drop_rate=0.001, tau="RE", p = 1, length=2000, T=1, metric='JSD'):
+        import math
         """
         Evaluates MultiMagNet with test dataset containing half legitimate and adversarial images, and prints the its metrics.
 
@@ -285,7 +286,6 @@ class Experiment:
         # test inputs on main classifier
         classifier = Classifier(self._sess, self._data, epochs=350, learning_rate=0.01, batch_size=32)
         classifier.execute()
-        n_autoencoders = []
 
         # # Creates surrogate model and returns the perturbed NumPy test set  
         x_test_adv = Adversarial_Attack(self._sess, self._data, length=length, attack=attack, epochs=12).attack(model=classifier.model)
@@ -301,37 +301,46 @@ class Experiment:
 
         # Creates a test set containing 'length * 2' input images 'x', where half are benign images and half are adversarial.
         _, x, y, y_ori = helpers.join_test_sets(self._data, x_test_adv, length, idx=self._idx_adv[:length])
+        team_stats = np.zeros((math.floor(len(x)/jump), 4))
+        
+        i = 0
+        k = 0
 
-        for i in range(len(x)):
-            if i % jump == 0:
-                reduction_models = random.choice([3,5,7,9]) if not magnet else 1
-                print("\nInput images 'x' {0}-{1}/{2}\nNumber of autoencoders chosen: {3}".format(i+1, i+jump, len(x), reduction_models))
-                print("==============================================")
-                n_autoencoders.append(reduction_models)
-                team = Assembly_Team(self._sess, self._data, reduction_models)
-                
-                if metric == "RE":
-                    thresholds = team.get_thresholds(tau=tau, drop_rate=drop_rate, p = p, plot_rec_images=False)
-                    x_marks = Image_Reduction.apply_techniques(x, team, p = p)
-                else:
-                    thresholds = team.get_thresholds_pd(tau=tau, classifier = classifier, T=T, drop_rate=drop_rate, p = p, plot_rec_images=False, metric=metric)
-                    x_marks = Image_Reduction.apply_techniques_pd(x, team, classifier, T=T, p = p, metric=metric)
+        while i+jump <= len(x):
+            reduction_models = random.choice([3,5,7,9]) if not magnet else 1
+            print("\nInput images 'x' {0}-{1}/{2}\nNumber of autoencoders chosen: {3}".format(i+1, i+jump, len(x), reduction_models))
+            print("==============================================")
+            team = Assembly_Team(self._sess, self._data, reduction_models)
+            
+            if metric == "RE":
+                thresholds = team.get_thresholds(tau=tau, drop_rate=drop_rate, p = p, plot_rec_images=False)
+                x_marks = Image_Reduction.apply_techniques(x[i:i+jump], team, p = p)
+            else:
+                thresholds = team.get_thresholds_pd(tau=tau, classifier = classifier, T=T, drop_rate=drop_rate, p = p, plot_rec_images=False, metric=metric)
+                x_marks = Image_Reduction.apply_techniques_pd(x[i:i+jump], team, classifier, T=T, p = p, metric=metric)
 
-        y_pred, filtered_indices = poll_votes(x, y, x_marks, thresholds, reduction_models)
+            y_pred, filtered_indices = poll_votes(x[i:i+jump], y[i:i+jump], x_marks, thresholds, reduction_models)
 
-        print("\nEXPERIMENT USING {0} DATASET: {1} Input Images 'x', {2} Attack, p = {3}, reduction models = {4}, drop_rate = {5}\n, T = {6}"
-        .format(self._data.dataset_name, len(x), attack, p, reduction_models, drop_rate, T))
+            print("\nEXPERIMENT USING {0} DATASET: {1} Input Images 'x', {2} Attack, p = {3}, reduction models = {4}, drop_rate = {5}\n, T = {6}"
+            .format(self._data.dataset_name, len(x[i:i+jump]), attack, p, reduction_models, drop_rate, T))
 
-        acc, pp, nn, auc, f1, cm = helpers.get_cm_and_statistics(y, y_pred)
+            team_stats[k,0], team_stats[k,1], team_stats[k,2], _, _, cm = helpers.get_cm_and_statistics(y[i:i+jump], y_pred)
+            team_stats[k,3] = reduction_models
 
-        print('Threshold used: {0}\nConfusion Matrix:\n{1}\nACC: {2}, Positive Precision: {3}, Negative Precision: {4}, AUC: {5:.3}, F1: {6:.3}'
-            .format(thresholds, cm, acc, pp, nn, auc, f1))
+            print('Threshold used: {0}\nConfusion Matrix:\n{1}\nACC: {2}, Positive Precision: {3}, Negative Precision: {4}'
+                .format(thresholds, cm, team_stats[k,0], team_stats[k,1], team_stats[k,2]))
 
-        ori_acc, ref_acc = Reformer(classifier.model, team, x[filtered_indices], y_ori[filtered_indices])
-        d_acc = classifier.model.evaluate(x, y_ori)[1]
+            ori_acc, ref_acc = Reformer(classifier.model, team, x[i:i+jump][filtered_indices], y_ori[i:i+jump][filtered_indices])
+            d_acc = classifier.model.evaluate(x[i:i+jump], y_ori[i:i+jump])[1]
 
-        print("\nModel accuracy on D set: %.2f%%" % (d_acc*100))
-        print("\nModel accuracy on filtered images: %.2f%%" % (ori_acc*100))
-        print("Model accuracy on filtered and reformed images: %.2f%%" % (ref_acc*100))
+            print("\nModel accuracy on D set: %.2f%%" % (d_acc*100))
+            print("\nModel accuracy on filtered images: %.2f%%" % (ori_acc*100))
+            print("Model accuracy on filtered and reformed images: %.2f%%" % (ref_acc*100))
 
-        print("\nExperiment's elapsed time: {0}".format(timedelta(seconds=time.time() - start)))
+            print("\nExperiment's elapsed time: {0}\n".format(timedelta(seconds=time.time() - start)))
+
+            i = i+jump
+            k = k+1
+        
+        helpers.get_statistics_experiments("Team", team_stats)
+        print("Number of autoencoders chosen on each experiment: {0}".format(team_stats[:,3]))

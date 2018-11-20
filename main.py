@@ -6,8 +6,8 @@ def simple_experiment(dataset):
     
 def choose_team_each_jump_experiment(dataset):
     exp = Experiment(dataset)
-    exp.choose_team_each_jump_experiment(jump=10, magnet=False, attack="CW_10.0", drop_rate=0.01, 
-        tau="RE", length=2000)
+    exp.choose_team_each_jump_experiment(jump=1000, magnet=False, attack="DEEPFOOL", drop_rate=0.01, T=5, metric="JSD", 
+        tau="minRE", length=2000)
 
 def all_cases_experiment(dataset):
     exp = Experiment(dataset)
