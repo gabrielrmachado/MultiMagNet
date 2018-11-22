@@ -14,6 +14,7 @@ from keras.activations import softmax
 import utils.helpers as helpers
 from numpy import array
 import numpy as np
+import os
 
 class Autoencoder_Params():
         def __init__(self, name, struct=None, model = "", activation="sigmoid", batch_size = 128, epochs=100, 
@@ -113,38 +114,43 @@ class Assembly_Team():
         sft.add(Lambda(lambda X: softmax(X, axis=1), input_shape=(10,)))
 
         for i in range(self.team.size):
-            autoencoder = self.load_autoencoder(self.team[i])
-            rec = autoencoder.predict(self.__data.x_val)
+            autoencoder, threshold = self.load_autoencoder(self.team[i], metric)
 
-            if plot_rec_images == True:
-                rec_ex = autoencoder.predict(self.__data.x_test[:10])
-                helpers.plot_images(self.__data.x_test[:10], rec_ex[:10], rec_ex.shape)
-                del rec_ex
+            if (type(threshold) == type(None)):
+                rec = autoencoder.predict(self.__data.x_val)
 
-            print('Reconstructing images using {0} model ({1}/{2}).'.format(self.team[i].name, i+1, self.team.size))
+                if plot_rec_images == True:
+                    rec_ex = autoencoder.predict(self.__data.x_test[:10])
+                    helpers.plot_images(self.__data.x_test[:10], rec_ex[:10], rec_ex.shape)
+                    del rec_ex
 
-            if self.__data.x_val.shape[1:] != rec.shape[1:]:
-                rec = rec.reshape(rec.shape[0], self.__data.x_val.shape[1], self.__data.x_val.shape[2], self.__data.x_val.shape[3]).astype('float32')
+                print('Reconstructing images using {0} model ({1}/{2}).'.format(self.team[i].name, i+1, self.team.size))
 
-            # marks = np.mean(np.power(np.abs(model.predict(self.__data.x_val) - model.predict(rec)), 1), axis=1)
+                if self.__data.x_val.shape[1:] != rec.shape[1:]:
+                    rec = rec.reshape(rec.shape[0], self.__data.x_val.shape[1], self.__data.x_val.shape[2], self.__data.x_val.shape[3]).astype('float32')
 
-            oc = sft.predict(model.predict(self.__data.x_val)/T)
-            rc = sft.predict(model.predict(rec)/T)        
+                # marks = np.mean(np.power(np.abs(model.predict(self.__data.x_val) - model.predict(rec)), 1), axis=1)
 
-            # print("OC[0]: {0}\nRC[0]: {1}".format(oc[0], rc[0]))
-            # print(oc.shape, rc.shape)
+                oc = sft.predict(model.predict(self.__data.x_val)/T)
+                rc = sft.predict(model.predict(rec)/T)        
 
-            if metric == 'JSD':    
-                marks = [JSD(oc[j], rc[j]) for j in range(len(rc))]                   
-            
-            elif metric == 'DKL':
-                from scipy.stats import entropy
-                marks = [entropy(pk=rc[j], qk=oc[j]) for j in range(len(rc))]                   
+                # print("OC[0]: {0}\nRC[0]: {1}".format(oc[0], rc[0]))
+                # print(oc.shape, rc.shape)
 
-            marks_iset = np.sort(marks)
-            # print("MARKS_ISET: \n{0}".format(marks_iset))
-            thresholds.append(marks_iset[-num])
-            
+                if metric == 'JSD':    
+                    marks = [JSD(oc[j], rc[j]) for j in range(len(rc))]                   
+                
+                elif metric == 'DKL':
+                    from scipy.stats import entropy
+                    marks = [entropy(pk=rc[j], qk=oc[j]) for j in range(len(rc))]                   
+
+                marks_iset = np.sort(marks)
+                threshold = marks_iset[-num]
+
+                path = os.path.join("./team_techniques/models/thresholds", self.team[i].name + "_" + metric + "_.plk")
+                helpers.save_pkl(threshold, path)
+
+            thresholds.append(threshold)
             del autoencoder
         
         if tau == "minRE":
@@ -170,23 +176,29 @@ class Assembly_Team():
         num = round(drop_rate * len(self.__data.x_val))
 
         for i in range(self.team.size):
-            autoencoder = self.load_autoencoder(self.team[i])
-            rec = autoencoder.predict(self.__data.x_val)
+            autoencoder, threshold = self.load_autoencoder(self.team[i], "RE")
 
-            if plot_rec_images == True:
-                rec_ex = autoencoder.predict(self.__data.x_test[:10])
-                helpers.plot_images(self.__data.x_test[:10], rec_ex[:10], rec_ex.shape)
+            if (type(threshold) == type(None)):
+                rec = autoencoder.predict(self.__data.x_val)
 
-            print('Reconstructing images using {0} model ({1}/{2}).'.format(self.team[i].name, i+1, self.team.size))
+                if plot_rec_images == True:
+                    rec_ex = autoencoder.predict(self.__data.x_test[:10])
+                    helpers.plot_images(self.__data.x_test[:10], rec_ex[:10], rec_ex.shape)
 
-            if self.__data.x_val.shape[1:] != rec.shape[1:]:
-                rec = rec.reshape(rec.shape[0], self.__data.x_val.shape[1], self.__data.x_val.shape[2], self.__data.x_val.shape[3]).astype('float32')
+                print('Reconstructing images using {0} model ({1}/{2}).'.format(self.team[i].name, i+1, self.team.size))
 
-            diff = np.abs(self.__data.x_val - rec)
-            marks = np.mean(np.power(diff, p), axis=(1,2,3))
+                if self.__data.x_val.shape[1:] != rec.shape[1:]:
+                    rec = rec.reshape(rec.shape[0], self.__data.x_val.shape[1], self.__data.x_val.shape[2], self.__data.x_val.shape[3]).astype('float32')
 
-            marks_iset = np.sort(marks)
-            thresholds.append(marks_iset[-num])
+                diff = np.abs(self.__data.x_val - rec)
+                marks = np.mean(np.power(diff, p), axis=(1,2,3))
+
+                marks_iset = np.sort(marks)
+                threshold = marks_iset[-num]
+                path = os.path.join("./team_techniques/models/thresholds", self.team[i].name + "_" + "RE" + "_.plk")
+                helpers.save_pkl(threshold, path)
+
+            thresholds.append(threshold)
             del autoencoder
         
         if tau == "minRE":
@@ -194,7 +206,12 @@ class Assembly_Team():
 
         return thresholds
 
-    def load_autoencoder(self, team_member):
+    # def optimize_team_parameters(attack):
+
+        # _, x, y, y_ori = helpers.join_test_sets(self._data, x_test_adv, length, idx=self._idx_adv[:length])
+
+    def load_autoencoder(self, team_member, metric):
+        import os
         model = team_member.model
 
         if self.__data.dataset_name == "MNIST":
@@ -210,7 +227,11 @@ class Assembly_Team():
         
         print("\nLoading {0} autoencoder".format(team_member.name))
         autoencoder.execute()
-        return autoencoder
+
+        # load pre-computed autoencoder threshold (if it exists)
+        path = os.path.join("./team_techniques/models/thresholds", team_member.name + "_" + metric + "_.plk")
+        threshold = helpers.load_pkl(path)
+        return autoencoder, threshold
             
         
 

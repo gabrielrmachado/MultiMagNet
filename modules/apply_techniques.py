@@ -31,7 +31,7 @@ class Image_Reduction:
         x_marks = []
 
         for i in range(len(team_obj.team)):
-            autoencoder = team_obj.load_autoencoder(team_obj.team[i])
+            autoencoder, _ = team_obj.load_autoencoder(team_obj.team[i])
             print('Reconstructing test images using {0} model ({1}/{2}).'.format(autoencoder.name, i+1, team_obj.team.size))
             rec = autoencoder.predict(x)
 
@@ -57,7 +57,7 @@ class Image_Reduction:
         sft.add(Lambda(lambda X: softmax(X, axis=0), input_shape=(10,)))
 
         for i in range(len(team_obj.team)):
-            autoencoder = team_obj.load_autoencoder(team_obj.team[i])
+            autoencoder, _ = team_obj.load_autoencoder(team_obj.team[i], metric)
             print('Reconstructing test images using {0} model ({1}/{2}).'.format(autoencoder.name, i+1, team_obj.team.size))
             rec = autoencoder.predict(x)
 

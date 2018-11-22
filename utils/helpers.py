@@ -11,19 +11,16 @@ from keras.models import Sequential
 from keras.layers import Lambda
 from keras.activations import softmax
 
-def save_imgs_pkl(imgs, name):
+def save_pkl(obj, path):
         try:
-                if name.endswith(".pkl"): name = name[:-4]
-                path = os.path.join("./adv_attacks/adversarial_images", name + '.plk')
                 with open(path, 'wb') as f:
-                        pickle.dump(imgs, f, pickle.HIGHEST_PROTOCOL)
+                        pickle.dump(obj, f, pickle.HIGHEST_PROTOCOL)
                 return True
         except:
                 print('\nIt was not possible to save images in specified directory: {0}'.format(path))
                 return False
 
-def load_imgs_pkl(name):
-        path = os.path.join("./adv_attacks/adversarial_images", name)
+def load_pkl(path):
         try:
                 with open(path, 'rb') as f:
                         return pickle.load(f)

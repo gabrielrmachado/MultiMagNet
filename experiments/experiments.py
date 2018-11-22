@@ -17,6 +17,7 @@ from adv_attacks.adversarial_attacks import Adversarial_Attack
 from modules.apply_techniques import Image_Reduction
 from keras.utils import np_utils
 import time
+import os
 from utils.helpers import JSD
 from datetime import timedelta
 from sklearn.metrics import confusion_matrix
@@ -27,15 +28,30 @@ class Experiment:
         Realizes the MultiMagNet's experiments.
 
         # Attribute
-            dataset: 'MNIST' or 'CIFAR' (this not fully implemented yet!)
+            dataset: 'MNIST' or 'CIFAR'
         """
-        self._idx_adv = helpers.load_imgs_pkl('example_idx.pkl')
+        path = os.path.join("./adv_attacks/adversarial_images/example_idx.pkl")
+        self._idx_adv = helpers.load_pkl(path)
 
         self._sess = tf.Session()
         self._sess.as_default()              
 
         self._data = Data(dataset_name=dataset) 
         print("\nDataset loaded.")
+
+    def create_adversarial_validation_images(self):
+        classifier = Classifier(self._sess, self._data, epochs=350, learning_rate=0.01, batch_size=32)
+        classifier.execute()
+        length = 2000
+        # # Creates surrogate model and returns the perturbed NumPy test set  
+        x_val_adv = Adversarial_Attack(self._sess, self._data, dataset = "_x_val_set_", length=2000, attack="DEEPFOOL", epochs=12).attack(model=classifier.model)
+        scores_leg = classifier.model.evaluate(self._data.x_val[self._idx_adv][:length], self._data.y_val[self._idx_adv][:length], verbose=1)
+        scores = classifier.model.evaluate(x_val_adv[:length], self._data.y_val[self._idx_adv][:length], verbose=1)
+        print("\nMain classifier's accuracy on legitimate examples: %.2f%%" % (scores_leg[1]*100))
+        print("\nMain classifier's accuracy on adversarial examples: %.2f%%" % (scores[1]*100))
+
+        helpers.plot_images(self._data.x_val[self._idx_adv][:length], x_val_adv[:length], x_val_adv.shape)
+        
 
     def test_logits(self):
         classifier = Classifier(self._sess, self._data, epochs=170)
@@ -163,7 +179,7 @@ class Experiment:
         
         print("Reforming legitimate images...\n")        
         for i in range(len(team)):
-            autoencoder = team_obj.load_autoencoder(team[i])
+            autoencoder = team_obj.load_autoencoder(team[i], metric = "JSD")
             rec = autoencoder.predict(x)
             rec_adv = autoencoder.predict(x_test_adv)
 
@@ -220,7 +236,7 @@ class Experiment:
         classifier.execute()
 
         # # Creates surrogate model and returns the perturbed NumPy test set  
-        x_test_adv = Adversarial_Attack(self._sess, self._data, length=length, attack=attack, epochs=12).attack(model=classifier.model)
+        x_test_adv, _, _ = Adversarial_Attack(self._sess, self._data, length=length, attack=attack, epochs=12).attack(model=classifier.model)
 
         # Evaluates the brand-new adversarial examples on the main model.
         scores_leg = classifier.model.evaluate(self._data.x_test[self._idx_adv][:length], self._data.y_test[self._idx_adv][:length], verbose=1)
@@ -233,7 +249,7 @@ class Experiment:
 
         # Creates a test set containing 'length * 2' input images 'x', where half are benign images and half are adversarial.
         _, x, y, y_ori = helpers.join_test_sets(self._data, x_test_adv, length, idx=self._idx_adv[:length])
-          
+        
         # # Creates, trains and returns the 'R' dimensionality reduction team
         team = Assembly_Team(self._sess, self._data, reduction_models)
 
@@ -288,7 +304,7 @@ class Experiment:
         classifier.execute()
 
         # # Creates surrogate model and returns the perturbed NumPy test set  
-        x_test_adv = Adversarial_Attack(self._sess, self._data, length=length, attack=attack, epochs=12).attack(model=classifier.model)
+        x_test_adv, _, _ = Adversarial_Attack(self._sess, self._data, length=length, attack=attack, epochs=12).attack(model=classifier.model)
 
         # Evaluates the brand-new adversarial examples on the main model.
         scores_leg = classifier.model.evaluate(self._data.x_test[self._idx_adv][:length], self._data.y_test[self._idx_adv][:length], verbose=1)

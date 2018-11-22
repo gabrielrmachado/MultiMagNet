@@ -30,9 +30,11 @@ from art.attacks.deepfool import DeepFool
 from keras.optimizers import Adam
 from keras.layers.pooling import MaxPooling2D
 import classifiers
+import os
 
 class Adversarial_Attack:
-    def __init__(self, sess, data, length, attack='FGSM',
+    # dataset = "_test_set_" or "_val_set_"
+    def __init__(self, sess, data, length, attack='FGSM', dataset = "_test_set_",
                  num_filters = 64, batch_size = 128, epochs = 10):
         self.__data = data
         self.__image_rows = data.x_train.shape[1]
@@ -45,7 +47,14 @@ class Adversarial_Attack:
         self.__batch = batch_size
         self.__epochs = epochs   
         self.__dataset = data.dataset_name 
-        self.idx_adv = helpers.load_imgs_pkl('example_idx.pkl')
+        self._test_or_val_dataset = dataset
+
+        self._attack_dir = "./adv_attacks/adversarial_images"
+        
+        if dataset == "_test_set_":
+            self.idx_adv = helpers.load_pkl(os.path.join(self._attack_dir, "example_idx.pkl"))
+        else:
+            self.idx_adv = helpers.load_pkl(os.path.join(self._attack_dir, "validation_idx.pkl"))
 
         self.surrogate_model = Sequential()
         self.surrogate_model.add(Conv2D(32, (3, 3), padding='same', input_shape=self.__data.x_train.shape[1:]))
@@ -72,8 +81,15 @@ class Adversarial_Attack:
         self.surrogate_model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
     def attack(self, model=None, attack_str=""):
-        imgs = self._load_images(attack_str)
+        imgs = self._load_images(attack_str, self._test_or_val_dataset)
         
+        if self._test_or_val_dataset == "_x_test_set_":
+            X = self.__data.x_test
+            Y = self.__data.y_test
+        else:
+            X = self.__data.x_val
+            Y = self.__data.y_val
+
         if type(imgs) != type(None) :
             print('\n{0} adversarial examples using {1} attack loaded...\n'.format(self.__dataset, self.__attack))
             return imgs
@@ -89,19 +105,20 @@ class Adversarial_Attack:
             fgsm = FastGradientMethod(wrap)
 
             if self.__data.dataset_name == 'MNIST':
-                x_adv_images = fgsm.generate(x=self.__data.x_test[self.idx_adv][:self._length], eps = 0.2)
+                x_adv_images = fgsm.generate(x=X[self.idx_adv][:self._length], eps = 0.2)
             else:
-                x_adv_images = fgsm.generate(x=self.__data.x_test[self.idx_adv][:self._length], eps = 0.025)
+                x_adv_images = fgsm.generate(x=X[self.idx_adv][:self._length], eps = 0.025)
 
-            helpers.save_imgs_pkl(x_adv_images, self.__dataset.lower() + '_test_set_fgsm.pkl')
-            return x_adv_images
+            path = os.path.join(self._attack_dir, self.__dataset.lower() + self._test_or_val_dataset + "fgsm.pkl")
+            helpers.save_pkl(x_adv_images, path)
         
         elif self.__attack.startswith("CW"):
             print('\nCrafting adversarial examples using CW attack...\n')
             cw = CarliniL2Method(wrap, confidence=0.0, targeted=False, binary_search_steps=1, learning_rate=0.2, initial_const=10, max_iter=100)
-            x_adv_images = cw.generate(self.__data.x_test[self.idx_adv][:self._length])
-            helpers.save_imgs_pkl(x_adv_images, self.__dataset.lower() + '_test_set_cw.pkl')
-            return x_adv_images
+            x_adv_images = cw.generate(X[self.idx_adv][:self._length])
+
+            path = os.path.join(self._attack_dir, self.__dataset.lower() + self._test_or_val_dataset + "cw.pkl")
+            helpers.save_pkl(x_adv_images, path)
             
         elif self.__attack == 'BIM':        
             print('\nCrafting adversarial examples using BIM attack...\n')
@@ -111,17 +128,19 @@ class Adversarial_Attack:
             if self.__dataset == 'CIFAR':
                 bim = BasicIterativeMethod(wrap, eps=0.025, eps_step=0.01, max_iter=1000, norm=np.inf)
             
-            x_adv_images = bim.generate(x = self.__data.x_test[self.idx_adv][:self._length])
-            helpers.save_imgs_pkl(x_adv_images, self.__dataset.lower() + '_test_set_bim.pkl')
-            return x_adv_images
+            x_adv_images = bim.generate(x = X[self.idx_adv][:self._length])
+            path = os.path.join(self._attack_dir, self.__dataset.lower() + self._test_or_val_dataset + "bim.pkl")
+            helpers.save_pkl(x_adv_images, path)
 
         elif self.__attack == 'DEEPFOOL':
             print('\nCrafting adversarial examples using DeepFool attack...\n')
             
             deepfool = DeepFool(wrap)        
-            x_adv_images = deepfool.generate(x = self.__data.x_test[self.idx_adv][:self._length])
-            helpers.save_imgs_pkl(x_adv_images, self.__dataset.lower() + '_test_set_deepfool.pkl')
-            return x_adv_images                
+            x_adv_images = deepfool.generate(x = X[self.idx_adv][:self._length])
+            path = os.path.join(self._attack_dir, self.__dataset.lower() + self._test_or_val_dataset + "deepfool.pkl")
+            helpers.save_pkl(x_adv_images, path)
+        
+        return x_adv_images, X, Y                
 
     def test_surrogate_model(self, x_adv_images, index):
         adv_x = x_adv_images[index].reshape(1, self.__image_rows, self.__image_cols, self.__channels)
@@ -165,11 +184,14 @@ class Adversarial_Attack:
             scores = self.surrogate_model.evaluate(x_test_adv, y_test, verbose=0)
         print("Surrogate model's baseline error: %.2f%%" % (scores[1]*100))
 
-    def _load_images(self, attack_str):
+    def _load_images(self, attack_str, dataset='_test_set_'):
         if attack_str == "":
-            imgs = helpers.load_imgs_pkl(self.__dataset.lower() + '_test_set_' + self.__attack.lower() + '.plk')
+            path = os.path.join(self._attack_dir, self.__dataset.lower() + dataset + self.__attack.lower() + '.plk')
+            imgs = helpers.load_pkl(path)
         else:
-            imgs = helpers.load_imgs_pkl(self.__dataset.lower() + '_test_set_' + attack_str + '.plk')
+            path = os.path.join(self._attack_dir, self.__dataset.lower() + dataset + attack_str + '.plk')
+            imgs = helpers.load_pkl(path)
+            # imgs = helpers.load_pkl(self.__dataset.lower() + dataset + attack_str + '.plk')
         
         return imgs
 
