@@ -113,7 +113,7 @@ def compute_tau(d_set, mode="avg"):
         if (mode == 'p75'): return np.percentile(d_set_whole, 75)
         if (mode == 'maximum'): return np.max(d_set_whole)
 
-def join_test_sets(data_obj, adv_set, length=100, idx = []):
+def join_test_sets(x_leg, adv_set, y_leg, length=100, idx = []):
         """
         Unifies the benign and adversarial test sets into an unique set and creates its corresponding labels set, where 
         '1' represents 'benign data' and '0' 'adversarial data'.
@@ -131,8 +131,8 @@ def join_test_sets(data_obj, adv_set, length=100, idx = []):
         leg_labels = np.ones(shape=length)
         adv_labels = np.zeros(shape=length)
 
-        x = np.concatenate((data_obj.x_test[idx], adv_set[:length]))
-        y_original = np.concatenate((data_obj.y_test[idx], data_obj.y_test[idx]))
+        x = np.concatenate((x_leg[idx], adv_set[:length]))
+        y_original = np.concatenate((y_leg[idx], y_leg[idx]))
         y = np.concatenate((leg_labels, adv_labels))
 
         i = np.random.permutation(len(x))

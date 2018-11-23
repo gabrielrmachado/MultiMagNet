@@ -8,7 +8,7 @@ def simple_experiment(dataset):
     
 def choose_team_each_jump_experiment(dataset):
     exp = Experiment(dataset)
-    exp.choose_team_each_jump_experiment(jump=1000, magnet=False, attack="DEEPFOOL", drop_rate=0.07, T=5, metric="JSD", 
+    exp.choose_team_each_jump_experiment(jump=1000, magnet=False, attack="DEEPFOOL", drop_rate=0.07, T=1, metric="JSD", 
         tau="minRE", length=2000)
 
 def all_cases_experiment(dataset):
@@ -23,12 +23,19 @@ def all_cases_experiment(dataset):
 
     exp.all_cases_experiment([5], reduction_models, attacks, drop_rate, tau, T, metric)
 
-simple_experiment("CIFAR")
+# simple_experiment("CIFAR")
 #all_cases_experiment("CIFAR")
 # choose_team_each_jump_experiment("CIFAR")
 
-# exp = Experiment("MNIST")
-# exp.create_adversarial_validation_images()
+exp = Experiment("CIFAR")
+
+drop_rate = [0.07, 0.1]
+reduction_models = [1]
+tau = ["minRE"]
+T = [1]
+metric = ["JSD"]
+
+exp.tuning_team_parameters("DEEPFOOL", reduction_models, drop_rate, tau, metric, T)
 
 
 

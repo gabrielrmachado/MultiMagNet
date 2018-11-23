@@ -100,7 +100,8 @@ class Assembly_Team():
             team = np.random.choice(s, size=self.__number, replace=False)
         return team
 
-    def get_thresholds_pd(self, classifier, drop_rate=0.001, T = 10, p = 2, tau="RE", plot_rec_images=False, metric='JSD'):
+    def get_thresholds_pd(self, classifier, drop_rate=0.001, T = 10, p = 2, tau="RE", plot_rec_images=False, 
+                            load_thresholds = True, metric='JSD'):
         """
         Predicts the 'data' using the selected autoencoders, 
         returning their respective probability divergence thresholds.
@@ -117,6 +118,9 @@ class Assembly_Team():
             # load pre-computed autoencoder threshold (if it exists)
             path = os.path.join("./team_techniques/models/thresholds", self.team[i].name + "_" + metric + "_.plk")
             try:
+                if not load_thresholds:
+                    raise Exception("load_thresholds parameter set False. Computing the thresholds manually.")
+                    
                 threshold = helpers.load_pkl(path)
                 print("Threshold of autoencoder {0} loaded.".format(self.team[i].name))
 
@@ -166,7 +170,7 @@ class Assembly_Team():
 
         return thresholds
 
-    def get_thresholds(self, drop_rate=0.001, p = 2, tau="RE", plot_rec_images=False):
+    def get_thresholds(self, drop_rate=0.001, p = 2, tau="RE", plot_rec_images=False, load_thresholds = True):
         """
         Predicts the 'data' using the selected autoencoders, 
         returning their respective reconstruction errors thresholds.
@@ -185,13 +189,16 @@ class Assembly_Team():
 
         for i in range(self.team.size):
             # load pre-computed autoencoder threshold (if it exists)
-            path = os.path.join("./team_techniques/models/thresholds", self.team[i].name + "_" + metric + "_.plk")
+            path = os.path.join("./team_techniques/models/thresholds", self.team[i].name + "_" + "RE" + "_.plk")
             try:
+                if not load_thresholds:
+                    raise Exception("load_thresholds parameter set False. Computing the thresholds manually.")
+
                 threshold = helpers.load_pkl(path)
                 print("Threshold of autoencoder {0} loaded.".format(self.team[i].name))
 
             except:
-                autoencoder = self.load_autoencoder(self.team[i], metric)
+                autoencoder = self.load_autoencoder(self.team[i], "RE")
                 rec = autoencoder.predict(self.__data.x_val)
 
                 if plot_rec_images == True:
@@ -221,10 +228,6 @@ class Assembly_Team():
             thresholds = [np.min(thresholds)] * self.__number
 
         return thresholds
-
-    # def optimize_team_parameters(attack):
-
-        # _, x, y, y_ori = helpers.join_test_sets(self._data, x_test_adv, length, idx=self._idx_adv[:length])
 
     def load_autoencoder(self, team_member, metric=""):
         model = team_member.model

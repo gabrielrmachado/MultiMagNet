@@ -100,7 +100,7 @@ class Experiment:
                 
                 if att != attack:
                     x_test_adv = Adversarial_Attack(self._sess, self._data, length=length, attack=attack, epochs=5).attack()                
-                    _, x, y, _ = helpers.join_test_sets(self._data, x_test_adv, length, idx=self._idx_adv[:length])
+                    _, x, y, _ = helpers.join_test_sets(self._data.x_test, x_test_adv, self._data.y_test, length, idx=self._idx_adv[:length])
                     att = attack
 
                 multiple_team = Assembly_Team(self._sess, self._data, reduction_models)
@@ -170,7 +170,7 @@ class Experiment:
         #helpers.plot_images(self._data.x_test[self._idx_adv][:length], x_test_adv[:length], x_test_adv.shape)
 
         # Creates a test set containing 'length * 2' input images 'x', where half are benign images and half are adversarial.
-        _, x, y, y_ori = helpers.join_test_sets(self._data, x_test_adv, length, idx=self._idx_adv[:length])
+        _, x, y, y_ori = helpers.join_test_sets(self._data.x_test, x_test_adv, self._data.y_test, length, idx=self._idx_adv[:length])
         
         # # Creates, trains and returns the 'R' dimensionality reduction team
         team = Assembly_Team(self._sess, self._data, reduction_models)
@@ -226,7 +226,7 @@ class Experiment:
         classifier.execute()
 
         # # Creates surrogate model and returns the perturbed NumPy test set  
-        x_test_adv, _, _ = Adversarial_Attack(self._sess, self._data, length=length, attack=attack, epochs=12).attack(model=classifier.model)
+        x_test_adv = Adversarial_Attack(self._sess, self._data, length=length, attack=attack, epochs=12).attack(model=classifier.model)
 
         # Evaluates the brand-new adversarial examples on the main model.
         scores_leg = classifier.model.evaluate(self._data.x_test[self._idx_adv][:length], self._data.y_test[self._idx_adv][:length], verbose=1)
@@ -238,7 +238,7 @@ class Experiment:
         #helpers.plot_images(self._data.x_test[self._idx_adv][:length], x_test_adv[:length], x_test_adv.shape)
 
         # Creates a test set containing 'length * 2' input images 'x', where half are benign images and half are adversarial.
-        _, x, y, y_ori = helpers.join_test_sets(self._data, x_test_adv, length, idx=self._idx_adv[:length])
+        _, x, y, y_ori = helpers.join_test_sets(self._data.x_test, x_test_adv, self._data.y_test, length, idx=self._idx_adv[:length])
         team_stats = np.zeros((math.floor(len(x)/jump), 4))
         
         i = 0
@@ -282,3 +282,62 @@ class Experiment:
         
         helpers.get_statistics_experiments("Team", team_stats)
         print("Number of autoencoders chosen on each experiment: {0}".format(team_stats[:,3]))
+
+    def tuning_team_parameters(self, attack, *args, classifier=None):
+
+        print("\nStarting validation process...\n")
+
+        classifier = Classifier(self._sess, self._data, epochs=350, learning_rate=0.01, batch_size=32)
+        classifier.execute()
+
+        path = os.path.join("./adv_attacks/adversarial_images", self._data.dataset_name.lower() + "_val_set_" + attack.lower() + ".plk")
+        val_set_adv = helpers.load_pkl(path)
+
+        path = os.path.join("./adv_attacks/adversarial_images/validation_idx.pkl")
+        idx = helpers.load_pkl(path)
+
+        val_set_leg = self._data.x_val[idx]
+        _, x_val, y_val, _ = helpers.join_test_sets(self._data.x_test, val_set_adv, self._data.y_test, len(val_set_leg), idx=idx)
+
+        import itertools
+        combinations = list(itertools.product(*args))
+        team_stats = np.zeros((len(combinations), 3))
+        parameters = [[0 for x in range(5)] for y in range(len(combinations))] 
+        k = 0
+
+        for combination in combinations:
+            reduction_models = parameters[k][0] = combination[0]
+            drop_rate = parameters[k][1] = combination[1]
+            tau = parameters[k][2] = combination[2]
+            metric = parameters[k][3] = combination[3]
+
+            if self._data.dataset_name == "CIFAR":
+                T = parameters[k][4] = combination[4]
+
+            team = Assembly_Team(self._sess, self._data, reduction_models)
+            
+            if metric == "RE":
+                thresholds = team.get_thresholds(tau=tau, drop_rate=drop_rate, p = 1, plot_rec_images=False, load_thresholds=False)
+                val_marks = Image_Reduction.apply_techniques(x_val, team, p = 1)
+            else:
+                thresholds = team.get_thresholds_pd(tau=tau, classifier = classifier, T=T, drop_rate=drop_rate, p = 1, 
+                        plot_rec_images=False, load_thresholds=False, metric=metric)
+
+                val_marks = Image_Reduction.apply_techniques_pd(x_val, team, classifier, T=T, p = 1, metric=metric)
+
+            y_pred, _ = poll_votes(x_val, y_val, val_marks, thresholds, reduction_models)
+
+            print("\nEXPERIMENT USING {0} DATASET: {1} Input Images 'x', {2} Attack, p = {3}, reduction models = {4}, drop_rate = {5}\n, T = {6}"
+            .format(self._data.dataset_name, len(x_val), attack, 1, reduction_models, drop_rate, T))
+
+            team_stats[k,0], team_stats[k,1], team_stats[k,2], _, _, cm = helpers.get_cm_and_statistics(y_val, y_pred)
+
+            print('Threshold used: {0}\nConfusion Matrix:\n{1}\nACC: {2}, Positive Precision: {3}, Negative Precision: {4}'
+                .format(thresholds, cm, team_stats[k,0], team_stats[k,1], team_stats[k,2]))
+            k = k + 1
+
+        max_acc = max(team_stats[:,0])
+        index = np.argmax(team_stats[:,0])
+
+        print("\nBest accuracy of {0:.3} was obtained by the following MultiMagNet's hyperparameters:\n{1}".format(max_acc, parameters[index]))
+        
