@@ -114,9 +114,14 @@ class Assembly_Team():
         sft.add(Lambda(lambda X: softmax(X, axis=1), input_shape=(10,)))
 
         for i in range(self.team.size):
-            autoencoder, threshold = self.load_autoencoder(self.team[i], metric)
+            # load pre-computed autoencoder threshold (if it exists)
+            path = os.path.join("./team_techniques/models/thresholds", self.team[i].name + "_" + metric + "_.plk")
+            try:
+                threshold = helpers.load_pkl(path)
+                print("Threshold of autoencoder {0} loaded.".format(self.team[i].name))
 
-            if (type(threshold) == type(None)):
+            except:
+                autoencoder = self.load_autoencoder(self.team[i], metric)
                 rec = autoencoder.predict(self.__data.x_val)
 
                 if plot_rec_images == True:
@@ -148,10 +153,13 @@ class Assembly_Team():
                 threshold = marks_iset[-num]
 
                 path = os.path.join("./team_techniques/models/thresholds", self.team[i].name + "_" + metric + "_.plk")
-                helpers.save_pkl(threshold, path)
+                try:
+                    helpers.save_pkl(threshold, path)
+                except:
+                    print("It was not possible to save {0} autoencoder threshold.".format(self.team[i].name))
+                del autoencoder
 
             thresholds.append(threshold)
-            del autoencoder
         
         if tau == "minRE":
             thresholds = [np.min(thresholds)] * self.__number
@@ -176,9 +184,14 @@ class Assembly_Team():
         num = round(drop_rate * len(self.__data.x_val))
 
         for i in range(self.team.size):
-            autoencoder, threshold = self.load_autoencoder(self.team[i], "RE")
+            # load pre-computed autoencoder threshold (if it exists)
+            path = os.path.join("./team_techniques/models/thresholds", self.team[i].name + "_" + metric + "_.plk")
+            try:
+                threshold = helpers.load_pkl(path)
+                print("Threshold of autoencoder {0} loaded.".format(self.team[i].name))
 
-            if (type(threshold) == type(None)):
+            except:
+                autoencoder = self.load_autoencoder(self.team[i], metric)
                 rec = autoencoder.predict(self.__data.x_val)
 
                 if plot_rec_images == True:
@@ -196,10 +209,13 @@ class Assembly_Team():
                 marks_iset = np.sort(marks)
                 threshold = marks_iset[-num]
                 path = os.path.join("./team_techniques/models/thresholds", self.team[i].name + "_" + "RE" + "_.plk")
-                helpers.save_pkl(threshold, path)
+                try:
+                    helpers.save_pkl(threshold, path)
+                except:
+                    print("It was not possible to save {0} autoencoder threshold.".format(self.team[i].name))
+                del autoencoder
 
             thresholds.append(threshold)
-            del autoencoder
         
         if tau == "minRE":
             thresholds = [np.min(thresholds)] * self.__number
@@ -210,8 +226,7 @@ class Assembly_Team():
 
         # _, x, y, y_ori = helpers.join_test_sets(self._data, x_test_adv, length, idx=self._idx_adv[:length])
 
-    def load_autoencoder(self, team_member, metric):
-        import os
+    def load_autoencoder(self, team_member, metric=""):
         model = team_member.model
 
         if self.__data.dataset_name == "MNIST":
@@ -226,13 +241,9 @@ class Assembly_Team():
                     batch_norm=team_member.batch_norm)
         
         print("\nLoading {0} autoencoder".format(team_member.name))
-        autoencoder.execute()
-
-        # load pre-computed autoencoder threshold (if it exists)
-        path = os.path.join("./team_techniques/models/thresholds", team_member.name + "_" + metric + "_.plk")
-        threshold = helpers.load_pkl(path)
-        return autoencoder, threshold
-            
+        autoencoder.execute()            
+        return autoencoder
+        
         
 
         

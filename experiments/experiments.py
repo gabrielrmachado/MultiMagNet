@@ -51,17 +51,6 @@ class Experiment:
         print("\nMain classifier's accuracy on adversarial examples: %.2f%%" % (scores[1]*100))
 
         helpers.plot_images(self._data.x_val[self._idx_adv][:length], x_val_adv[:length], x_val_adv.shape)
-        
-
-    def test_logits(self):
-        classifier = Classifier(self._sess, self._data, epochs=170)
-        model = helpers.get_logits(classifier.model)
-        
-        print(model.predict(self._data.x_test[0:1]))
-        print(np.sum(model.predict(self._data.x_test[0:1])))
-
-        print(classifier.model.predict(self._data.x_test[0:1]))
-        print(np.sum(classifier.model.predict(self._data.x_test[0:1])))
 
     def all_cases_experiment(self, *args, length=2000):
         """
@@ -147,73 +136,6 @@ class Experiment:
                 helpers.write_txt(f, "\nExperiment's elapsed time: {0}".format(timedelta(seconds=time.time() - start)))
         f.close()
 
-    def testJSD(self, length, reduction_models, attack, logits=True, T=1):
-        from keras.models import Sequential
-        from keras.layers import Lambda
-        from keras.activations import softmax
-
-        print("Loading adversarial images...\n")
-
-        idx = np.random.permutation(2000)[:length]
-
-        print("Loading classifier...\n")
-        classifier = Classifier(self._sess, self._data, epochs=170)
-        classifier.execute()
-
-        x_test_adv = Adversarial_Attack(self._sess, self._data, length=length, attack=attack, epochs=12).attack()
-        print("Accuracy on test samples: {0:.2%}".format(classifier.model.evaluate(self._data.x_test[self._idx_adv], self._data.y_test[self._idx_adv])[1]))
-        print("Accuracy on adversarial test samples: {0:.2%}".format(classifier.model.evaluate(x_test_adv, self._data.y_test[self._idx_adv][:2000])[1]))
-        x_test_adv = x_test_adv[idx]
-
-        print("Loading team of autoencoders...\n")
-        team_obj = Assembly_Team(self._sess, self._data, reduction_models)
-        team = team_obj.get_team()
-
-        sft = Sequential()
-        sft.add(Lambda(lambda X: softmax(X, axis=1), input_shape=(10,)))
-        
-        x = self._data.x_test[self._idx_adv][idx]
-        y = self._data.y_test[self._idx_adv][idx]
-
-        # helpers.plot_images(x, x_test_adv, shape=(10, 32, 32, 3))
-        
-        print("Reforming legitimate images...\n")        
-        for i in range(len(team)):
-            autoencoder = team_obj.load_autoencoder(team[i], metric = "JSD")
-            rec = autoencoder.predict(x)
-            rec_adv = autoencoder.predict(x_test_adv)
-
-            sft = Sequential()
-            sft.add(Lambda(lambda X: softmax(X, axis=1), input_shape=(10,)))
-
-            out_leg = sft.predict(helpers.get_output_model_layer(x, classifier.model, logits=logits)/T)
-            out_rec = sft.predict(helpers.get_output_model_layer(rec, classifier.model, logits=logits)/T)
-            out_adv = sft.predict(helpers.get_output_model_layer(x_test_adv, classifier.model, logits=logits)/T)
-            adv_rec = sft.predict(helpers.get_output_model_layer(rec_adv, classifier.model, logits=logits)/T)
-            
-            leg = np.asarray([JSD(out_leg[j], out_rec[j]) for j in range(len(out_rec))])
-            adv = np.asarray([JSD(out_adv[j], adv_rec[j]) for j in range(len(adv_rec))])
-
-            # leg = np.mean(np.power(np.abs(out_leg - out_rec), 1), axis=1)
-            # adv = np.mean(np.power(np.abs(out_adv - adv_rec), 1), axis=1)
-            
-            print("\nModel's outputs (original legitimate samples): \n{0}\n".format(out_leg))
-            print("Model's outputs (rec legitimate samples): \n{0}\n".format(out_rec))
-            print("Model's outputs (original adversarial samples): \n{0}\n".format(out_adv))
-            print("Model's outputs (rec adversarial samples): \n{0}\n".format(adv_rec))
-
-            print("Legitimate Class:\n{0}\nLeg. Predicted classes:\n{1}".format(np.argmax(y, axis=1), np.argmax(classifier.model.predict(x), axis=1)))
-            print("\nLegitimate Class:\n{0}\nRec. Leg. Predicted classes:\n{1}".format(np.argmax(y, axis=1), np.argmax(classifier.model.predict(rec), axis=1)))
-            print("\nLegitimate Class:\n{0}\nAdv. Predicted classes:\n{1}".format(np.argmax(y, axis=1), np.argmax(classifier.model.predict(x_test_adv), axis=1)))
-            print("\nLegitimate Class:\n{0}\nRec. Adv. Predicted classes:\n{1}".format(np.argmax(y, axis=1), np.argmax(classifier.model.predict(rec_adv), axis=1)))
-
-            np.set_printoptions(threshold=np.nan)
-            float_formatter = lambda x: "%.4f" % x
-            np.set_printoptions(formatter={'float_kind':float_formatter})
-            print("\nLegitimate JSD: {0}\nAdversarial JSD: {1}".format(leg, adv))
-            print("LEG < ADV: {0} / {1}".format(len(np.where(leg < adv)[0]), length))
-            del autoencoder
-
     def simple_experiment(self, reduction_models, attack="FGSM", drop_rate=0.001, tau="RE", p = 1, length=2000, T=1, metric='JSD'):
         """
         Evaluates MultiMagNet with test dataset containing half legitimate and adversarial images, and prints the its metrics.
@@ -236,7 +158,7 @@ class Experiment:
         classifier.execute()
 
         # # Creates surrogate model and returns the perturbed NumPy test set  
-        x_test_adv, _, _ = Adversarial_Attack(self._sess, self._data, length=length, attack=attack, epochs=12).attack(model=classifier.model)
+        x_test_adv = Adversarial_Attack(self._sess, self._data, length=length, attack=attack, epochs=12).attack(model=classifier.model)
 
         # Evaluates the brand-new adversarial examples on the main model.
         scores_leg = classifier.model.evaluate(self._data.x_test[self._idx_adv][:length], self._data.y_test[self._idx_adv][:length], verbose=1)

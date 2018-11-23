@@ -140,7 +140,7 @@ class Adversarial_Attack:
             path = os.path.join(self._attack_dir, self.__dataset.lower() + self._test_or_val_dataset + "deepfool.pkl")
             helpers.save_pkl(x_adv_images, path)
         
-        return x_adv_images, X, Y                
+        return x_adv_images              
 
     def test_surrogate_model(self, x_adv_images, index):
         adv_x = x_adv_images[index].reshape(1, self.__image_rows, self.__image_cols, self.__channels)
