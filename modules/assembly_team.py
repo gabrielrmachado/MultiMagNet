@@ -116,13 +116,16 @@ class Assembly_Team():
 
         for i in range(self.team.size):
             # load pre-computed autoencoder threshold (if it exists)
-            path = os.path.join("./team_techniques/models/thresholds", self.team[i].name + "_" + metric + "_.plk")
+            path = os.path.join("./team_techniques/models/thresholds", self.team[i].name + "_" + str(drop_rate) + "_" + str(T) + "_" + metric + "_.plk")
             try:
                 if not load_thresholds:
                     raise Exception("load_thresholds parameter set False. Computing the thresholds manually.")
-                    
+                  
                 threshold = helpers.load_pkl(path)
-                print("Threshold of autoencoder {0} loaded.".format(self.team[i].name))
+                if type(threshold) == type(None):
+                    raise Exception
+                else:
+                    print("Threshold of autoencoder {0} loaded.".format(self.team[i].name))
 
             except:
                 autoencoder = self.load_autoencoder(self.team[i], metric)
@@ -156,7 +159,7 @@ class Assembly_Team():
                 marks_iset = np.sort(marks)
                 threshold = marks_iset[-num]
 
-                path = os.path.join("./team_techniques/models/thresholds", self.team[i].name + "_" + metric + "_.plk")
+                path = os.path.join("./team_techniques/models/thresholds", self.team[i].name + "_" + str(drop_rate) + "_" + str(T) + "_" + metric + "_.plk")
                 try:
                     helpers.save_pkl(threshold, path)
                 except:
@@ -189,13 +192,16 @@ class Assembly_Team():
 
         for i in range(self.team.size):
             # load pre-computed autoencoder threshold (if it exists)
-            path = os.path.join("./team_techniques/models/thresholds", self.team[i].name + "_" + "RE" + "_.plk")
+            path = os.path.join("./team_techniques/models/thresholds", self.team[i].name + "_" + str(drop_rate) + "_" + "RE" + "_.plk")
             try:
                 if not load_thresholds:
                     raise Exception("load_thresholds parameter set False. Computing the thresholds manually.")
 
                 threshold = helpers.load_pkl(path)
-                print("Threshold of autoencoder {0} loaded.".format(self.team[i].name))
+                if type(threshold) == type(None):
+                    raise Exception
+                else:
+                    print("Threshold of autoencoder {0} loaded.".format(self.team[i].name))
 
             except:
                 autoencoder = self.load_autoencoder(self.team[i], "RE")
@@ -215,7 +221,7 @@ class Assembly_Team():
 
                 marks_iset = np.sort(marks)
                 threshold = marks_iset[-num]
-                path = os.path.join("./team_techniques/models/thresholds", self.team[i].name + "_" + "RE" + "_.plk")
+                path = os.path.join("./team_techniques/models/thresholds", self.team[i].name + "_" + str(drop_rate) + "_" + "RE" + "_.plk")
                 try:
                     helpers.save_pkl(threshold, path)
                 except:

@@ -167,7 +167,7 @@ class Experiment:
         print("\nMain classifier's accuracy on adversarial examples: %.2f%%" % (scores[1]*100))
 
         # plots the adversarial images
-        #helpers.plot_images(self._data.x_test[self._idx_adv][:length], x_test_adv[:length], x_test_adv.shape)
+        helpers.plot_images(self._data.x_test[self._idx_adv][:length], x_test_adv[:length], x_test_adv.shape)
 
         # Creates a test set containing 'length * 2' input images 'x', where half are benign images and half are adversarial.
         _, x, y, y_ori = helpers.join_test_sets(self._data.x_test, x_test_adv, self._data.y_test, length, idx=self._idx_adv[:length])
@@ -301,6 +301,7 @@ class Experiment:
 
         import itertools
         combinations = list(itertools.product(*args))
+        print(len(combinations))
         team_stats = np.zeros((len(combinations), 3))
         parameters = [[0 for x in range(5)] for y in range(len(combinations))] 
         k = 0
